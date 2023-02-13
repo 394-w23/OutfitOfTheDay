@@ -1,6 +1,36 @@
 .bottom-container {
-  background-color: lightgrey;
+  border-top: 3px solid #5d5fef;
+  display: flex;
+  justify-content: space-evenly;
   position: fixed;
   bottom: 0;
   width: 100%;
+}
+
+.favorites-btn-container,
+.home-btn-container,
+.closet-btn-container {
+  cursor: pointer;
+  width: 100%;
+  padding-top: 20px;
+  border-right: 3px solid #d3d3d4;
+  display: block;
+  text-align: center;
+}
+
+.favorites-btn-container p,
+.home-btn-container p,
+.closet-btn-container p {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.favorites-btn-container:hover,
+.home-btn-container:hover,
+.closet-btn-container:hover {
+  background-color: #cccdfa;
+}
+
+.active-container {
+  background-color: #999bf5;
 }

@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/layout/Header";
 import BottomNav from "./components/navigation/BottomNav";
 import Login from "./pages/auth/Login";
+import Closet from "./pages/Closet";
+import Favorites from "./pages/Favorites";
 import Home from "./pages/Home";
 import { useProfile } from "./utils/userProfile";
 
@@ -18,6 +20,26 @@ const App = () => {
             <>
               <Header />
               <Home />
+              <BottomNav />
+            </>
+          }
+        />
+        <Route
+          path="/favorites"
+          element={
+            <>
+              <Header />
+              <Favorites />
+              <BottomNav />
+            </>
+          }
+        />
+        <Route
+          path="/closet"
+          element={
+            <>
+              <Header />
+              <Closet />
               <BottomNav />
             </>
           }
