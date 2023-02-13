@@ -1,0 +1,19 @@
+.navbar {
+  background-color: #f1ecff;
+}
+
+.navbar-container {
+  align-content: center;
+}
+
+.navbar-brand {
+  color: #5d5fef;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.navbar-brand:hover {
+  color: lightgrey;
+}

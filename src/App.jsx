@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/layout/Header";
+import BottomNav from "./components/navigation/BottomNav";
 import Login from "./pages/auth/Login";
 import Home from "./pages/Home";
 import { useProfile } from "./utils/userProfile";
@@ -17,6 +18,7 @@ const App = () => {
             <>
               <Header />
               <Home />
+              <BottomNav />
             </>
           }
         />
