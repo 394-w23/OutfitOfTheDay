@@ -1,16 +1,17 @@
 .bottom-container {
+  background-color: white;
   border-top: 3px solid #5d5fef;
   display: flex;
   justify-content: space-evenly;
   position: fixed;
   bottom: 0;
   width: 100%;
+  z-index: 999999;
 }
 
 .favorites-btn-container,
 .home-btn-container,
 .closet-btn-container {
-  background-color: white;
   cursor: pointer;
   width: 100%;
   padding-top: 20px;
