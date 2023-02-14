@@ -1,6 +1,12 @@
 import { useEffect, useState, useCallback } from "react";
 import { getDatabase, onValue, ref, update } from "firebase/database";
 import {
+  getStorage,
+  ref as sRef,
+  getDownloadURL,
+  uploadBytesResumable,
+} from "firebase/storage";
+import {
   getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
@@ -21,6 +27,7 @@ const firebaseConfig = {
 
 const firebase = initializeApp(firebaseConfig);
 const database = getDatabase(firebase);
+const storage = getStorage(firebase);
 
 export const useDbData = (path) => {
   const [data, setData] = useState();
@@ -48,6 +55,37 @@ const makeResult = (error) => {
   const message =
     error?.message || `Updated: ${new Date(timestamp).toLocaleString()}`;
   return { timestamp, error, message };
+};
+
+export const useStorageUpdate = (path) => {
+  const [result, setResult] = useState();
+
+  const useStorage = useCallback(
+    (value) => {
+      const storageRef = sRef(storage, path);
+      const uploadTask = uploadBytesResumable(storageRef, value);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          console.log(progress);
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+            setResult(url);
+          });
+        }
+      );
+    },
+    [path, result]
+  );
+
+  return [useStorage, result];
 };
 
 export const useDbUpdate = (path) => {

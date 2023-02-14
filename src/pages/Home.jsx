@@ -9,12 +9,7 @@ const Home = () => {
   if (!tops) {
     return <div></div>;
   }
-  return (
-    <div>
-      {/* OutfitOfTheDay */}
-      <MyCarousel data={tops}></MyCarousel>
-    </div>
-  );
+  return <div>{tops && <MyCarousel data={tops}></MyCarousel>}</div>;
 };
 
 export default Home;

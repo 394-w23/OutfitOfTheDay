@@ -5,8 +5,8 @@ const MyCarousel = ({ data }) => {
   return (
     <div className="carousel">
       <Carousel>
-        {data.map((imageLink) => (
-          <Carousel.Item>
+        {data.map((imageLink, idx) => (
+          <Carousel.Item key={idx}>
             <img
               className="w-100 shadow-1-strong rounded mb-4"
               src={imageLink}
