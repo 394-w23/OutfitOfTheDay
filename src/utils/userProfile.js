@@ -20,9 +20,12 @@ export const useProfile = () => {
       updateCloset({
         [user.uid]: {
           id: user.uid,
-          clothes: [],
-          favorites: [],
-          outfits: [],
+          tops: [],
+          bottoms: [],
+          shoes: [],
+          dresses: [],
+          jackets: [],
+          favorites: {},
         },
       });
     }
