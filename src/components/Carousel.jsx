@@ -3,7 +3,7 @@ import Carousel from "react-bootstrap/Carousel";
 const MyCarousel = ({ data }) => {
   return (
     <div className="carousel">
-      <Carousel>
+      <Carousel interval={null}>
         {data.map((imageLink, idx) => (
           <Carousel.Item key={idx}>
             <img

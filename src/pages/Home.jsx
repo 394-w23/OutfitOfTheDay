@@ -1,12 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import MyCarousel from "../components/Carousel";
 import { useDbData } from "../utils/firebase";
+import Form from "react-bootstrap/Form";
 
 const Home = () => {
   const [tops] = useDbData("/tops");
   const [bottoms] = useDbData("/bottoms");
+  const [shoes] = useDbData("/shoes");
 
-  return <div>{tops && <MyCarousel data={tops}></MyCarousel>}</div>;
+  const [dress, setDress] = useState(false);
+  const [jacket, setJacket] = useState(false);
+
+  const handleDress = () => {
+    if (dress == false){
+      setDress(true)
+    } else {
+      setDress(false)
+    }
+  }
+
+  const handleJacket = () => {
+    if (jacket == false){
+      setJacket(true)
+    } else {
+      setJacket(false)
+    }
+  }
+
+  return <div>
+    <Form.Check
+        inline="true"
+        label="Dress?"
+        type="switch"
+        onClick={() => handleDress()}
+    />
+    <Form.Check
+        inline="true"
+        label="Jacket?"
+        type="switch"
+        onClick={() => handleJacket()}
+    />
+    {tops && !dress && <MyCarousel data={tops}></MyCarousel>}
+    {bottoms && !dress && <MyCarousel data={bottoms}></MyCarousel>}
+    {shoes && <MyCarousel data={shoes}></MyCarousel>}</div>;
 };
 
 export default Home;
