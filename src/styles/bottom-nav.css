@@ -10,12 +10,17 @@
 .favorites-btn-container,
 .home-btn-container,
 .closet-btn-container {
+  background-color: white;
   cursor: pointer;
   width: 100%;
   padding-top: 20px;
-  border-right: 3px solid #d3d3d4;
   display: block;
   text-align: center;
+}
+
+.home-btn-container,
+.closet-btn-container {
+  border-left: 2px solid #d3d3d4;
 }
 
 .favorites-btn-container p,
