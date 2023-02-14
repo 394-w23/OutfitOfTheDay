@@ -8,6 +8,7 @@ import "./styles/login.css";
 import "./styles/header.css";
 import "./styles/home.css";
 import "./styles/bottom-nav.css";
+import "./styles/carousel.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

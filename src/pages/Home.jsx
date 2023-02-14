@@ -1,14 +1,11 @@
 import React from "react";
-import MyCarousel from "./Carousel";
+import MyCarousel from "../components/Carousel";
 import { useDbData } from "../utils/firebase";
 
 const Home = () => {
   const [tops] = useDbData("/tops");
   const [bottoms] = useDbData("/bottoms");
 
-  if (!tops) {
-    return <div></div>;
-  }
   return <div>{tops && <MyCarousel data={tops}></MyCarousel>}</div>;
 };
 
