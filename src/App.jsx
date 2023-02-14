@@ -19,31 +19,43 @@ const App = () => {
         <Route
           path="/"
           element={
-            <>
-              <Header />
-              <Home />
-              <BottomNav />
-            </>
+            user ? (
+              <>
+                <Header />
+                <Home />
+                <BottomNav />
+              </>
+            ) : (
+              <Navigate replace to="/login" />
+            )
           }
         />
         <Route
           path="/favorites"
           element={
-            <>
-              <Header />
-              <Favorites />
-              <BottomNav />
-            </>
+            user ? (
+              <>
+                <Header />
+                <Favorites />
+                <BottomNav />
+              </>
+            ) : (
+              <Navigate replace to="/login" />
+            )
           }
         />
         <Route
           path="/closet"
           element={
-            <>
-              <Header />
-              <Closet />
-              <BottomNav />
-            </>
+            user ? (
+              <>
+                <Header />
+                <Closet />
+                <BottomNav />
+              </>
+            ) : (
+              <Navigate replace to="/login" />
+            )
           }
         />
       </Routes>

@@ -1,9 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import Row from "react-bootstrap/Row";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Nav from "react-bootstrap/Nav";
+import { CgProfile } from "react-icons/cg";
+import { IoMdAddCircle } from "react-icons/io";
+import { AiOutlineLogout } from "react-icons/ai";
 import { signOut } from "../../utils/firebase";
 import { useProfile } from "../../utils/userProfile";
 
@@ -11,16 +14,41 @@ const Header = () => {
   const [user] = useProfile();
   const navigate = useNavigate();
 
+  if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
+
   return (
-    <Row className="mb-3 p-0 w-100 m-0">
-      <Navbar className="p-3 navbar">
-        <Container className="navbar-container">
-          <div className="navbar-brand" onClick={() => navigate("/")}>
+    <Navbar className="p-2 navbar">
+      <Container className="navbar-container">
+        <Container>
+          <Navbar.Brand className="navbar-brand" onClick={() => navigate("/")}>
             Outfit Of The Day
-          </div>
+          </Navbar.Brand>
         </Container>
-      </Navbar>
-    </Row>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav" className="header-dropdown">
+          <Nav>
+            <img
+              className="header-img"
+              alt="Profile"
+              src={user.photoURL}
+              referrerPolicy="no-referrer"
+            />
+            <NavDropdown id="collasible-nav-dropdown" align="end">
+              <NavDropdown.Item onClick={() => navigate("/view-profile")}>
+                <CgProfile size={24} /> View Profile
+              </NavDropdown.Item>
+              <NavDropdown.Item onClick={() => navigate("/add")}>
+                <IoMdAddCircle size={24} /> Add Item
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item onClick={() => signOut()}>
+                <AiOutlineLogout size={24} /> Logout
+              </NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 
