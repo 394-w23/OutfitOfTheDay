@@ -1,26 +1,21 @@
-.carousel {
+.carousel-container {
   margin: auto;
 }
 
 .carousel-inner img {
-  height: 24vh;
-  width: auto !important;
-  margin: auto !important;
+  aspect-ratio: 1 / 1;
+  width: 20vh;
+  height: auto;
+  margin: auto;
   display: block;
 }
 
-.carousel.slide {
-  width: 100%;
-  height: 33%;
-  display: flex;
-  flex-direction: row;
-}
-
 .carousel-control-next-icon {
-  background-color: black;
+  color: #555555;
 }
 
 .carousel-control-next,
 .carousel-control-prev /*, .carousel-indicators */ {
-    filter: invert(100%);
+  filter: invert(100%);
+  color: #555555;
 }

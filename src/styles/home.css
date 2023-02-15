@@ -21,6 +21,43 @@ body {
 
 .home-clothes-container {
   margin: 0;
+  display: block;
+}
+
+.home-clothes-top {
+  margin: 0;
+}
+
+.home-clothes-top img {
+  aspect-ratio: 1 / 1 !important;
+  width: 17vh !important;
+  height: auto !important;
+  margin: auto !important;
+  display: block !important;
+}
+
+.home-clothes-bottoms {
+  margin: 0;
+}
+
+.home-clothes-bottoms img {
+  aspect-ratio: 1 / 1.45 !important;
+  width: 17vh !important;
+  height: auto !important;
+  margin: auto !important;
+  display: block !important;
+}
+
+.home-clothes-shoes {
+  margin: 0;
+}
+
+.home-clothes-shoes img {
+  aspect-ratio: 1 / 1 !important;
+  width: 11vh !important;
+  height: auto !important;
+  margin: auto !important;
+  display: block !important;
 }
 
 .home-btn {

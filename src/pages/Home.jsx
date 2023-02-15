@@ -59,11 +59,15 @@ const Home = () => {
         Here's what we suggest!
       </Container>
       <Container className="home-clothes-container">
-        <Container>{tops && <MyCarousel data={tops}></MyCarousel>}</Container>
-        <Container>
-          {bottoms && <MyCarousel data={bottoms}></MyCarousel>}
+        <Container className="home-clothes-top">
+          {tops && <MyCarousel data={tops}></MyCarousel>}
         </Container>
-        <Container>{shoes && <MyCarousel data={shoes}></MyCarousel>}</Container>
+        <Container className="home-clothes-bottoms">
+          {bottoms && <MyCarousel data={bottoms} bottoms></MyCarousel>}
+        </Container>
+        <Container className="home-clothes-shoes">
+          {shoes && <MyCarousel data={shoes}></MyCarousel>}
+        </Container>
       </Container>
       <Container className="home-button-container">
         <Button className="home-btn">I'll wear this today!</Button>
