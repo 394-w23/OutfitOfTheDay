@@ -1,7 +1,7 @@
 .carousel {
-  width: 400px;
-  height: 400px;
-  border: 2px black solid;
+  width: 350px;
+  height: 200px;
+  /* border: 2px black solid; */
   margin: auto;
 }
 
@@ -10,4 +10,20 @@
   height: auto;
   max-width: 100%;
   max-height: 100%;
+}
+
+.carousel.slide {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+}
+
+.carousel-control-next-icon {
+  background-color: black;
+}
+
+.carousel-control-next,
+.carousel-control-prev /*, .carousel-indicators */ {
+    filter: invert(100%);
 }
