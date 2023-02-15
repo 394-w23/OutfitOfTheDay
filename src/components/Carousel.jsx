@@ -1,12 +1,6 @@
 import Carousel from "react-bootstrap/Carousel";
 import React, { useState } from 'react';
 
-const [index, setIndex] = useState(0);
-
-const handleSelect = (selectedIndex, e) => {
-  setIndex(selectedIndex);
-};
-
 const MyCarousel = ({ data }) => {
   return (
     <div className="carousel">
