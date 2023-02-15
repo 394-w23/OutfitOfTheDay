@@ -1,6 +1,7 @@
 .navbar {
   background-color: #f1ecff;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+  max-height: 70px;
 }
 
 .navbar-container {
@@ -11,7 +12,7 @@
   color: #5d5fef;
   font-weight: bold;
   font-style: italic;
-  font-size: 25px;
+  font-size: 24px;
   cursor: pointer;
 }
 
@@ -19,8 +20,12 @@
   color: #606197;
 }
 
+.header-profile {
+  align-items: center;
+}
+
 .header-img {
   border-radius: 50%;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
 }

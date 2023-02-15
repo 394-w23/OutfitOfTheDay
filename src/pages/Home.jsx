@@ -60,12 +60,12 @@ const Home = () => {
           Here's what we suggest
         </h6>
       </Container>
-      <Container>
-        {tops && !dress && <MyCarousel data={tops}></MyCarousel>}
-        {/* {jackets && jacket && <MyCarousel data={jackets}></MyCarousel>} */}
-        {bottoms && !dress && <MyCarousel data={bottoms}></MyCarousel>}
-        {dresses && dress && <MyCarousel data={dresses}></MyCarousel>}
-        {shoes && <MyCarousel data={shoes}></MyCarousel>}
+      <Container className="home-clothes-container">
+        <Container>{tops && <MyCarousel data={tops}></MyCarousel>}</Container>
+        <Container>
+          {bottoms && <MyCarousel data={bottoms}></MyCarousel>}
+        </Container>
+        <Container>{shoes && <MyCarousel data={shoes}></MyCarousel>}</Container>
       </Container>
       <Container className="home-button-container">
         <Button className="home-btn">I'll wear this today!</Button>

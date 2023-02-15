@@ -17,6 +17,10 @@ body {
   font-weight: bold;
 }
 
+.home-clothes-container {
+  margin: 0;
+}
+
 .home-btn {
   width: 100%;
   font-weight: bold;
