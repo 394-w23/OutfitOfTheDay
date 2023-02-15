@@ -7,19 +7,31 @@ import { useProfile } from "../utils/userProfile";
 
 const Upload = () => {
   const [user] = useProfile();
-  const [type, setType] = useState("tops");
+  const [type, setType] = useState("shoes");
   const [useStorage, result] = useStorageUpdate("/files/" + uuidv4());
   const [updateData] = useDbUpdate("/");
   const [closet] = useDbData("/closet");
 
   const handleSubmit = (e) => {
+    console.log(user);
     e.preventDefault();
-    const myCloset = closet[user.uid][type];
+    const userCloset = closet[user.uid];
+    const userClosetType = userCloset[type];
     const file = e.target[0]?.files[0];
     if (!file) return;
     useStorage(file);
-    const updatedCloset = myCloset ? [...myCloset, result] : [result];
-    updateData({ ["/closet/" + user.uid + "/" + type]: updatedCloset });
+
+    const updatedClosetType = userClosetType
+      ? [...userClosetType, result]
+      : [result];
+
+    const updatedCloset = {
+      ...userCloset,
+      id: user.uid,
+      type: updatedClosetType,
+    };
+
+    updateData({ ["/closet/" + user.uid]: updatedCloset });
   };
 
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
