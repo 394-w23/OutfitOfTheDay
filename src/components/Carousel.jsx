@@ -1,9 +1,12 @@
 import Carousel from "react-bootstrap/Carousel";
+import React, { useState } from 'react';
+
+
 
 const MyCarousel = ({ data }) => {
   return (
     <div className="carousel">
-      <Carousel interval={null}>
+      <Carousel interval={null} indicators={false}>
         {data.map((imageLink, idx) => (
           <Carousel.Item key={idx}>
             <img

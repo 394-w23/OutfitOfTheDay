@@ -5,6 +5,7 @@ import Login from "./pages/auth/Login";
 import Closet from "./pages/Closet";
 import Favorites from "./pages/Favorites";
 import Home from "./pages/Home";
+import Profile from "./pages/Profile";
 import Upload from "./pages/Upload";
 import { useProfile } from "./utils/userProfile";
 
@@ -37,6 +38,20 @@ const App = () => {
               <>
                 <Header />
                 <Favorites />
+                <BottomNav />
+              </>
+            ) : (
+              <Navigate replace to="/login" />
+            )
+          }
+        />
+                <Route
+          path="/view-profile"
+          element={
+            user ? (
+              <>
+                <Header />
+                <Profile />
                 <BottomNav />
               </>
             ) : (
