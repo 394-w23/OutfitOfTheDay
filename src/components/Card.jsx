@@ -1,20 +1,23 @@
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 const MyCard = ({ data }) => {
-    return <div>
-    <Row xs={1} md={2} className="g-4">
-      {data?.map((img_src) => (
-        <Col>
-          <Card>
-            <Card.Img variant="top" src={img_src} />
-            <Card.Title>Some Weather</Card.Title>
-          </Card>
-        </Col>
-      ))}
-    </Row>
-  </div>;
+  return (
+    <Container>
+      <Row xs={2} md={4} className="g-4">
+        {data?.map((img_src, idx) => (
+          <Col key={idx}>
+            <Card className="card-container">
+              <Card.Img variant="top" src={img_src} className="card-image" />
+              <Card.Title className="text-muted">Some Weather</Card.Title>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </Container>
+  );
 };
-  
-  export default MyCard;
+
+export default MyCard;
