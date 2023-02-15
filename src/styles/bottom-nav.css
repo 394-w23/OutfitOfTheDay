@@ -14,20 +14,23 @@
 .closet-btn-container {
   cursor: pointer;
   width: 100%;
-  padding-top: 20px;
   display: block;
   text-align: center;
 }
 
+.info-container {
+  transform: translateY(20%);
+}
+
 .home-btn-container,
 .closet-btn-container {
-  border-left: 2px solid #d3d3d4;
+  border-left: 3px solid #d3d3d4;
 }
 
 .favorites-btn-container p,
 .home-btn-container p,
 .closet-btn-container p {
-  font-size: 15px;
+  font-size: 8px;
   font-weight: bold;
 }
 
