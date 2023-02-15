@@ -5,3 +5,39 @@ body {
   -moz-osx-font-smoothing: grayscale;
   margin-bottom: 15vh;
 }
+
+.home-header-container {
+  margin: 0;
+  color: #555555;
+  text-align: center;
+  font-size: 10px;
+}
+
+.home-header-container h5 {
+  font-weight: bold;
+}
+
+.home-btn {
+  width: 100%;
+  font-weight: bold;
+  background-color: #5d5fef;
+  border: none;
+}
+
+.home-btn-fav {
+  width: 100%;
+  color: #555555;
+  background-color: white;
+  border: none;
+}
+
+.home-btn:hover {
+  background-color: #5d5fef;
+  border: none;
+}
+
+.home-btn-fav:hover {
+  color: #555555;
+  background-color: white;
+  border: none;
+}
