@@ -3,4 +3,5 @@ body {
   font: 19px / 23px Roboto, "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin-bottom: 10%;
 }
