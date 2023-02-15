@@ -1,7 +1,6 @@
 import Carousel from "react-bootstrap/Carousel";
 import React, { useState } from 'react';
 
-
 const MyCarousel = ({ data, handleSelect, index }) => {
   return (
     <div className="carousel">
