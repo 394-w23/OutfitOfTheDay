@@ -1,0 +1,13 @@
+.card-container {
+  height: 40vh;
+  width: auto;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 20px;
+}
+
+.card-image {
+  max-width: 85%;
+  max-height: 85%;
+  margin: auto;
+}
