@@ -1,23 +1,18 @@
 import Carousel from "react-bootstrap/Carousel";
-import React, { useState } from 'react';
+import Container from "react-bootstrap/Container";
+import React, { useState } from "react";
 
-
-
-const MyCarousel = ({ data }) => {
+const MyCarousel = ({ data, bottoms }) => {
   return (
-    <div className="carousel">
+    <Container className="carousel-container">
       <Carousel interval={null} indicators={false}>
         {data.map((imageLink, idx) => (
           <Carousel.Item key={idx}>
-            <img
-              className="w-100 shadow-1-strong rounded mb-4"
-              src={imageLink}
-              alt="Slide"
-            />
+            <img src={imageLink} alt="Slide" />
           </Carousel.Item>
         ))}
       </Carousel>
-    </div>
+    </Container>
   );
 };
 

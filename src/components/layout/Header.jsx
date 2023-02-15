@@ -17,7 +17,7 @@ const Header = () => {
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
 
   return (
-    <Navbar className="p-2 navbar">
+    <Navbar className="navbar">
       <Container className="navbar-container">
         <Container>
           <Navbar.Brand className="navbar-brand" onClick={() => navigate("/")}>
@@ -26,7 +26,7 @@ const Header = () => {
         </Container>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav" className="header-dropdown">
-          <Nav>
+          <Nav className="header-profile">
             <img
               className="header-img"
               alt="Profile"

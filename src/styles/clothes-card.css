@@ -1,13 +1,37 @@
 .card-container {
-  height: 40vh;
-  width: auto;
-  padding: 8px;
   border: 2px solid lightgray;
-  border-radius: 20px;
+  border-radius: 10px;
+}
+
+.closet-title {
+  color: #555555;
 }
 
 .card-image {
-  max-width: 85%;
-  max-height: 85%;
+  aspect-ratio: 1 / 1;
+  width: 20vh;
+  height: auto;
   margin: auto;
+  display: block;
+}
+
+.card-image-bottoms {
+  aspect-ratio: 1 / 1.3;
+  width: 20vh;
+  height: auto;
+  margin: auto;
+  display: block;
+}
+
+.card-text-container {
+  border-top: 1.5px solid lightgray;
+  padding: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.card-weather {
+  color: #555555;
+  font-size: 10px;
+  font-weight: bold;
 }

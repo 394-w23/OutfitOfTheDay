@@ -1,6 +1,6 @@
 .bottom-container {
   background-color: white;
-  border-top: 3px solid #5d5fef;
+  border-top: 1px solid #5d5fef;
   display: flex;
   justify-content: space-evenly;
   position: fixed;
@@ -14,29 +14,32 @@
 .closet-btn-container {
   cursor: pointer;
   width: 100%;
-  padding-top: 20px;
   display: block;
   text-align: center;
 }
 
+.info-container {
+  transform: translateY(20%);
+}
+
 .home-btn-container,
 .closet-btn-container {
-  border-left: 2px solid #d3d3d4;
+  border-left: 1px solid #f1ecff;
 }
 
 .favorites-btn-container p,
 .home-btn-container p,
 .closet-btn-container p {
-  font-size: 15px;
+  font-size: 10px;
   font-weight: bold;
 }
 
 .favorites-btn-container:hover,
 .home-btn-container:hover,
 .closet-btn-container:hover {
-  background-color: #cccdfa;
+  background-color: #f1ecff;
 }
 
 .active-container {
-  background-color: #999bf5;
+  background-color: #f1ecff;
 }

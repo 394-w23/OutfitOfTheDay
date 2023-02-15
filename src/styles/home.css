@@ -3,5 +3,87 @@ body {
   font: 19px / 23px Roboto, "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin-bottom: 15vh;
+  margin-bottom: 13vh;
+}
+
+.home-header-container {
+  padding: 15px;
+  margin: 0;
+  color: #555555;
+  text-align: center;
+  font-size: 16px;
+}
+
+.home-header-container span {
+  font-weight: bold;
+  line-height: 22px;
+}
+
+.home-clothes-container {
+  margin: 0;
+  display: block;
+}
+
+.home-clothes-top {
+  margin: 0;
+}
+
+.home-clothes-top img {
+  aspect-ratio: 1 / 1 !important;
+  width: 17vh !important;
+  height: auto !important;
+  margin: auto !important;
+  display: block !important;
+}
+
+.home-clothes-bottoms {
+  margin: 0;
+}
+
+.home-clothes-bottoms img {
+  aspect-ratio: 1 / 1.5 !important;
+  width: 17vh !important;
+  height: auto !important;
+  margin: auto !important;
+  display: block !important;
+}
+
+.home-clothes-shoes {
+  margin: 0;
+}
+
+.home-clothes-shoes img {
+  aspect-ratio: 1 / 1 !important;
+  width: 11vh !important;
+  height: auto !important;
+  margin: auto !important;
+  display: block !important;
+}
+
+.home-btn {
+  width: 100%;
+  font-size: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-weight: bold;
+  background-color: #5d5fef;
+  border: none;
+}
+
+.home-btn-fav {
+  width: 100%;
+  color: #555555;
+  background-color: white;
+  border: none;
+}
+
+.home-btn:hover {
+  background-color: #5d5fef;
+  border: none;
+}
+
+.home-btn-fav:hover {
+  color: #555555;
+  background-color: white;
+  border: none;
 }

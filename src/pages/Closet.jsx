@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MyCard from "../components/Card";
-import Dropdown from "react-bootstrap/Dropdown";
+import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import { useDbData } from "../utils/firebase";
 
@@ -10,61 +10,48 @@ const Closet = () => {
   const [bottoms] = useDbData("/bottoms");
   const [shoes] = useDbData("/shoes");
   const [dresses] = useDbData("/tops");
-
-  const [options, setOptions] = useState([]);
-  const [filter, setFilter] = useState("tops");
+  const [option, setOption] = useState("Tops");
+  const [filter, setFilter] = useState(tops);
 
   const handleFilter = (e) => {
-    console.log(e);
-    setFilter(e);
+    if (e === "Tops") {
+      setOption("Tops");
+      setFilter(tops);
+      console.log(tops);
+    } else if (e === "Jackets") {
+      setOption("Jackets");
+      setFilter(jackets);
+    } else if (e === "Dresses") {
+      setOption("Dresses");
+      setFilter(dresses);
+    } else if (e === "Bottoms") {
+      setOption("Bottoms");
+      setFilter(bottoms);
+    } else if (e === "Shoes") {
+      setOption("Shoes");
+      setFilter(shoes);
+    }
   };
 
-  useEffect(() => {
-    if (tops && tops.length > 0) setOptions([...options, "tops"]);
-    if (jackets && jackets.length > 0) setOptions([...options, "jackets"]);
-    if (bottoms && bottoms.length > 0) setOptions([...options, "bottoms"]);
-    if (shoes && shoes.length > 0) setOptions([...options, "shoes"]);
-    if (dresses && dresses.length > 0) setOptions([...options, "dresses"]);
-  }, []);
-
   return (
-    <Container className="p-10">
-      <h3>My Closet</h3>
+    <Container className="p-10 mt-3">
+      <h3 className="closet-title">My Closet</h3>
       <hr />
-      {options && (
-        <Dropdown>
-          <Dropdown.Toggle variant="light" id="dropdown-basic">
-            Filter
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            <Dropdown.Item onClick={() => handleFilter("tops")}>
-              Tops
-            </Dropdown.Item>
-            <Dropdown.Item onClick={() => handleFilter("jackets")}>
-              Jackets
-            </Dropdown.Item>
-            <Dropdown.Item onClick={() => handleFilter("dresses")}>
-              Dresses
-            </Dropdown.Item>
-            <Dropdown.Item onClick={() => handleFilter("bottoms")}>
-              Bottoms
-            </Dropdown.Item>
-            <Dropdown.Item onClick={() => handleFilter("shoes")}>
-              Shoes
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-      )}
-      <h5 className="text-muted mt-3">Tops</h5>
-      {tops && <MyCard data={tops}> </MyCard>}
-      <h5 className="text-muted mt-5">Jackets</h5>
-      {jackets && <MyCard data={jackets}> </MyCard>}
-      <h5 className="text-muted mt-5">Bottoms</h5>
-      {bottoms && <MyCard data={bottoms}> </MyCard>}
-      <h5 className="text-muted mt-5">Dresses</h5>
-      {dresses && <MyCard data={dresses}> </MyCard>}
-      <h5 className="text-muted mt-5">Shoes</h5>
-      {shoes && <MyCard data={shoes}> </MyCard>}
+
+      <Form.Select onChange={(e) => handleFilter(e.target.value)}>
+        <option value="Tops">Tops</option>
+        <option value="Jackets">Jackets</option>
+        <option value="Dresses">Dresses</option>
+        <option value="Bottoms">Bottoms</option>
+        <option value="Shoes">Shoes</option>
+      </Form.Select>
+      <h5 className="text-muted mt-3">{option}</h5>
+      {
+        <MyCard
+          data={filter ? filter : tops}
+          bottoms={option === "Bottoms" ? true : false}
+        />
+      }
     </Container>
   );
 };
