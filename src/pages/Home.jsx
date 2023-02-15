@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MyCarousel from "../components/Carousel";
-import { useDbData } from "../utils/firebase";
+import { useDbData, useDbUpdate } from "../utils/firebase";
 import Form from "react-bootstrap/Form";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { Button } from "bootstrap";
@@ -9,6 +9,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
+  const [updateData] = useDbUpdate("/");
   const [tops] = useDbData("/tops");
   const [bottoms] = useDbData("/bottoms");
   const [shoes] = useDbData("/shoes");
@@ -52,23 +53,18 @@ const Home = () => {
     }
   }
 
-  const saveSelectedFavourites = (e) => {
+  const saveSelectedFavourites = () => {
     // e.preventDefault();
-    // if (!startAddress || !endAddress || !date || !time || !numSeats) {
-    //   setError("All the fields are required");
-    // } else {
-    //   const uid = uuidv4();
-    //   const ride = {
-    //     top: selectedTop,
-    //     bottom: selectedBottoms,
-    //     shoes: selectedShoes
-    //   };
+    const uid = uuidv4();
+    const favourites = {
+      top: tops[selectedTop],
+      bottom: bottoms[selectedBottoms],
+      shoes: shoes[selectedShoes]
+    };
 
-    //   setError("");
-    //   updateData({ ["/favourites/" + uid]: ride });
-    //   updateData({ ["/chats/" + uid]: chat });
-    //   navigate("/");
-    // }
+    // setError("");
+    updateData({ ["/favourites/" + uid]: favourites });
+    console.log('works');
   };
 
   return <div>
