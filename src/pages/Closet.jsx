@@ -60,7 +60,11 @@ const Closet = () => {
       <h5 className="text-muted mt-5">Jackets</h5>
       {jackets && <MyCard data={jackets}> </MyCard>}
       <h5 className="text-muted mt-5">Bottoms</h5>
-      {bottoms && <MyCard data={bottoms}> </MyCard>}
+      {bottoms && (
+        <MyCard data={bottoms} bottoms>
+          {" "}
+        </MyCard>
+      )}
       <h5 className="text-muted mt-5">Dresses</h5>
       {dresses && <MyCard data={dresses}> </MyCard>}
       <h5 className="text-muted mt-5">Shoes</h5>
