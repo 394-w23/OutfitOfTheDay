@@ -104,7 +104,7 @@ const Home = () => {
       </Container>
       <Container className="home-button-container">
         <Button className="home-btn">I'll wear this today!</Button>
-        <Button className="home-btn-fav">
+        <Button className="home-btn-fav" onClick={saveSelectedFavourites}>
           <AiOutlineHeart size={20} /> Save this look
         </Button>
       </Container>
