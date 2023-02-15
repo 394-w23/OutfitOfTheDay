@@ -19,6 +19,10 @@ const Home = () => {
   const [dress, setDress] = useState(false);
   const [jacket, setJacket] = useState(false);
 
+  const [selectedTop, setSelectedTop] = useState(0);
+  const [selectedBottoms, setSelectedBottoms] = useState(0);
+  const [selectedShoes, setSelectedShoes] = useState(0);
+
   const handleDress = () => {
     if (dress == false) {
       setDress(true);
@@ -33,6 +37,35 @@ const Home = () => {
     } else {
       setJacket(false);
     }
+  };
+
+  const handleSelectedTop = (selectedIndex, e) => {
+    setSelectedTop(selectedIndex);
+  };
+
+  const handleSelectedBottoms = (selectedIndex, e) => {
+    setSelectedBottoms(selectedIndex);
+  };
+
+  const handleSelectedShoes = (selectedIndex, e) => {
+    // console.log(shoes[selectedIndex]);
+    if (selectedShoes != selectedIndex) {
+      setSelectedShoes(selectedIndex);
+    }
+  };
+
+  const saveSelectedFavourites = () => {
+    // e.preventDefault();
+    const uid = uuidv4();
+    const favourites = {
+      top: tops[selectedTop],
+      bottom: bottoms[selectedBottoms],
+      shoes: shoes[selectedShoes],
+    };
+
+    // setError("");
+    updateData({ ["/favourites/" + uid]: favourites });
+    console.log("works");
   };
 
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
