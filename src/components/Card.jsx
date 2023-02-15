@@ -7,8 +7,8 @@ const MyCard = ({ data }) => {
   return (
     <Container>
       <Row xs={2} md={4} className="g-4">
-        {data?.map((img_src) => (
-          <Col>
+        {data?.map((img_src, idx) => (
+          <Col key={idx}>
             <Card className="card-container">
               <Card.Img variant="top" src={img_src} className="card-image" />
               <Card.Title className="text-muted">Some Weather</Card.Title>
