@@ -4,6 +4,10 @@
   border-radius: 20px;
 }
 
+.closet-title {
+  color: #555555;
+}
+
 .card-image {
   aspect-ratio: 1 / 1;
   padding: 5px;
