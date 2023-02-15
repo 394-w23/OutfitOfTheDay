@@ -54,11 +54,9 @@ const Home = () => {
         onClick={() => handleJacket()}
     /> */}
       <Container className="home-header-container">
-        <h5>Good Morning {user.displayName.split(" ")[0]}</h5>
-        <h6 className="text-muted">
-          Let's choose your outfit. <br />
-          Here's what we suggest
-        </h6>
+        <span>Good Morning {user.displayName.split(" ")[0]}!</span> <br />
+        Let's choose your outfit. <br />
+        Here's what we suggest!
       </Container>
       <Container className="home-clothes-container">
         <Container>{tops && <MyCarousel data={tops}></MyCarousel>}</Container>

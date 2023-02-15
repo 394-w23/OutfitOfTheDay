@@ -3,18 +3,20 @@ body {
   font: 19px / 23px Roboto, "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin-bottom: 15vh;
+  margin-bottom: 12vh;
 }
 
 .home-header-container {
+  padding: 20px;
   margin: 0;
   color: #555555;
   text-align: center;
-  font-size: 10px;
+  font-size: 18px;
 }
 
-.home-header-container h5 {
+.home-header-container span {
   font-weight: bold;
+  line-height: 22px;
 }
 
 .home-clothes-container {
@@ -23,6 +25,9 @@ body {
 
 .home-btn {
   width: 100%;
+  font-size: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
   font-weight: bold;
   background-color: #5d5fef;
   border: none;
