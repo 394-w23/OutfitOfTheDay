@@ -1,31 +1,59 @@
-import React, { useState } from "react";
-
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import { useDbData } from "../utils/firebase";
-
+import React, { useState, useEffect } from "react";
 import MyCard from "../components/Card";
-
-
-
+import Form from "react-bootstrap/Form";
+import Container from "react-bootstrap/Container";
+import { useDbData } from "../utils/firebase";
 
 const Closet = () => {
   const [tops] = useDbData("/tops");
+  const [jackets] = useDbData("/jacket");
   const [bottoms] = useDbData("/bottoms");
   const [shoes] = useDbData("/shoes");
+  const [dresses] = useDbData("/dress");
+  const [option, setOption] = useState("Tops");
+  const [filter, setFilter] = useState(tops);
 
+  const handleFilter = (e) => {
+    if (e === "Tops") {
+      setOption("Tops");
+      setFilter(tops);
+      console.log(tops);
+    } else if (e === "Jackets") {
+      setOption("Jackets");
+      setFilter(jackets);
+    } else if (e === "Dresses") {
+      setOption("Dresses");
+      setFilter(dresses);
+    } else if (e === "Bottoms") {
+      setOption("Bottoms");
+      setFilter(bottoms);
+    } else if (e === "Shoes") {
+      setOption("Shoes");
+      setFilter(shoes);
+    }
+  };
 
-  return <div>
-    <h3>Tops</h3>
-    {tops && <MyCard data={tops}> </MyCard>}
-    <h3>Bottoms</h3>
-    {bottoms && <MyCard data={bottoms}> </MyCard>}
-    <h3>Shoes</h3>
-    {shoes && <MyCard data={shoes}> </MyCard>}
+  return (
+    <Container className="p-10 mt-3">
+      <h3 className="closet-title">My Closet</h3>
+      <hr />
 
-
-  </div>;
+      <Form.Select onChange={(e) => handleFilter(e.target.value)}>
+        <option value="Tops">Tops</option>
+        <option value="Jackets">Jackets</option>
+        <option value="Dresses">Dresses</option>
+        <option value="Bottoms">Bottoms</option>
+        <option value="Shoes">Shoes</option>
+      </Form.Select>
+      <h5 className="text-muted mt-3">{option}</h5>
+      {
+        <MyCard
+          data={filter ? filter : tops}
+          bottoms={option === "Bottoms" ? true : false}
+        />
+      }
+    </Container>
+  );
 };
 
 export default Closet;

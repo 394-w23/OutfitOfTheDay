@@ -9,6 +9,7 @@ import "./styles/header.css";
 import "./styles/home.css";
 import "./styles/bottom-nav.css";
 import "./styles/carousel.css";
+import "./styles/clothes-card.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

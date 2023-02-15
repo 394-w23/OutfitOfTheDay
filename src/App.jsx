@@ -16,7 +16,20 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/upload" element={<Upload />} />
+        <Route
+          path="/add"
+          element={
+            user ? (
+              <>
+                <Header />
+                <Upload />
+                <BottomNav />
+              </>
+            ) : (
+              <Navigate replace to="/login" />
+            )
+          }
+        />
         <Route
           path="/"
           element={
@@ -45,7 +58,7 @@ const App = () => {
             )
           }
         />
-                <Route
+        <Route
           path="/view-profile"
           element={
             user ? (

@@ -29,12 +29,14 @@ const BottomNav = () => {
         }
         onClick={() => navigate("/favorites")}
       >
-        {active === "favorites" ? (
-          <AiFillHeart size={28} />
-        ) : (
-          <AiOutlineHeart size={28} />
-        )}
-        <p>Favorites</p>
+        <div className="info-container">
+          {active === "favorites" ? (
+            <AiFillHeart size={20} />
+          ) : (
+            <AiOutlineHeart size={20} />
+          )}
+          <p>Favorites</p>
+        </div>
       </div>
       <div
         className={
@@ -44,8 +46,14 @@ const BottomNav = () => {
         }
         onClick={() => navigate("/")}
       >
-        {active === "home" ? <HiHome size={28} /> : <HiOutlineHome size={28} />}
-        <p>Home</p>
+        <div className="info-container">
+          {active === "home" ? (
+            <HiHome size={20} />
+          ) : (
+            <HiOutlineHome size={20} />
+          )}
+          <p>Home</p>
+        </div>
       </div>
       <div
         className={
@@ -55,8 +63,10 @@ const BottomNav = () => {
         }
         onClick={() => navigate("/closet")}
       >
-        <BiCloset size={28} />
-        <p>Closet</p>
+        <div className="info-container">
+          <BiCloset size={20} />
+          <p>Closet</p>
+        </div>
       </div>
     </div>
   );
