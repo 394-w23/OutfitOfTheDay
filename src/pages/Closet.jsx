@@ -6,10 +6,10 @@ import { useDbData } from "../utils/firebase";
 
 const Closet = () => {
   const [tops] = useDbData("/tops");
-  const [jackets] = useDbData("/tops");
+  const [jackets] = useDbData("/jacket");
   const [bottoms] = useDbData("/bottoms");
   const [shoes] = useDbData("/shoes");
-  const [dresses] = useDbData("/tops");
+  const [dresses] = useDbData("/dress");
   const [option, setOption] = useState("Tops");
   const [filter, setFilter] = useState(tops);
 
