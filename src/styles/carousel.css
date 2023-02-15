@@ -2,20 +2,25 @@
   margin: auto;
 }
 
-.carousel-inner img {
-  aspect-ratio: 1 / 1;
-  width: 20vh;
-  height: auto;
-  margin: auto;
-  display: block;
+.carousel-inner {
+  align-items: center;
+  align-content: center;
+  align-self: center;
 }
 
 .carousel-control-next-icon {
   color: #555555;
 }
 
+.carousel-control-prev-icon {
+  color: #555555;
+}
+
 .carousel-control-next,
 .carousel-control-prev /*, .carousel-indicators */ {
-  filter: invert(100%);
+  filter: invert(50%);
   color: #555555;
+  padding: 8px;
+  margin-left: 60px;
+  margin-right: 60px;
 }

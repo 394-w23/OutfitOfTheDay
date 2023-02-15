@@ -3,15 +3,15 @@ body {
   font: 19px / 23px Roboto, "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin-bottom: 12vh;
+  margin-bottom: 13vh;
 }
 
 .home-header-container {
-  padding: 20px;
+  padding: 15px;
   margin: 0;
   color: #555555;
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .home-header-container span {
@@ -41,7 +41,7 @@ body {
 }
 
 .home-clothes-bottoms img {
-  aspect-ratio: 1 / 1.45 !important;
+  aspect-ratio: 1 / 1.5 !important;
   width: 17vh !important;
   height: auto !important;
   margin: auto !important;
