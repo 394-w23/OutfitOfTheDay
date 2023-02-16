@@ -1,0 +1,58 @@
+.favorites-card-container {
+  justify-content: center;
+  text-align: center;
+  border: 2px solid lightgray;
+  border-radius: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.favorites-card-clothes {
+  display: flex;
+}
+
+.favorites-top-shoes-container,
+.favorites-bottom-container,
+.favorites-top-container,
+.favorites-shoes-container {
+  margin: 0;
+  padding: 0;
+}
+
+/* .favorites-top-shoes-container {
+  background-color: aqua;
+}
+
+.favorites-bottom-container {
+  background-color: red;
+} */
+
+.favorites-card-image {
+  aspect-ratio: 1 / 1;
+  width: 11vh;
+  height: auto;
+  margin: auto;
+  display: block;
+}
+
+.favorites-card-image-bottom {
+  aspect-ratio: 1 / 1.7;
+  width: 9vh;
+  height: auto;
+  margin: auto;
+  display: block;
+}
+
+.favorites-card-image-shoes {
+  aspect-ratio: 1 / 1;
+  width: 5vh;
+  height: auto;
+  margin: auto;
+  display: block;
+}
+
+.favorites-card-heart {
+  margin: 0;
+  padding-right: 5px;
+  text-align: end;
+}

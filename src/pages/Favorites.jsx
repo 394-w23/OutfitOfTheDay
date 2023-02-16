@@ -1,29 +1,20 @@
 import React from "react";
-
+import Container from "react-bootstrap/Container";
+import FavoritesCard from "../components/FavoritesCard";
 import { useDbData } from "../utils/firebase";
 
 const Favorites = () => {
   const [favs] = useDbData("/favourites");
 
-  if (!favs) return <h4 className="text-muted">Loading favourites...</h4>;
+  if (!favs) return <h4 className="text-muted">Loading favorites...</h4>;
 
-  const extractFavs = () => {
-    let idx = 0;
-    let dressList = Object.keys(favs).map((key) =>
-      Object.entries(favs[key]).map(([dressType, imgLink]) => (
-        <div key={idx} className="dressList">
-          <img
-            className="w-100 shadow-1-strong rounded mb-4"
-            src={imgLink}
-            alt={dressType}
-          />
-        </div>
-      ))
-    );
-    return dressList;
-  };
-
-  return <div>{favs && extractFavs(favs)}</div>;
+  return (
+    <Container className="p-10 mt-3">
+      <h3 className="closet-title">My Favorites</h3>
+      <hr />
+      {<FavoritesCard data={Object.entries(favs)} />}
+    </Container>
+  );
 };
 
 export default Favorites;
