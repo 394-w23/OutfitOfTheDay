@@ -93,13 +93,31 @@ const Home = () => {
       </Container>
       <Container className="home-clothes-container">
         <Container className="home-clothes-top">
-          {tops && <MyCarousel data={tops}></MyCarousel>}
+          {tops && (
+            <MyCarousel
+              data={tops}
+              handleSelect={handleSelectedTop}
+              index={selectedTop}
+            ></MyCarousel>
+          )}
         </Container>
         <Container className="home-clothes-bottoms">
-          {bottoms && <MyCarousel data={bottoms} bottoms></MyCarousel>}
+          {bottoms && (
+            <MyCarousel
+              data={bottoms}
+              handleSelect={handleSelectedBottoms}
+              index={selectedBottoms}
+            ></MyCarousel>
+          )}
         </Container>
         <Container className="home-clothes-shoes">
-          {shoes && <MyCarousel data={shoes}></MyCarousel>}
+          {shoes && (
+            <MyCarousel
+              data={shoes}
+              handleSelect={handleSelectedShoes}
+              index={selectedShoes}
+            ></MyCarousel>
+          )}
         </Container>
       </Container>
       <Container className="home-button-container">
