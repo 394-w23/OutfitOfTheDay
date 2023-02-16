@@ -2,7 +2,7 @@ import Carousel from "react-bootstrap/Carousel";
 import Container from "react-bootstrap/Container";
 import React, { useState } from "react";
 
-const MyCarousel = ({ data, bottoms, handleSelect, index }) => {
+const MyCarousel = ({ data, handleSelect, index }) => {
   return (
     <Container className="carousel-container">
       <Carousel
