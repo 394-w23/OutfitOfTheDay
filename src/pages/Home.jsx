@@ -4,17 +4,25 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { AiOutlineHeart } from "react-icons/ai";
-import { useDbData } from "../utils/firebase";
+import { useDbData, useDbUpdate } from "../utils/firebase";
 import { useProfile } from "../utils/userProfile";
+import { v4 as uuidv4 } from "uuid";
 
 const Home = () => {
-  const [user] = useProfile();
+  const user = new Map(Object.entries({
+    displayName: "AMY",
+    phone: "779797329",
+    address: "474 Mercer Drive",
+    uid: "123",
+    email: "userAuth.email",
+}));
 
   const [tops] = useDbData("/tops");
   const [bottoms] = useDbData("/bottoms");
   const [shoes] = useDbData("/shoes");
   const [dresses] = useDbData("/dress");
   const [jackets] = useDbData("/jacket");
+  const [updateData] = useDbUpdate("/");
 
   const [dress, setDress] = useState(false);
   const [jacket, setJacket] = useState(false);
@@ -63,9 +71,7 @@ const Home = () => {
       shoes: shoes[selectedShoes],
     };
 
-    // setError("");
     updateData({ ["/favourites/" + uid]: favourites });
-    console.log("works");
   };
 
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
@@ -87,7 +93,7 @@ const Home = () => {
         onClick={() => handleJacket()}
     /> */}
       <Container className="home-header-container">
-        <span>Good Morning {user.displayName.split(" ")[0]}!</span> <br />
+        <span>Good Morning {user.get('displayName').split(" ")[0]}!</span> <br />
         Let's choose your outfit. <br />
         Here's what we suggest!
       </Container>
