@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../utils/userProfile";
 import { signInWithGoogle } from "../../utils/firebase";
 import { Container } from "react-bootstrap";
+import getMockUser from "../../utils/mockUser";
 
 const Login = () => {
-  const [user] = useProfile();
+  //const [user] = useProfile();
+  const user = getMockUser();
   const navigate = useNavigate();
 
   useEffect(() => {

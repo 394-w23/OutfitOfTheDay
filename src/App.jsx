@@ -7,10 +7,12 @@ import Favorites from "./pages/Favorites";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Upload from "./pages/Upload";
+import getMockUser from "./utils/mockUser";
 import { useProfile } from "./utils/userProfile";
 
 const App = () => {
-  const [user] = useProfile();
+  //const [user] = useProfile();
+  const user = getMockUser();
 
   return (
     <BrowserRouter>

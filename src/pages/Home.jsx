@@ -7,15 +7,10 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { useDbData, useDbUpdate } from "../utils/firebase";
 import { useProfile } from "../utils/userProfile";
 import { v4 as uuidv4 } from "uuid";
+import getMockUser from "../utils/mockUser";
 
 const Home = () => {
-  const user = new Map(Object.entries({
-    displayName: "AMY",
-    phone: "779797329",
-    address: "474 Mercer Drive",
-    uid: "123",
-    email: "userAuth.email",
-}));
+  const user = getMockUser();
 
   const [tops] = useDbData("/tops");
   const [bottoms] = useDbData("/bottoms");
@@ -93,7 +88,7 @@ const Home = () => {
         onClick={() => handleJacket()}
     /> */}
       <Container className="home-header-container">
-        <span>Good Morning {user.get('displayName').split(" ")[0]}!</span> <br />
+        <span>Good Morning {user.displayName.split(" ")[0]}!</span> <br />
         Let's choose your outfit. <br />
         Here's what we suggest!
       </Container>

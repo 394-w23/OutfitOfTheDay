@@ -9,9 +9,11 @@ import { IoMdAddCircle } from "react-icons/io";
 import { AiOutlineLogout } from "react-icons/ai";
 import { signOut } from "../../utils/firebase";
 import { useProfile } from "../../utils/userProfile";
+import getMockUser from "../../utils/mockUser";
 
 const Header = () => {
-  const [user] = useProfile();
+  //const [user] = useProfile();
+  const user = getMockUser();
   const navigate = useNavigate();
 
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
@@ -31,17 +33,17 @@ const Header = () => {
               className="header-img"
               alt="Profile"
               src={user.photoURL}
-              referrerPolicy="no-referrer"
+              //referrerPolicy="no-referrer"
             />
             <NavDropdown id="collasible-nav-dropdown" align="end">
-              <NavDropdown.Item onClick={() => navigate("/view-profile")}>
+              <NavDropdown.Item onClick={() => navigate("/")}>
                 <CgProfile size={24} /> View Profile
               </NavDropdown.Item>
-              <NavDropdown.Item onClick={() => navigate("/add")}>
+              <NavDropdown.Item onClick={() => navigate("/")}>
                 <IoMdAddCircle size={24} /> Add Item
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={() => signOut()}>
+              <NavDropdown.Item onClick={() => navigate("/")}>
                 <AiOutlineLogout size={24} /> Logout
               </NavDropdown.Item>
             </NavDropdown>
