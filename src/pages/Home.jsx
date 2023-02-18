@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MyCarousel from "../components/Carousel";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -11,14 +11,22 @@ import getMockUser from "../utils/mockUser";
 import axios from 'axios';
 
 const Home = () => {
-
+  const [weather, setWeather] = useState([]);
+  const [wind, setWind] = useState([]);
   // https://open-meteo.com/en/docs#latitude=42.04&longitude=-87.69&hourly=temperature_2m
 
-  fetch("https://api.open-meteo.com/v1/forecast?latitude=42.04&longitude=-87.69&current_weather=true&temperature_unit=fahrenheit")
-  .then(res => res.json())
-  .then((out) => {
-      console.log('Output: ', out["current_weather"]["temperature"]);
-  }).catch(err => console.error(err));  
+  useEffect(() => {
+    fetch(
+      "https://api.open-meteo.com/v1/forecast?latitude=42.04&longitude=-87.69&current_weather=true&temperature_unit=fahrenheit"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setWeather(data["current_weather"]["temperature"]);
+        setWind(data["current_weather"]["windspeed"]);
+      })
+      .catch((err) => console.error(err));
+  }, []);  
   
   const user = getMockUser();
 
@@ -101,6 +109,9 @@ const Home = () => {
         <span>Good Morning {user.displayName.split(" ")[0]}!</span> <br />
         Let's choose your outfit. <br />
         Here's what we suggest!
+      </Container>
+      <Container className="weather-header-container">
+        Today's temperature outside is {weather} degrees with a wind speed of {wind} mph.
       </Container>
       <Container className="home-clothes-container">
         <Container className="home-clothes-top">

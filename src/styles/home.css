@@ -14,6 +14,14 @@ body {
   font-size: 16px;
 }
 
+.weather-header-container {
+  padding: 5px;
+  margin: 0;
+  color: #555555;
+  text-align: center;
+  font-size: 16px;
+}
+
 .home-header-container span {
   font-weight: bold;
   line-height: 22px;
