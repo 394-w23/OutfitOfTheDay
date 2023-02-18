@@ -40,9 +40,9 @@ const Home = () => {
   const [dress, setDress] = useState(false);
   const [jacket, setJacket] = useState(false);
 
-  const [selectedTop, setSelectedTop] = useState(0);
-  const [selectedBottoms, setSelectedBottoms] = useState(0);
-  const [selectedShoes, setSelectedShoes] = useState(0);
+  const [selectedTop, setSelectedTop] = useState(1);
+  const [selectedBottoms, setSelectedBottoms] = useState(1);
+  const [selectedShoes, setSelectedShoes] = useState(1);
 
   const handleDress = () => {
     if (dress == false) {
@@ -83,6 +83,8 @@ const Home = () => {
       bottom: bottoms[selectedBottoms],
       shoes: shoes[selectedShoes],
     };
+
+    console.log(favourites)
 
     updateData({ ["/favourites/" + uid]: favourites });
   };
