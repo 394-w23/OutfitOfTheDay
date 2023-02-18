@@ -8,8 +8,18 @@ import { useDbData, useDbUpdate } from "../utils/firebase";
 import { useProfile } from "../utils/userProfile";
 import { v4 as uuidv4 } from "uuid";
 import getMockUser from "../utils/mockUser";
+import axios from 'axios';
 
 const Home = () => {
+
+  // https://open-meteo.com/en/docs#latitude=42.04&longitude=-87.69&hourly=temperature_2m
+
+  fetch("https://api.open-meteo.com/v1/forecast?latitude=42.04&longitude=-87.69&current_weather=true&temperature_unit=fahrenheit")
+  .then(res => res.json())
+  .then((out) => {
+      console.log('Output: ', out["current_weather"]["temperature"]);
+  }).catch(err => console.error(err));  
+  
   const user = getMockUser();
 
   const [tops] = useDbData("/tops");
