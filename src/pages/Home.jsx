@@ -40,9 +40,9 @@ const Home = () => {
   const [dress, setDress] = useState(false);
   const [jacket, setJacket] = useState(false);
 
-  const [selectedTop, setSelectedTop] = useState(1);
-  const [selectedBottoms, setSelectedBottoms] = useState(1);
-  const [selectedShoes, setSelectedShoes] = useState(1);
+  const [selectedTop, setSelectedTop] = useState(0);
+  const [selectedBottoms, setSelectedBottoms] = useState(0);
+  const [selectedShoes, setSelectedShoes] = useState(0);
 
   const handleDress = () => {
     if (dress == false) {
@@ -61,6 +61,7 @@ const Home = () => {
   };
 
   const handleSelectedTop = (selectedIndex, e) => {
+    console.log(selectedIndex);
     setSelectedTop(selectedIndex);
   };
 
@@ -79,10 +80,14 @@ const Home = () => {
     // e.preventDefault();
     const uid = uuidv4();
     const favourites = {
-      top: tops[selectedTop],
-      bottom: bottoms[selectedBottoms],
-      shoes: shoes[selectedShoes],
+      top: tops[selectedTop+1],
+      bottom: bottoms[selectedBottoms+1],
+      shoes: shoes[selectedShoes+1],
     };
+
+    console.log(tops)
+    console.log(bottoms)
+    console.log(shoes)
 
     console.log(favourites)
 
