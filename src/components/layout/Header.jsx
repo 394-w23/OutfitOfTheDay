@@ -32,8 +32,8 @@ const Header = () => {
             <img
               className="header-img"
               alt="Profile"
-              src={user.photoURL}
-              //referrerPolicy="no-referrer"
+              src={user.profilePic}
+              referrerPolicy="no-referrer"
             />
             <NavDropdown id="collasible-nav-dropdown" align="end">
               <NavDropdown.Item onClick={() => navigate("/")}>

@@ -1,8 +1,9 @@
 const getMockUser = () => {
   return {
+    uid: "33VC4ni86kMMYI1PiJtHuEAHCCj2",
     displayName: "Amy",
     email: "amy@test.com",
-    photoURL: "https://cdn-icons-png.flaticon.com/512/1946/1946429.png",
+    profilePic: "https://cdn-icons-png.flaticon.com/512/1946/1946429.png",
   };
 };
 
