@@ -10,6 +10,8 @@ import { v4 as uuidv4 } from "uuid";
 import getMockUser from "../utils/mockUser";
 import axios from 'axios';
 
+import {WiDaySunnyOvercast} from "weather-icons-react";
+
 const Home = () => {
   const [weather, setWeather] = useState([]);
   const [wind, setWind] = useState([]);
@@ -118,6 +120,7 @@ const Home = () => {
         Here's what we suggest!
       </Container>
       <Container className="weather-header-container">
+      <WiDaySunnyOvercast size={24} color='#000' />
         Today's temperature outside is {weather} degrees with a wind speed of {wind} mph.
       </Container>
       <Container className="home-clothes-container">
