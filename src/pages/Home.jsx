@@ -72,14 +72,10 @@ const Home = () => {
   };
 
   const handleSelectedShoes = (selectedIndex, e) => {
-    // console.log(shoes[selectedIndex]);
-    if (selectedShoes != selectedIndex) {
-      setSelectedShoes(selectedIndex);
-    }
+    setSelectedShoes(selectedIndex);
   };
 
   const saveSelectedFavourites = () => {
-    // e.preventDefault();
     const uid = uuidv4();
     const favourites = {
       top: tops[selectedTop+1],
@@ -92,6 +88,8 @@ const Home = () => {
     console.log(shoes)
 
     console.log(favourites)
+
+    
 
     updateData({ ["/favourites/" + uid]: favourites });
   };
