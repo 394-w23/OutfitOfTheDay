@@ -52,7 +52,7 @@ const Home = () => {
     if(tops && bottoms && shoes) {
       handleFavorite()  
     }
-  }, [tops, bottoms, shoes])
+  }, [tops, bottoms, shoes, favourites])
 
   useEffect(() => {
     handleFavorite()
@@ -191,7 +191,7 @@ const Home = () => {
       </Container>
       <Container className="home-button-container">
         <Button className="home-btn">I'll wear this today!</Button>
-        <Button className="home-btn-fav" onClick={() => {saveSelectedFavourites(); toggleFavorite();}}>
+        <Button className="home-btn-fav" onClick={() => {saveSelectedFavourites();}}>
           {isFavorite ? ( <AiFillHeart size={20} /> ) : (<AiOutlineHeart size={20} />)} Save this look
         </Button>
       </Container>
