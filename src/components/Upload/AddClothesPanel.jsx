@@ -20,17 +20,22 @@ const AddClothesPanel = () => {
   const [closet] = useDbData("/closet");
 
   const handleSubmit = () => {
-    console.log(type);
-    console.log(weather);
-    /*const userCloset = closet[user.uid];
+    if (!weather || !type) return;
+
+    const userCloset = closet[user.uid];
     const userClosetType = userCloset[type];
     const file = e.target[0]?.files[0];
     if (!file) return;
     useStorage(file);
 
+    const newPiece = {
+      weather: weather,
+      url: result,
+    };
+
     const updatedClosetType = userClosetType
-      ? [...userClosetType, result]
-      : [result];
+      ? [...userClosetType, newPiece]
+      : [newPiece];
 
     if (type === "tops") {
       userCloset.tops = updatedClosetType;
@@ -45,7 +50,6 @@ const AddClothesPanel = () => {
     }
 
     updateData({ ["/closet/" + user.uid]: userCloset });
-    */
   };
 
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
