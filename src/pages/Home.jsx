@@ -44,10 +44,10 @@ const Home = () => {
   const [selectedShoes, setSelectedShoes] = useState(0);
 
   useEffect(() => {
-    if (tops && bottoms && shoes) {
+    if (closet) {
       handleFavorite();
     }
-  }, [tops, bottoms, shoes, favourites]);
+  }, [closet]);
 
   useEffect(() => {
     handleFavorite();
@@ -70,28 +70,24 @@ const Home = () => {
   };
 
   const handleFavorite = () => {
-    if (bottoms && tops && shoes) {
+    if (closet) {
       const selectedOutfit = {
-        bottom: bottoms[selectedBottoms + 1],
-        shoes: shoes[selectedShoes + 1],
-        top: tops[selectedTop + 1],
+        tops: Object.values(closet[user.uid].tops)[selectedTop],
+        bottoms: Object.values(closet[user.uid].bottoms)[selectedBottoms],
+        shoes: Object.values(closet[user.uid].shoes)[selectedShoes],
       };
-      let inFav = false;
-      if (favourites) {
-        Object.values(favourites).map((existingFav, i) => {
-          if (
-            selectedOutfit.bottom === existingFav.bottom &&
-            selectedOutfit.shoes === existingFav.shoes &&
-            selectedOutfit.top === existingFav.top
-          ) {
-            inFav = true;
-          }
-        });
-      }
 
+      let inFav = false;
+      Object.entries(closet[user.uid].favorites).map(([idx, favorite]) => {
+        if (
+          selectedOutfit.bottoms.url === favorite.bottoms.url &&
+          selectedOutfit.shoes.url === favorite.shoes.url &&
+          selectedOutfit.tops.url === favorite.tops.url
+        ) {
+          inFav = true;
+        }
+      });
       setFavorite(inFav);
-    } else {
-      // console.log("not loaded")
     }
   };
 
@@ -103,19 +99,20 @@ const Home = () => {
     }
   };
 
-  const handleSelectedTop = (selectedIndex, e) => {
+  const handleSelectedTop = (selectedIndex) => {
     setSelectedTop(selectedIndex);
   };
 
-  const handleSelectedBottoms = (selectedIndex, e) => {
+  const handleSelectedBottoms = (selectedIndex) => {
     setSelectedBottoms(selectedIndex);
   };
 
-  const handleSelectedShoes = (selectedIndex, e) => {
+  const handleSelectedShoes = (selectedIndex) => {
     setSelectedShoes(selectedIndex);
   };
 
   const saveSelectedFavourites = () => {
+    if (isFavorite) return;
     const uid = uuidv4();
     const favorites = {
       tops: Object.values(closet[user.uid].tops)[selectedTop],
@@ -186,11 +183,16 @@ const Home = () => {
           }}
         >
           {isFavorite ? (
-            <AiFillHeart size={20} />
+            <>
+              <AiFillHeart size={20} />
+              {"This look is already saved"}
+            </>
           ) : (
-            <AiOutlineHeart size={20} />
+            <>
+              <AiOutlineHeart size={20} />
+              {"Save this look"}
+            </>
           )}{" "}
-          Save this look
         </Button>
       </Container>
     </Container>
