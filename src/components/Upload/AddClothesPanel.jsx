@@ -8,7 +8,7 @@ import { useDbUpdate } from "../../utils/firebase";
 import getMockUser from "../../utils/mockUser";
 import { useProfile } from "../../utils/userProfile";
 
-const AddClothesPanel = () => {
+const AddClothesPanel = ({ input }) => {
   //const [user] = useProfile();
   const user = getMockUser();
   const [type, setType] = useState(null);
@@ -19,14 +19,20 @@ const AddClothesPanel = () => {
   const [updateData] = useDbUpdate("/");
   const [closet] = useDbData("/closet");
 
-  const handleSubmit = () => {
+  const handleInputToFile = async () => {
+    const response = await fetch(input);
+    const blob = await response.blob();
+    return new File([blob], "image.jpg", { type: blob.type });
+  };
+
+  const handleSubmit = async () => {
     if (!weather || !type) return;
+    const imgFile = await handleInputToFile();
 
     const userCloset = closet[user.uid];
     const userClosetType = userCloset[type];
-    const file = e.target[0]?.files[0];
-    if (!file) return;
-    useStorage(file);
+    if (!imgFile) return;
+    useStorage(imgFile);
 
     const newPiece = {
       weather: weather,
@@ -49,7 +55,7 @@ const AddClothesPanel = () => {
       userCloset.shoes = updatedClosetType;
     }
 
-    updateData({ ["/closet/" + user.uid]: userCloset });
+    //updateData({ ["/closet/" + user.uid]: userCloset });
   };
 
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
