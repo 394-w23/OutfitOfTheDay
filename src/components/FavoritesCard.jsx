@@ -8,7 +8,7 @@ const FavoritesCard = ({ data }) => {
   return (
     <Container>
       <Row xs={2} md={4} className="g-1">
-        {data?.map(([idx, clothes]) => (
+        {Object.entries(data).map(([idx, clothes]) => (
           <Col key={idx}>
             <Card className="favorites-card-container">
               <Container className="favorites-card-clothes">
@@ -16,14 +16,14 @@ const FavoritesCard = ({ data }) => {
                   <Container className="favorites-top-container">
                     <Card.Img
                       variant="top"
-                      src={clothes.top}
+                      src={clothes.tops.url}
                       className={"favorites-card-image"}
                     />
                   </Container>
                   <Container className="favorites-shoes-container">
                     <Card.Img
                       variant="top"
-                      src={clothes.shoes}
+                      src={clothes.shoes.url}
                       className={"favorites-card-image-shoes"}
                     />
                   </Container>
@@ -31,7 +31,7 @@ const FavoritesCard = ({ data }) => {
                 <Container className="favorites-bottom-container">
                   <Card.Img
                     variant="top"
-                    src={clothes.bottom}
+                    src={clothes.bottoms.url}
                     className={"favorites-card-image-bottom"}
                   />
                 </Container>

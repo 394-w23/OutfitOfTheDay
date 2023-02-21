@@ -28,6 +28,7 @@
 } */
 
 .favorites-card-image {
+  padding: 3px;
   aspect-ratio: 1 / 1;
   width: 11vh;
   height: auto;
@@ -36,6 +37,7 @@
 }
 
 .favorites-card-image-bottom {
+  padding: 3px;
   aspect-ratio: 1 / 1.7;
   width: 9vh;
   height: auto;
@@ -44,6 +46,7 @@
 }
 
 .favorites-card-image-shoes {
+  padding: 3px;
   aspect-ratio: 1 / 1;
   width: 5vh;
   height: auto;
