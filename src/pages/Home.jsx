@@ -1,31 +1,29 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import MyCarousel from "../components/Carousel";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useDbData, useDbUpdate } from "../utils/firebase";
 import { useProfile } from "../utils/userProfile";
-import { v4 as uuidv4 } from "uuid";
 import getMockUser from "../utils/mockUser";
-import axios from "axios";
+import getWeatherAPIURL from "../utils/userLocation";
 
 import { WiDaySunnyOvercast } from "weather-icons-react";
 
 const Home = () => {
   const [weather, setWeather] = useState([]);
   const [wind, setWind] = useState([]);
+  const [weatherCode, setWeatherCode] = useState(0);
   // https://open-meteo.com/en/docs#latitude=42.04&longitude=-87.69&hourly=temperature_2m
 
   useEffect(() => {
-    fetch(
-      "https://api.open-meteo.com/v1/forecast?latitude=42.04&longitude=-87.69&current_weather=true&temperature_unit=fahrenheit"
-    )
+    fetch(getWeatherAPIURL())
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setWeather(data["current_weather"]["temperature"]);
         setWind(data["current_weather"]["windspeed"]);
+        setWeatherCode(data["current_weather"]["weatherCode"]);
       })
       .catch((err) => console.error(err));
   }, []);
@@ -147,7 +145,7 @@ const Home = () => {
         Here's what we suggest!
       </Container>
       <Container className="weather-header-container">
-        <WiDaySunnyOvercast size={24} color="#000" />
+        {<WiDaySunnyOvercast size={24} color="#555555" />}
         Today's temperature outside is {weather} degrees with a wind speed of{" "}
         {wind} mph.
       </Container>
