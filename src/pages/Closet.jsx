@@ -3,6 +3,7 @@ import MyCard from "../components/Card";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import { useDbData } from "../utils/firebase";
+import getMockUser from "../utils/mockUser";
 
 const Closet = () => {
   const [tops] = useDbData("/tops");
@@ -10,28 +11,33 @@ const Closet = () => {
   const [bottoms] = useDbData("/bottoms");
   const [shoes] = useDbData("/shoes");
   const [dresses] = useDbData("/dress");
+  const user = getMockUser();
+  const [closet] = useDbData("/closet");
   const [option, setOption] = useState("Tops");
   const [filter, setFilter] = useState(tops);
 
   const handleFilter = (e) => {
     if (e === "Tops") {
       setOption("Tops");
-      setFilter(tops);
+      setFilter(closet[user.uid].tops);
       console.log(tops);
     } else if (e === "Jackets") {
       setOption("Jackets");
-      setFilter(jackets);
+      setFilter(closet[user.uid].jackets);
     } else if (e === "Dresses") {
       setOption("Dresses");
-      setFilter(dresses);
+      setFilter(closet[user.uid].dresses);
     } else if (e === "Bottoms") {
       setOption("Bottoms");
-      setFilter(bottoms);
+      setFilter(closet[user.uid].bottoms);
     } else if (e === "Shoes") {
       setOption("Shoes");
-      setFilter(shoes);
+      setFilter(closet[user.uid].shoes);
     }
   };
+
+  if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
+  if (!closet) return <h5 className="text-muted">Loading user closet...</h5>;
 
   return (
     <Container className="p-10 mt-3">
@@ -48,7 +54,7 @@ const Closet = () => {
       <h5 className="text-muted mt-3">{option}</h5>
       {
         <MyCard
-          data={filter ? filter : tops}
+          data={filter ? filter : closet[user.uid].tops}
           bottoms={option === "Bottoms" ? true : false}
         />
       }
