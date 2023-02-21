@@ -8,7 +8,6 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import AddClothes from "./pages/AddClothes";
 import getMockUser from "./utils/mockUser";
-import WebCam from "./pages/WebCam";
 import { useProfile } from "./utils/userProfile";
 
 const App = () => {
@@ -19,7 +18,6 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/webcam" element={<WebCam />} />
         <Route
           path="/add"
           element={

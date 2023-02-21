@@ -107,3 +107,22 @@
   font-weight: bold;
   font-style: italic;
 }
+
+/* CAMERA UPLOAD */
+.webcam-container {
+  text-align: center;
+  display: block;
+}
+
+.webcam {
+  height: 65vh;
+  width: auto;
+}
+
+.add-image-camera {
+  aspect-ratio: 1 / 1;
+  width: 35vh;
+  height: auto;
+  margin: auto;
+  display: block;
+}
