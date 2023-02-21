@@ -6,7 +6,7 @@ import Closet from "./pages/Closet";
 import Favorites from "./pages/Favorites";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import Upload from "./pages/Upload";
+import AddClothes from "./pages/AddClothes";
 import getMockUser from "./utils/mockUser";
 import WebCam from "./pages/WebCam";
 import { useProfile } from "./utils/userProfile";
@@ -26,7 +26,7 @@ const App = () => {
             user ? (
               <>
                 <Header />
-                <Upload />
+                <AddClothes />
                 <BottomNav />
               </>
             ) : (

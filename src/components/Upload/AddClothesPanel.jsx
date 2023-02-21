@@ -1,12 +1,13 @@
 import React, { useState } from "react";
+import Container from "react-bootstrap/Container";
 import { v4 as uuidv4 } from "uuid";
-import { useStorageUpdate } from "../utils/firebase";
-import { useDbData } from "../utils/firebase";
-import { useDbUpdate } from "../utils/firebase";
-import getMockUser from "../utils/mockUser";
-import { useProfile } from "../utils/userProfile";
+import { useStorageUpdate } from "../../utils/firebase";
+import { useDbData } from "../../utils/firebase";
+import { useDbUpdate } from "../../utils/firebase";
+import getMockUser from "../../utils/mockUser";
+import { useProfile } from "../../utils/userProfile";
 
-const Upload = () => {
+const AddClothesPanel = () => {
   //const [user] = useProfile();
   const user = getMockUser();
   const [type, setType] = useState("jackets");
@@ -45,12 +46,7 @@ const Upload = () => {
 
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
 
-  return (
-    <form onSubmit={handleSubmit} className="form">
-      <input type="file" />
-      <button type="submit">Upload</button>
-    </form>
-  );
+  return <Container>Panel</Container>;
 };
 
-export default Upload;
+export default AddClothesPanel;
