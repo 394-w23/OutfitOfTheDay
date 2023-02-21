@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback  } from "react";
 import MyCarousel from "../components/Carousel";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useDbData, useDbUpdate } from "../utils/firebase";
 import { useProfile } from "../utils/userProfile";
 import { v4 as uuidv4 } from "uuid";
@@ -37,14 +37,26 @@ const Home = () => {
   const [shoes] = useDbData("/shoes");
   const [dresses] = useDbData("/dress");
   const [jackets] = useDbData("/jacket");
+  const [favourites] = useDbData("/favourites");
   const [updateData] = useDbUpdate("/");
 
   const [dress, setDress] = useState(false);
   const [jacket, setJacket] = useState(false);
+  const [isFavorite, setFavorite] = useState(false);
 
   const [selectedTop, setSelectedTop] = useState(0);
   const [selectedBottoms, setSelectedBottoms] = useState(0);
   const [selectedShoes, setSelectedShoes] = useState(0);
+
+  useEffect(() => {
+    if(tops && bottoms && shoes) {
+      handleFavorite()  
+    }
+  }, [tops, bottoms, shoes])
+
+  useEffect(() => {
+    handleFavorite()
+  }, [selectedTop, selectedBottoms, selectedShoes])
 
   const handleDress = () => {
     if (dress == false) {
@@ -62,8 +74,38 @@ const Home = () => {
     }
   };
 
+  const handleFavorite = () => {
+    if (bottoms && tops && shoes) {
+      const selectedOutfit = {
+        bottom: bottoms[selectedBottoms+1],
+        shoes: shoes[selectedShoes+1],
+        top: tops[selectedTop+1],
+      }
+      let inFav = false
+      if (favourites) {
+        Object.values(favourites).map((existingFav, i) => {
+          if (selectedOutfit.bottom === existingFav.bottom && selectedOutfit.shoes === existingFav.shoes && selectedOutfit.top === existingFav.top) {
+            inFav = true
+          }
+        })
+      }
+      
+      setFavorite(inFav)
+    } else {
+      // console.log("not loaded")
+    }
+    
+  }
+
+  const toggleFavorite = () => {
+    if (isFavorite == false) {
+      setFavorite(true);
+    } else {
+      setFavorite(false);
+    }
+  }
+  
   const handleSelectedTop = (selectedIndex, e) => {
-    console.log(selectedIndex);
     setSelectedTop(selectedIndex);
   };
 
@@ -76,22 +118,19 @@ const Home = () => {
   };
 
   const saveSelectedFavourites = () => {
-    const uid = uuidv4();
-    const favourites = {
-      top: tops[selectedTop+1],
-      bottom: bottoms[selectedBottoms+1],
-      shoes: shoes[selectedShoes+1],
-    };
-
-    console.log(tops)
-    console.log(bottoms)
-    console.log(shoes)
-
-    console.log(favourites)
-
-    
-
-    updateData({ ["/favourites/" + uid]: favourites });
+    console.log("Saving Fav")
+    if (isFavorite) {
+      // TO DO: delete from favorite
+      console.log("Already in Favorite")
+    } else {
+      const uid = uuidv4();
+      const newFavourite = {
+        top: tops[selectedTop+1],
+        bottom: bottoms[selectedBottoms+1],
+        shoes: shoes[selectedShoes+1],
+      };
+      updateData({ ["/favourites/" + uid]: newFavourite });
+    }  
   };
 
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
@@ -152,8 +191,8 @@ const Home = () => {
       </Container>
       <Container className="home-button-container">
         <Button className="home-btn">I'll wear this today!</Button>
-        <Button className="home-btn-fav" onClick={saveSelectedFavourites}>
-          <AiOutlineHeart size={20} /> Save this look
+        <Button className="home-btn-fav" onClick={() => {saveSelectedFavourites(); toggleFavorite();}}>
+          {isFavorite ? ( <AiFillHeart size={20} /> ) : (<AiOutlineHeart size={20} />)} Save this look
         </Button>
       </Container>
     </Container>
