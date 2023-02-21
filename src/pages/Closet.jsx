@@ -6,21 +6,15 @@ import { useDbData } from "../utils/firebase";
 import getMockUser from "../utils/mockUser";
 
 const Closet = () => {
-  const [tops] = useDbData("/tops");
-  const [jackets] = useDbData("/jacket");
-  const [bottoms] = useDbData("/bottoms");
-  const [shoes] = useDbData("/shoes");
-  const [dresses] = useDbData("/dress");
   const user = getMockUser();
   const [closet] = useDbData("/closet");
   const [option, setOption] = useState("Tops");
-  const [filter, setFilter] = useState(tops);
+  const [filter, setFilter] = useState(null);
 
   const handleFilter = (e) => {
     if (e === "Tops") {
       setOption("Tops");
       setFilter(closet[user.uid].tops);
-      console.log(tops);
     } else if (e === "Jackets") {
       setOption("Jackets");
       setFilter(closet[user.uid].jackets);
