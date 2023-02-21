@@ -34,6 +34,8 @@ const AddClothesPanel = ({ input }) => {
     if (!imgFile) return;
     useStorage(imgFile);
 
+    if (!result) return;
+
     const newPiece = {
       weather: weather,
       url: result,
@@ -55,7 +57,7 @@ const AddClothesPanel = ({ input }) => {
       userCloset.shoes = updatedClosetType;
     }
 
-    //updateData({ ["/closet/" + user.uid]: userCloset });
+    updateData({ ["/closet/" + user.uid]: userCloset });
   };
 
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
