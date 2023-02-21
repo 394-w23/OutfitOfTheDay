@@ -35,3 +35,18 @@
   border-color: #5d5fef;
   color: #555555;
 }
+
+/* LINK UPLOAD */
+
+.link-upload-form {
+  display: flex;
+  align-items: center;
+}
+
+.add-image {
+  aspect-ratio: 1 / 1;
+  width: 25vh;
+  height: auto;
+  margin: auto;
+  display: block;
+}
