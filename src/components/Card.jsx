@@ -7,17 +7,19 @@ const MyCard = ({ data, bottoms }) => {
   return (
     <Container>
       <Row xs={2} md={4} className="g-4">
-        {data?.map((img_src, idx) => (
+        {Object.entries(data).map(([idx, clothes]) => (
           <Col key={idx}>
             <Card className="card-container">
               <Card.Img
                 variant="top"
-                src={img_src}
+                src={clothes.url}
                 className={bottoms ? "card-image-bottoms" : "card-image"}
               />
               <div className="card-text-container">
                 <Card.Text className="card-weather text-muted">
-                  Hot Weather
+                  {clothes.weather.charAt(0).toUpperCase() +
+                    clothes.weather.slice(1)}{" "}
+                  Weather
                 </Card.Text>
               </div>
             </Card>

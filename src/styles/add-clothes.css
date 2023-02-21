@@ -1,0 +1,128 @@
+.upload-container {
+  padding: 20px;
+  margin-top: 10px;
+}
+
+.add-title {
+  color: #555555;
+  font-style: italic;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.add-subtitle {
+  color: #555555;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.add-button-container {
+  display: block;
+}
+
+.add-button {
+  margin-bottom: 15px;
+  width: 100%;
+  font-weight: bold;
+  background-color: #5d5fef;
+  border-color: #5d5fef;
+  color: white;
+}
+
+.add-button:hover {
+  font-weight: bold;
+  background-color: white;
+  border-color: #5d5fef;
+  color: #555555;
+}
+
+/* LINK UPLOAD */
+
+.link-upload-form {
+  display: flex;
+  align-items: center;
+}
+
+.add-image {
+  aspect-ratio: 1 / 1;
+  width: 20vh;
+  height: auto;
+  margin: auto;
+  display: block;
+}
+
+.link-upload-tag {
+  color: #555555;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.link-upload-category-container,
+.link-upload-weather-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.link-upload-category-container button,
+.link-upload-weather-container button {
+  font-size: 13px;
+  background-color: white;
+  border-color: #949191;
+  color: #555555;
+  display: block;
+  margin-left: 5px;
+}
+
+.link-upload-category-container button:hover,
+.link-upload-weather-container button:hover {
+  background-color: white;
+  border-color: #555555;
+  color: #555555;
+}
+
+.link-upload-buttons-container {
+  display: block;
+}
+
+.link-upload-buttons-container button {
+  margin-bottom: 5px;
+  width: 100%;
+  font-weight: bold;
+  font-size: 14px;
+  background-color: #5d5fef;
+  border-color: #5d5fef;
+  color: white;
+}
+
+.link-upload-buttons-container button:hover {
+  font-weight: bold;
+  background-color: white;
+  border-color: #5d5fef;
+  color: #555555;
+}
+
+.link-upload-button-active {
+  background-color: #555555 !important;
+  color: white !important;
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* CAMERA UPLOAD */
+.webcam-container {
+  text-align: center;
+  display: block;
+}
+
+.webcam {
+  height: 65vh;
+  width: auto;
+}
+
+.add-image-camera {
+  aspect-ratio: 1 / 1;
+  width: 35vh;
+  height: auto;
+  margin: auto;
+  display: block;
+}

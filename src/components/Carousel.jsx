@@ -11,9 +11,9 @@ const MyCarousel = ({ data, handleSelect, index }) => {
         activeIndex={index}
         onSelect={handleSelect}
       >
-        {data.map((imageLink, idx) => (
+        {Object.entries(data).map(([idx, clothes]) => (
           <Carousel.Item key={idx}>
-            <img src={imageLink} alt="Slide" />
+            <img src={clothes.url} alt="Slide" />
           </Carousel.Item>
         ))}
       </Carousel>

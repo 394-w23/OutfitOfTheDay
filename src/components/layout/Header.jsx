@@ -32,14 +32,14 @@ const Header = () => {
             <img
               className="header-img"
               alt="Profile"
-              src={user.photoURL}
-              //referrerPolicy="no-referrer"
+              src={user.profilePic}
+              referrerPolicy="no-referrer"
             />
             <NavDropdown id="collasible-nav-dropdown" align="end">
               <NavDropdown.Item onClick={() => navigate("/")}>
                 <CgProfile size={24} /> View Profile
               </NavDropdown.Item>
-              <NavDropdown.Item onClick={() => navigate("/")}>
+              <NavDropdown.Item onClick={() => navigate("/add")}>
                 <IoMdAddCircle size={24} /> Add Item
               </NavDropdown.Item>
               <NavDropdown.Divider />

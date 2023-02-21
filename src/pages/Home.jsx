@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback  } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import MyCarousel from "../components/Carousel";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -8,9 +8,9 @@ import { useDbData, useDbUpdate } from "../utils/firebase";
 import { useProfile } from "../utils/userProfile";
 import { v4 as uuidv4 } from "uuid";
 import getMockUser from "../utils/mockUser";
-import axios from 'axios';
+import axios from "axios";
 
-import {WiDaySunnyOvercast} from "weather-icons-react";
+import { WiDaySunnyOvercast } from "weather-icons-react";
 
 const Home = () => {
   const [weather, setWeather] = useState([]);
@@ -28,16 +28,11 @@ const Home = () => {
         setWind(data["current_weather"]["windspeed"]);
       })
       .catch((err) => console.error(err));
-  }, []);  
-  
-  const user = getMockUser();
+  }, []);
 
-  const [tops] = useDbData("/tops");
-  const [bottoms] = useDbData("/bottoms");
-  const [shoes] = useDbData("/shoes");
-  const [dresses] = useDbData("/dress");
-  const [jackets] = useDbData("/jacket");
-  const [favourites] = useDbData("/favourites");
+  const user = getMockUser();
+  const [closet] = useDbData("/closet");
+
   const [updateData] = useDbUpdate("/");
 
   const [dress, setDress] = useState(false);
@@ -49,14 +44,14 @@ const Home = () => {
   const [selectedShoes, setSelectedShoes] = useState(0);
 
   useEffect(() => {
-    if(tops && bottoms && shoes) {
-      handleFavorite()  
+    if (closet) {
+      handleFavorite();
     }
-  }, [tops, bottoms, shoes, favourites])
+  }, [closet]);
 
   useEffect(() => {
-    handleFavorite()
-  }, [selectedTop, selectedBottoms, selectedShoes])
+    handleFavorite();
+  }, [selectedTop, selectedBottoms, selectedShoes]);
 
   const handleDress = () => {
     if (dress == false) {
@@ -75,27 +70,26 @@ const Home = () => {
   };
 
   const handleFavorite = () => {
-    if (bottoms && tops && shoes) {
+    if (closet) {
       const selectedOutfit = {
-        bottom: bottoms[selectedBottoms+1],
-        shoes: shoes[selectedShoes+1],
-        top: tops[selectedTop+1],
-      }
-      let inFav = false
-      if (favourites) {
-        Object.values(favourites).map((existingFav, i) => {
-          if (selectedOutfit.bottom === existingFav.bottom && selectedOutfit.shoes === existingFav.shoes && selectedOutfit.top === existingFav.top) {
-            inFav = true
-          }
-        })
-      }
-      
-      setFavorite(inFav)
-    } else {
-      // console.log("not loaded")
+        tops: Object.values(closet[user.uid].tops)[selectedTop],
+        bottoms: Object.values(closet[user.uid].bottoms)[selectedBottoms],
+        shoes: Object.values(closet[user.uid].shoes)[selectedShoes],
+      };
+
+      let inFav = false;
+      Object.entries(closet[user.uid].favorites).map(([idx, favorite]) => {
+        if (
+          selectedOutfit.bottoms.url === favorite.bottoms.url &&
+          selectedOutfit.shoes.url === favorite.shoes.url &&
+          selectedOutfit.tops.url === favorite.tops.url
+        ) {
+          inFav = true;
+        }
+      });
+      setFavorite(inFav);
     }
-    
-  }
+  };
 
   const toggleFavorite = () => {
     if (isFavorite == false) {
@@ -103,37 +97,33 @@ const Home = () => {
     } else {
       setFavorite(false);
     }
-  }
-  
-  const handleSelectedTop = (selectedIndex, e) => {
+  };
+
+  const handleSelectedTop = (selectedIndex) => {
     setSelectedTop(selectedIndex);
   };
 
-  const handleSelectedBottoms = (selectedIndex, e) => {
+  const handleSelectedBottoms = (selectedIndex) => {
     setSelectedBottoms(selectedIndex);
   };
 
-  const handleSelectedShoes = (selectedIndex, e) => {
+  const handleSelectedShoes = (selectedIndex) => {
     setSelectedShoes(selectedIndex);
   };
 
   const saveSelectedFavourites = () => {
-    console.log("Saving Fav")
-    if (isFavorite) {
-      // TO DO: delete from favorite
-      console.log("Already in Favorite")
-    } else {
-      const uid = uuidv4();
-      const newFavourite = {
-        top: tops[selectedTop+1],
-        bottom: bottoms[selectedBottoms+1],
-        shoes: shoes[selectedShoes+1],
-      };
-      updateData({ ["/favourites/" + uid]: newFavourite });
-    }  
+    if (isFavorite) return;
+    const uid = uuidv4();
+    const favorites = {
+      tops: Object.values(closet[user.uid].tops)[selectedTop],
+      bottoms: Object.values(closet[user.uid].bottoms)[selectedBottoms],
+      shoes: Object.values(closet[user.uid].shoes)[selectedShoes],
+    };
+    updateData({ ["/closet/" + user.uid + "/favorites/" + uid]: favorites });
   };
 
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
+  if (!closet) return <h5 className="text-muted">Loading user closet...</h5>;
 
   return (
     <Container>
@@ -157,42 +147,52 @@ const Home = () => {
         Here's what we suggest!
       </Container>
       <Container className="weather-header-container">
-      <WiDaySunnyOvercast size={24} color='#000' />
-        Today's temperature outside is {weather} degrees with a wind speed of {wind} mph.
+        <WiDaySunnyOvercast size={24} color="#000" />
+        Today's temperature outside is {weather} degrees with a wind speed of{" "}
+        {wind} mph.
       </Container>
       <Container className="home-clothes-container">
         <Container className="home-clothes-top">
-          {tops && (
-            <MyCarousel
-              data={tops}
-              handleSelect={handleSelectedTop}
-              index={selectedTop}
-            ></MyCarousel>
-          )}
+          <MyCarousel
+            data={closet[user.uid].tops}
+            handleSelect={handleSelectedTop}
+            index={selectedTop}
+          ></MyCarousel>
         </Container>
         <Container className="home-clothes-bottoms">
-          {bottoms && (
-            <MyCarousel
-              data={bottoms}
-              handleSelect={handleSelectedBottoms}
-              index={selectedBottoms}
-            ></MyCarousel>
-          )}
+          <MyCarousel
+            data={closet[user.uid].bottoms}
+            handleSelect={handleSelectedBottoms}
+            index={selectedBottoms}
+          ></MyCarousel>
         </Container>
         <Container className="home-clothes-shoes">
-          {shoes && (
-            <MyCarousel
-              data={shoes}
-              handleSelect={handleSelectedShoes}
-              index={selectedShoes}
-            ></MyCarousel>
-          )}
+          <MyCarousel
+            data={closet[user.uid].shoes}
+            handleSelect={handleSelectedShoes}
+            index={selectedShoes}
+          ></MyCarousel>
         </Container>
       </Container>
       <Container className="home-button-container">
         <Button className="home-btn">I'll wear this today!</Button>
-        <Button className="home-btn-fav" onClick={() => {saveSelectedFavourites();}}>
-          {isFavorite ? ( <AiFillHeart size={20} /> ) : (<AiOutlineHeart size={20} />)} Save this look
+        <Button
+          className="home-btn-fav"
+          onClick={() => {
+            saveSelectedFavourites();
+          }}
+        >
+          {isFavorite ? (
+            <>
+              <AiFillHeart size={20} />
+              {"This look is already saved"}
+            </>
+          ) : (
+            <>
+              <AiOutlineHeart size={20} />
+              {"Save this look"}
+            </>
+          )}{" "}
         </Button>
       </Container>
     </Container>

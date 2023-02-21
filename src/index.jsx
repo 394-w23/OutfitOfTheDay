@@ -11,6 +11,7 @@ import "./styles/bottom-nav.css";
 import "./styles/carousel.css";
 import "./styles/clothes-card.css";
 import "./styles/favorites.css";
+import "./styles/add-clothes.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
