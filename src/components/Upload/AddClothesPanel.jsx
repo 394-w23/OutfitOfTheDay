@@ -36,14 +36,17 @@ const AddClothesPanel = ({ input }) => {
 
     if (!result) return;
 
+    const uid = uuidv4();
     const newPiece = {
+      id: uid,
+      available: true,
       weather: weather,
       url: result,
     };
 
     const updatedClosetType = userClosetType
-      ? [...userClosetType, newPiece]
-      : [newPiece];
+      ? { ...userClosetType, [uid]: newPiece }
+      : { [uid]: newPiece };
 
     if (type === "tops") {
       userCloset.tops = updatedClosetType;
