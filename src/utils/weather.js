@@ -1,33 +1,40 @@
-export const weatherConditions = new Map([
-  [0, "Clear sky"],
-  [1, "Mainly clear"],
-  [2, "Partly cloudy"],
-  [3, "Overcast"],
-  [45, "Fog"],
-  [48, "Depositing rime fog"],
-  [51, "Drizzle: Light intensity"],
-  [53, "Drizzle: Moderate intensity"],
-  [55, "Drizzle: Dense intensity"],
-  [56, "Freezing Drizzle: Light intensity"],
-  [57, "Freezing Drizzle: Dense intensity"],
-  [61, "Rainy"],
-  [63, "Rainy"],
-  [65, "Rainy"],
-  [66, "Rainy"],
-  [67, "Rainy"],
-  [71, "Snow fall: Slight intensity"],
-  [73, "Snow fall: Moderate intensity"],
-  [75, "Snow fall: Heavy intensity"],
-  [77, "Snow grains"],
-  [80, "Rain showers: Slight intensity"],
-  [81, "Rain showers: Moderate intensity"],
-  [82, "Rain showers: Violent intensity"],
-  [85, "Snow showers: Slight intensity"],
-  [86, "Snow showers: Heavy intensity"],
-  [95, "Thunderstorm: Slight or moderate"],
-  [96, "Thunderstorm with slight hail"],
-  [99, "Thunderstorm with heavy hail"],
-]);
+export const weatherConditions = new Map([  
+    [0, 'Sunny'],
+    [1, 'Clear'],
+
+    [2, 'Cloudy'],
+    [3, 'Cloudy'],
+
+    [45, 'Foggy'],
+    [48, 'Foggy'],
+
+    [51, 'Rainy'],
+    [53, 'Rainy'],
+    [55, 'Rainy'],
+    [56, 'Rainy'],
+    [57, 'Rainy'],
+    [61, 'Rainy'],
+    [63, 'Rainy'],
+    [65, 'Rainy'],
+    [66, 'Rainy'],
+    [67, 'Rainy'],
+
+    [71, 'Snowy'],
+    [73, 'Snowy'],
+    [75, 'Snowy'],
+    [77, 'Snowy'],
+
+    [80, 'Rainy'],
+    [81, 'Rainy'],
+    [82, 'Rainy'],
+
+    [85, 'Snowy'],
+    [86, 'Snowy'],
+
+    [95, 'Rainy'],
+    [96, 'Rainy'],
+    [99, 'Rainy']
+  ]);
 
 export const weatherIconUrl = new Map([
   [

@@ -49,8 +49,7 @@ const Landing = ({ setStep }) => {
           className={"card-image"}
         />
         <Card.Text className="card-weather-text">
-          {temperature}F and conditions are {weatherConditions.get(weatherCode)}
-          .
+        {temperature}F and it's {weatherConditions.get(weatherCode)} outside.
         </Card.Text>
       </Card>
       <Card.Text className="card-outfit-text">

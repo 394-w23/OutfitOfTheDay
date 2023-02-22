@@ -169,12 +169,12 @@ const Home = () => {
           {isFavorite ? (
             <>
               <AiFillHeart size={20} />
-              {"Saved look"}
+              {"  Favorited"}
             </>
           ) : (
             <>
               <AiOutlineHeart size={20} />
-              {"Save this look"}
+              {"  Favorite this look"}
             </>
           )}{" "}
         </Button>
