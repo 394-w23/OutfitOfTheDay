@@ -2,6 +2,7 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import { Button } from "react-bootstrap";
 
 const MyCard = ({ data, bottoms }) => {
   return (
@@ -16,11 +17,15 @@ const MyCard = ({ data, bottoms }) => {
                 className={bottoms ? "card-image-bottoms" : "card-image"}
               />
               <div className="card-text-container">
-                <Card.Text className="card-weather text-muted">
-                  {clothes.weather.charAt(0).toUpperCase() +
-                    clothes.weather.slice(1)}{" "}
-                  Weather
-                </Card.Text>
+                {clothes.weather.map((weather_attributes) => (
+                  <Button
+                    className="card-weather text-muted"
+                    key={weather_attributes}
+                    disabled
+                  >
+                    {weather_attributes}
+                  </Button>
+                ))}
               </div>
             </Card>
           </Col>

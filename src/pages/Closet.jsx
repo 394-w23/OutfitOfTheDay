@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import { useDbData } from "../utils/firebase";
 import getMockUser from "../utils/mockUser";
+import { Button } from "react-bootstrap";
 
 const Closet = () => {
   const user = getMockUser();
@@ -30,6 +31,8 @@ const Closet = () => {
     }
   };
 
+  const weatherOptions = ["Cold", "Warm", "Rainy", "Sunny"];
+
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
   if (!closet) return <h5 className="text-muted">Loading user closet...</h5>;
 
@@ -45,6 +48,13 @@ const Closet = () => {
         <option value="Bottoms">Bottoms</option>
         <option value="Shoes">Shoes</option>
       </Form.Select>
+
+      <div className="card-text-container-header">
+        {weatherOptions.map((weather) => (
+          <Button className="card-weather-header text-muted">{weather}</Button>
+        ))}
+      </div>
+
       <h5 className="text-muted mt-3">{option}</h5>
       {
         <MyCard
