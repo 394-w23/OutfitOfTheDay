@@ -15,6 +15,7 @@
 .card-image {
     width: 150px;
     height: 150px;
+    padding-bottom: 0px;
 }
 
 .card-outfit-text {
