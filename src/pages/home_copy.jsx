@@ -10,13 +10,16 @@ import getMockUser from "../utils/mockUser";
 import getWeatherAPIURL from "../utils/userLocation";
 import WeatherHeader from "../components/weatherheader";
 
-import { WiDaySunnyOvercast } from "weather-icons-react";
+import ReactAnimatedWeather from 'react-animated-weather';
+
 
 const Home = () => {
   const [weather, setWeather] = useState([]);
   const [wind, setWind] = useState([]);
   const [weatherCode, setWeatherCode] = useState(0);
   // https://open-meteo.com/en/docs#latitude=42.04&longitude=-87.69&hourly=temperature_2m
+  
+
 
   useEffect(() => {
     fetch(getWeatherAPIURL())
@@ -124,14 +127,6 @@ const Home = () => {
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
   if (!closet) return <h5 className="text-muted">Loading user closet...</h5>;
 
-  var currentHour = new Date().getHours();
-  var timeOfDay = "Morning";
-  if (12 <= currentHour && currentHour < 17) {
-    timeOfDay = "Afternoon";
-  } else if (17 <= currentHour) {
-    timeOfDay = "Evening";
-  }
-
   return (
     <Container>
       {/*       {
@@ -149,16 +144,40 @@ const Home = () => {
         onClick={() => handleJacket()}
     /> */}
       <Container className="home-header-container">
-        <span>
-          Good {timeOfDay} {user.displayName.split(" ")[0]}!
-        </span>{" "}
-        <br />
+        <span>Good Morning {user.displayName.split(" ")[0]}!</span> <br />
         Let's choose your outfit. <br />
         Here's what we suggest!
       </Container>
       <div className="weather-header-container">
         <WeatherHeader weather={weather} />
       </div>
+      {/* <Container className="weather-header-container">
+      <ReactAnimatedWeather
+        icon={iconProps.icon}
+        color={iconProps.color}
+        size={props.defaults.size}
+        animate={props.defaults.animate}
+      />
+      <div style={{ fontFamily: "Arial", fontSize: "24px" }}>
+        {weather}°
+      </div>
+    </Container> */}
+
+      {/* <Container className="weather-header-container">
+      <Container className="weather-icon-container">
+          <ReactAnimatedWeather
+            icon={defaults.icon}
+            color={defaults.color}
+            size={defaults.size}
+            animate={defaults.animate}
+          />
+      </Container>
+      <div style={{ fontFamily: 'Arial', fontSize: '24px' }}>
+      {weather}°
+      </div>
+      
+        
+      </Container> */}
       <Container className="home-clothes-container">
         <Container className="home-clothes-top">
           <MyCarousel

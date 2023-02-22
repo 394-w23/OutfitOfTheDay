@@ -15,15 +15,27 @@ body {
 }
 
 
-
-
 .weather-header-container {
-  padding: 5px;
-  margin: 0;
-  color: #555555;
   text-align: center;
-  font-size: 16px;
-  flex-grow: initial;
+  font-size: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2vh;
+  width: 4vh;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 6vh;
+  margin-right: 4vh;
+}
+
+
+@media screen and (max-width: 896px) {
+  .weather-header-container {
+    margin-top: 6vh;
+    margin-right: 3.4vh;
+  }
 }
 
 .home-header-container span {
