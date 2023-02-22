@@ -37,7 +37,7 @@ const App = () => {
           }
         />
         <Route
-          path="/landingpage"
+          path="/"
           element={
             user ? (
               <>
@@ -51,7 +51,7 @@ const App = () => {
           }
         />
         <Route
-          path="/"
+          path="/home"
           element={
             user ? (
               step === 0 ? (
