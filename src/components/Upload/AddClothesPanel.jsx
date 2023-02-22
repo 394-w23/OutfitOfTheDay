@@ -11,7 +11,7 @@ const AddClothesPanel = ({ input }) => {
   //const [user] = useProfile();
   const user = getMockUser();
   const [type, setType] = useState(null);
-  const [weather, setWeather] = useState(null);
+  const [weather, setWeather] = useState([]);
   const [useStorage, result] = useStorageUpdate(
     "/files/" + user.uid + "/" + uuidv4()
   );
@@ -24,7 +24,7 @@ const AddClothesPanel = ({ input }) => {
   };
 
   const handleSubmit = async () => {
-    if (!weather || !type) return;
+    if (weather.length == 0 || !type) return;
     const imgFile = await handleInputToFile();
 
     const userCloset = closet[user.uid];
@@ -77,26 +77,58 @@ const AddClothesPanel = ({ input }) => {
         <h5 className="link-upload-tag">I'll wear this when it's:</h5>
         <Container className="link-upload-weather-container">
           <Button
-            className={weather === "cold" ? "link-upload-button-active" : ""}
-            onClick={() => setWeather("cold")}
+            className={
+              weather.includes("cold") ? "link-upload-button-active" : ""
+            }
+            onClick={() => {
+              if (weather.includes("cold")) {
+                setWeather(weather.filter((val) => val !== "cold"));
+              } else {
+                setWeather([...weather, "cold"]);
+              }
+            }}
           >
             Cold
           </Button>
           <Button
-            className={weather === "warm" ? "link-upload-button-active" : ""}
-            onClick={() => setWeather("warm")}
+            className={
+              weather.includes("warm") ? "link-upload-button-active" : ""
+            }
+            onClick={() => {
+              if (weather.includes("warm")) {
+                setWeather(weather.filter((val) => val !== "warm"));
+              } else {
+                setWeather([...weather, "warm"]);
+              }
+            }}
           >
             Warm
           </Button>
           <Button
-            className={weather === "rainy" ? "link-upload-button-active" : ""}
-            onClick={() => setWeather("rainy")}
+            className={
+              weather.includes("rainy") ? "link-upload-button-active" : ""
+            }
+            onClick={() => {
+              if (weather.includes("rainy")) {
+                setWeather(weather.filter((val) => val !== "rainy"));
+              } else {
+                setWeather([...weather, "rainy"]);
+              }
+            }}
           >
             Rainy
           </Button>
           <Button
-            className={weather === "sunny" ? "link-upload-button-active" : ""}
-            onClick={() => setWeather("sunny")}
+            className={
+              weather.includes("sunny") ? "link-upload-button-active" : ""
+            }
+            onClick={() => {
+              if (weather.includes("sunny")) {
+                setWeather(weather.filter((val) => val !== "sunny"));
+              } else {
+                setWeather([...weather, "sunny"]);
+              }
+            }}
           >
             Sunny
           </Button>
