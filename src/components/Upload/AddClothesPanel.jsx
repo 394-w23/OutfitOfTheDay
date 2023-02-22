@@ -4,7 +4,6 @@ import Container from "react-bootstrap/Container";
 import { v4 as uuidv4 } from "uuid";
 import { useStorageUpdate } from "../../utils/firebase";
 import { useDbData } from "../../utils/firebase";
-import { useDbUpdate } from "../../utils/firebase";
 import getMockUser from "../../utils/mockUser";
 import { useProfile } from "../../utils/userProfile";
 
@@ -16,7 +15,6 @@ const AddClothesPanel = ({ input }) => {
   const [useStorage, result] = useStorageUpdate(
     "/files/" + user.uid + "/" + uuidv4()
   );
-  const [updateData] = useDbUpdate("/");
   const [closet] = useDbData("/closet");
 
   const handleInputToFile = async () => {
@@ -32,35 +30,8 @@ const AddClothesPanel = ({ input }) => {
     const userCloset = closet[user.uid];
     const userClosetType = userCloset[type];
     if (!imgFile) return;
-    await useStorage(imgFile);
-
-    //if (!result) return;
-
     const uid = uuidv4();
-    const newPiece = {
-      id: uid,
-      available: true,
-      weather: weather,
-      url: result,
-    };
-
-    const updatedClosetType = userClosetType
-      ? { ...userClosetType, [uid]: newPiece }
-      : { [uid]: newPiece };
-
-    if (type === "tops") {
-      userCloset.tops = updatedClosetType;
-    } else if (type === "jackets") {
-      userCloset.jackets = updatedClosetType;
-    } else if (type === "dresses") {
-      userCloset.dresses = updatedClosetType;
-    } else if (type === "bottoms") {
-      userCloset.bottoms = updatedClosetType;
-    } else if (type === "shoes") {
-      userCloset.shoes = updatedClosetType;
-    }
-
-    updateData({ ["/closet/" + user.uid]: userCloset });
+    useStorage(imgFile, user, uid, userCloset, userClosetType, type, weather);
   };
 
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
