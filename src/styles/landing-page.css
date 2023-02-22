@@ -1,0 +1,15 @@
+.card-weather-greeting {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+}
+
+.card-weather-text {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+}
+
+.card-image {
+    width: 100px;
+}
