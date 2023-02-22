@@ -1,4 +1,4 @@
-.card-weather-greeting {
+.card-weather-greeting .card-text {
     display: flex;
     justify-content: center;
     padding: 15px;
@@ -12,4 +12,12 @@
 
 .card-image {
     width: 100px;
+}
+
+p {
+	margin-top: 0;
+	margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    padding: 15px;
 }

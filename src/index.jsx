@@ -12,6 +12,7 @@ import "./styles/carousel.css";
 import "./styles/clothes-card.css";
 import "./styles/favorites.css";
 import "./styles/add-clothes.css";
+import "./styles/landing-page.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
