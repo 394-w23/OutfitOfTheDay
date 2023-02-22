@@ -115,8 +115,9 @@
 }
 
 .webcam {
-  height: 65vh;
-  width: auto;
+  /* height: 65vh; */
+  width: 100%;
+  height: 60vh;
 }
 
 .add-image-camera {
