@@ -6,9 +6,11 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { BrowserRouter, useNavigate } from "react-router-dom";
 
+
 const LandingPage = () => {
 //   Weather: Sunny, Rainy, Cold, Warm
 //   Temperature: Value
+
     const user = getMockUser();
     const [wind, setWind] = useState([]);
     const [temperature, setTemperature] = useState(30);
@@ -84,7 +86,7 @@ const LandingPage = () => {
                 Next, Let's choose your outfit!
         </Card.Text>
         <Container className="home-button-container">
-            <Button className="home-btn" onClick={() => navigate("/")}>See my suggested outfits</Button>
+            <Button className="home-btn" onClick={() => navigate("/home")}>See my suggested outfits</Button>
         </Container>
     </Container>
   );
