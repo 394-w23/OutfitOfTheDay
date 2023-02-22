@@ -148,6 +148,7 @@ const Home = () => {
         {<WiDaySunnyOvercast size={24} color="#555555" />}
         Today's temperature outside is {weather} degrees with a wind speed of{" "}
         {wind} mph.
+        {<WiDaySunnyOvercast size={24} color="#555555" />}
       </Container>
       <Container className="home-clothes-container">
         <Container className="home-clothes-top">
