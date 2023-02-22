@@ -17,7 +17,8 @@ const LandingPage = () => {
     const [weatherCode, setWeatherCode] = useState(1);
     const navigate = useNavigate();
 
-    const weatherConditions = new Map([  [0, 'Clear sky'],
+    const weatherConditions = new Map([  
+        [0, 'Clear sky'],
         [1, 'Mainly clear'],
         [2, 'Partly cloudy'],
         [3, 'Overcast'],
@@ -45,6 +46,37 @@ const LandingPage = () => {
         [95, 'Thunderstorm: Slight or moderate'],
         [96, 'Thunderstorm with slight hail'],
         [99, 'Thunderstorm with heavy hail']
+    ]);
+
+    const weatherIconUrl = new Map([  
+        [0, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-01-512.png'],
+        [1, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-01-512.png'],
+        [2, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-22-128.png'],
+        [3, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-22-128.png'],
+        [45, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-22-128.png'],
+        [48, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-22-128.png'],
+        [51, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-30-512.png'],
+        [53, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-30-512.png'],
+        [55, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-30-512.png'],
+        [56, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-30-512.png'],
+        [57, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-30-512.png'],
+        [61, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-30-512.png'],
+        [63, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-30-512.png'],
+        [65, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-30-512.png'],
+        [66, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-30-512.png'],
+        [67, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-30-512.png'],
+        [71, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-30-512.png'],
+        [73, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-30-512.png'],
+        [75, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-24-512.png'],
+        [77, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-24-512.png'],
+        [80, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-30-512.png'],
+        [81, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-30-512.png'],
+        [82, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-30-512.png'],
+        [85, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-24-512.png'],
+        [86, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-24-512.png'],
+        [95, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-24-512.png'],
+        [96, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-24-512.png'],
+        [99, 'https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-24-512.png']
     ]);
 
     useEffect(() => {
@@ -75,7 +107,7 @@ const LandingPage = () => {
         <Card className="card-container">
             <Card.Img
             variant="top"
-            src={'https://img.icons8.com/ios-filled/512/downpour.png'}
+            src={weatherIconUrl.get(weatherCode)}
             className={"card-image"}
             />
             <Card.Text className="card-weather-text">
