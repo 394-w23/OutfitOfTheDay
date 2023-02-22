@@ -9,9 +9,8 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import AddClothes from "./pages/AddClothes";
 import getMockUser from "./utils/mockUser";
-import LandingPage from "./pages/LandingPage";
-import { useProfile } from "./utils/userProfile";
 import Landing from "./pages/Landing";
+import { useProfile } from "./utils/userProfile";
 
 const App = () => {
   //const [user] = useProfile();
@@ -38,20 +37,6 @@ const App = () => {
         />
         <Route
           path="/"
-          element={
-            user ? (
-              <>
-                <Header />
-                <LandingPage />
-                <BottomNav />
-              </>
-            ) : (
-              <Navigate replace to="/login" />
-            )
-          }
-        />
-        <Route
-          path="/home"
           element={
             user ? (
               step === 0 ? (

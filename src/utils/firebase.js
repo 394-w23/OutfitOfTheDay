@@ -61,7 +61,7 @@ export const useStorageUpdate = (path) => {
   const [result, setResult] = useState();
 
   const useStorage = useCallback(
-    (file, user, uid, userCloset, userClosetType, type, weather) => {
+    (file) => {
       const storageRef = sRef(storage, path);
       const uploadTask = uploadBytesResumable(storageRef, file);
       uploadTask.on(
@@ -78,30 +78,6 @@ export const useStorageUpdate = (path) => {
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((url) => {
             setResult(url);
-            const newPiece = {
-              id: uid,
-              available: true,
-              weather: weather,
-              url: result,
-            };
-
-            const updatedClosetType = userClosetType
-              ? { ...userClosetType, [uid]: newPiece }
-              : { [uid]: newPiece };
-
-            if (type === "tops") {
-              userCloset.tops = updatedClosetType;
-            } else if (type === "jackets") {
-              userCloset.jackets = updatedClosetType;
-            } else if (type === "dresses") {
-              userCloset.dresses = updatedClosetType;
-            } else if (type === "bottoms") {
-              userCloset.bottoms = updatedClosetType;
-            } else if (type === "shoes") {
-              userCloset.shoes = updatedClosetType;
-            }
-
-            update(ref(database, "/"), { ["/closet/" + user.uid]: userCloset });
           });
         }
       );

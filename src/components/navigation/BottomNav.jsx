@@ -14,7 +14,7 @@ const BottomNav = () => {
       setActive("favorites");
     } else if (location.pathname === "/closet") {
       setActive("closet");
-    } else if (location.pathname === "/home") {
+    } else if (location.pathname === "/") {
       setActive("home");
     }
   }, [location]);
@@ -44,7 +44,7 @@ const BottomNav = () => {
             ? "home-btn-container active-container"
             : "home-btn-container"
         }
-        onClick={() => navigate("/home")}
+        onClick={() => navigate("/")}
       >
         <div className="info-container">
           {active === "home" ? (
