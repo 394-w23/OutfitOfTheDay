@@ -48,19 +48,21 @@
 }
 
 .card-weather-header {
-  color: #555555;
-  font-size: 13px;
+  color: white;
+  font-size: 10px;
   font-weight: bold;
-  background-color: white;
-  border-color: #949191;
   display: block;
 }
 
-.card-weather:disabled {
+.filter-weather-button {
   color: #555555;
-  font-size: 13px;
-  font-weight: bold;
   background-color: white;
-  border-color: #949191;
-  display: block;
+  border-color: #555555;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.filter-weather-button:hover {
+  color: white;
+  background-color: #555555;
 }

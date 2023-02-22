@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
-import LinkUpload from "../components/Upload/LinkUpload";
 import CameraUpload from "../components/Upload/CameraUpload";
+import FileUpload from "../components/Upload/FileUpload";
 
 const AddClothes = () => {
   const [method, setMethod] = useState(null);
@@ -13,8 +13,8 @@ const AddClothes = () => {
     setStep(1);
   };
 
-  const handleLinkUpload = () => {
-    setMethod("link");
+  const handleDeviceUpload = () => {
+    setMethod("device");
     setStep(1);
   };
 
@@ -32,14 +32,14 @@ const AddClothes = () => {
           <Button className="add-button" onClick={handleCameraUpload}>
             Use Camera
           </Button>
-          <Button className="add-button" onClick={handleLinkUpload}>
-            Use Link
+          <Button className="add-button" onClick={handleDeviceUpload}>
+            Use File Upload
           </Button>
         </Container>
       </Container>
     );
 
-  if (step === 1 && method === "link") return <LinkUpload step={setStep} />;
+  if (step === 1 && method === "device") return <FileUpload step={setStep} />;
   if (step === 1 && method === "camera") return <CameraUpload step={setStep} />;
 };
 

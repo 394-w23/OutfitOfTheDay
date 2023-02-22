@@ -7,6 +7,7 @@ import { BiCloset } from "react-icons/bi";
 const BottomNav = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const iconsSize = 28;
   const [active, setActive] = useState("home");
 
   useEffect(() => {
@@ -14,7 +15,7 @@ const BottomNav = () => {
       setActive("favorites");
     } else if (location.pathname === "/closet") {
       setActive("closet");
-    } else if (location.pathname === "/home") {
+    } else if (location.pathname === "/") {
       setActive("home");
     }
   }, [location]);
@@ -31,11 +32,12 @@ const BottomNav = () => {
       >
         <div className="info-container">
           {active === "favorites" ? (
-            <AiFillHeart size={20} />
+            <AiFillHeart size={iconsSize} />
           ) : (
-            <AiOutlineHeart size={20} />
+            <AiOutlineHeart size={iconsSize} />
           )}
-          <p>Favorites</p>
+          <br />
+          Favorites
         </div>
       </div>
       <div
@@ -44,15 +46,16 @@ const BottomNav = () => {
             ? "home-btn-container active-container"
             : "home-btn-container"
         }
-        onClick={() => navigate("/home")}
+        onClick={() => navigate("/")}
       >
         <div className="info-container">
           {active === "home" ? (
-            <HiHome size={20} />
+            <HiHome size={iconsSize} />
           ) : (
-            <HiOutlineHome size={20} />
+            <HiOutlineHome size={iconsSize} />
           )}
-          <p>Home</p>
+          <br />
+          Home
         </div>
       </div>
       <div
@@ -64,8 +67,9 @@ const BottomNav = () => {
         onClick={() => navigate("/closet")}
       >
         <div className="info-container">
-          <BiCloset size={20} />
-          <p>Closet</p>
+          <BiCloset size={iconsSize} />
+          <br />
+          Closet
         </div>
       </div>
     </div>

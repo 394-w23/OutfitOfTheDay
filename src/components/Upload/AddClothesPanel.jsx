@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import { v4 as uuidv4 } from "uuid";
 import { useStorageUpdate } from "../../utils/firebase";
 import { useDbData } from "../../utils/firebase";
+import { useDbUpdate } from "../../utils/firebase";
 import getMockUser from "../../utils/mockUser";
 import { useProfile } from "../../utils/userProfile";
 
-const AddClothesPanel = ({ input }) => {
+const AddClothesPanel = ({ input, step }) => {
   //const [user] = useProfile();
+  const navigate = useNavigate();
   const user = getMockUser();
+  const [updateData] = useDbUpdate("/");
+  const [isLoadingRed, setLoadingRed] = useState(false);
+  const [isLoadingDon, setLoadingDon] = useState(false);
   const [type, setType] = useState(null);
   const [weather, setWeather] = useState([]);
   const [useStorage, result] = useStorageUpdate(
@@ -17,21 +23,68 @@ const AddClothesPanel = ({ input }) => {
   );
   const [closet] = useDbData("/closet");
 
+  useEffect(() => {
+    if (result) {
+      handleDatabase();
+    }
+  }, [result]);
+
+  const simulateLoadingRequest = () => {
+    return new Promise((resolve) => setTimeout(resolve, 1000));
+  };
+
   const handleInputToFile = async () => {
     const response = await fetch(input);
     const blob = await response.blob();
     return new File([blob], "image.jpg", { type: blob.type });
   };
 
-  const handleSubmit = async () => {
-    if (weather.length == 0 || !type) return;
-    const imgFile = await handleInputToFile();
-
+  const handleDatabase = () => {
     const userCloset = closet[user.uid];
     const userClosetType = userCloset[type];
-    if (!imgFile) return;
     const uid = uuidv4();
-    useStorage(imgFile, user, uid, userCloset, userClosetType, type, weather);
+    const newPiece = {
+      id: uid,
+      available: true,
+      weather: weather,
+      url: result,
+    };
+
+    const updatedClosetType = userClosetType
+      ? { ...userClosetType, [uid]: newPiece }
+      : { [uid]: newPiece };
+
+    if (type === "tops") {
+      userCloset.tops = updatedClosetType;
+    } else if (type === "jackets") {
+      userCloset.jackets = updatedClosetType;
+    } else if (type === "dresses") {
+      userCloset.dresses = updatedClosetType;
+    } else if (type === "bottoms") {
+      userCloset.bottoms = updatedClosetType;
+    } else if (type === "shoes") {
+      userCloset.shoes = updatedClosetType;
+    }
+
+    updateData({ ["/closet/" + user.uid]: userCloset });
+
+    if (isLoadingRed) {
+      setLoadingRed(false);
+      step(0);
+    } else {
+      setLoadingDon(false);
+      step(0);
+      navigate("/");
+    }
+  };
+
+  const handleUpload = async (redirect) => {
+    if (weather.length === 0 || !type) return;
+    redirect ? setLoadingRed(true) : setLoadingDon(true);
+    const imgFile = await handleInputToFile();
+    if (!imgFile) return;
+    useStorage(imgFile);
+    await simulateLoadingRequest();
   };
 
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
@@ -135,8 +188,18 @@ const AddClothesPanel = ({ input }) => {
         </Container>
       </Container>
       <Container className="mt-5 link-upload-buttons-container">
-        <Button>Add another Item</Button>
-        <Button onClick={handleSubmit}>I'm done!</Button>
+        <Button
+          onClick={() => handleUpload(true)}
+          disabled={isLoadingDon || isLoadingRed}
+        >
+          {isLoadingRed ? "Uploading..." : "Add another Item"}
+        </Button>
+        <Button
+          onClick={() => handleUpload(false)}
+          disabled={isLoadingDon || isLoadingRed}
+        >
+          {isLoadingDon ? "Uploading..." : "I'm done!"}
+        </Button>
       </Container>
     </Container>
   );

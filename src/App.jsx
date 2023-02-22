@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/layout/Header";
 import BottomNav from "./components/navigation/BottomNav";
@@ -8,12 +9,13 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import AddClothes from "./pages/AddClothes";
 import getMockUser from "./utils/mockUser";
-import LandingPage from "./pages/LandingPage";
+import Landing from "./pages/Landing";
 import { useProfile } from "./utils/userProfile";
 
 const App = () => {
   //const [user] = useProfile();
   const user = getMockUser();
+  const [step, setStep] = useState(0);
 
   return (
     <BrowserRouter>
@@ -37,25 +39,19 @@ const App = () => {
           path="/"
           element={
             user ? (
-              <>
-                <Header />
-                <LandingPage />
-                <BottomNav />
-              </>
-            ) : (
-              <Navigate replace to="/login" />
-            )
-          }
-        />
-        <Route
-          path="/home"
-          element={
-            user ? (
-              <>
-                <Header />
-                <Home />
-                <BottomNav />
-              </>
+              step === 0 ? (
+                <>
+                  <Header />
+                  <Landing setStep={setStep} />
+                  <BottomNav />
+                </>
+              ) : (
+                <>
+                  <Header />
+                  <Home />
+                  <BottomNav />
+                </>
+              )
             ) : (
               <Navigate replace to="/login" />
             )
