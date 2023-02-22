@@ -12,6 +12,7 @@
 .favorites-btn-container,
 .home-btn-container,
 .closet-btn-container {
+  padding-bottom: 5px;
   cursor: pointer;
   width: 100%;
   display: block;
@@ -19,7 +20,8 @@
 }
 
 .info-container {
-  transform: translateY(20%);
+  transform: translateY(10%);
+  display: block;
 }
 
 .home-btn-container,
@@ -27,9 +29,9 @@
   border-left: 1px solid #f1ecff;
 }
 
-.favorites-btn-container p,
-.home-btn-container p,
-.closet-btn-container p {
+.favorites-btn-container,
+.home-btn-container,
+.closet-btn-container {
   font-size: 10px;
   font-weight: bold;
 }
