@@ -50,8 +50,10 @@ const Closet = () => {
       </Form.Select>
 
       <div className="card-text-container-header">
-        {weatherOptions.map((weather) => (
-          <Button className="card-weather-header text-muted">{weather}</Button>
+        {weatherOptions.map((weather, idx) => (
+          <Button key={idx} className="filter-weather-button">
+            {weather}
+          </Button>
         ))}
       </div>
 

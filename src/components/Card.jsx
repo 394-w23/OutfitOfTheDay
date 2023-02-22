@@ -2,7 +2,8 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Badge from "react-bootstrap/Badge";
 
 const MyCard = ({ data, bottoms }) => {
   return (
@@ -18,13 +19,14 @@ const MyCard = ({ data, bottoms }) => {
               />
               <div className="card-text-container">
                 {clothes.weather.map((weather_attributes) => (
-                  <Button
-                    className="card-weather text-muted"
+                  <Badge
                     key={weather_attributes}
-                    disabled
+                    bg="secondary"
+                    className="card-weather"
+                    pill
                   >
                     {weather_attributes}
-                  </Button>
+                  </Badge>
                 ))}
               </div>
             </Card>

@@ -14,7 +14,6 @@ body {
   font-size: 16px;
 }
 
-
 .weather-header-container {
   text-align: center;
   font-size: 8px;
@@ -29,7 +28,6 @@ body {
   margin-top: 6vh;
   margin-right: 4vh;
 }
-
 
 @media screen and (max-width: 896px) {
   .weather-header-container {
@@ -96,6 +94,7 @@ body {
 
 .home-btn-fav {
   width: 100%;
+  margin: 0;
   color: #555555;
   background-color: white;
   border: none;

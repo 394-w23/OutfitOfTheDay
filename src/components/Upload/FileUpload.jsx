@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import Image from "react-bootstrap/Image";
 import AddClothesPanel from "./AddClothesPanel";
 
-const LinkUpload = ({ step }) => {
+const FileUpload = ({ step }) => {
   const [link, setLink] = useState();
   const [finishedURL, setFinishedURL] = useState(false);
   const [isValid, setIsValid] = useState(true);
@@ -18,7 +18,7 @@ const LinkUpload = ({ step }) => {
 
   const handleLoadEnter = (e) => {
     if (e.keyCode === 13) {
-      loadImage();
+      loadImage;
       setIsValid(true);
     }
   };
@@ -29,7 +29,7 @@ const LinkUpload = ({ step }) => {
         <IoMdArrowBack size={24} onClick={() => step(0)} />
       </Container>
       <Container className="mb-3">
-        <h4 className="add-title">Add via link</h4>
+        <h4 className="add-title">Add via file upload</h4>
         <Container className="link-upload-form">
           <Form.Control
             type="text"
@@ -57,4 +57,4 @@ const LinkUpload = ({ step }) => {
   );
 };
 
-export default LinkUpload;
+export default FileUpload;
