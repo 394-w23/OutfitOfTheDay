@@ -16,6 +16,13 @@ const LinkUpload = ({ step }) => {
     setIsValid(true);
   };
 
+  const handleLoadEnter = (e) => {
+    if (e.keyCode === 13){
+      loadImage
+      setIsValid(true)
+    }
+  }
+
   return (
     <Container className="mt-3">
       <Container className="mb-2">
@@ -28,6 +35,7 @@ const LinkUpload = ({ step }) => {
             type="text"
             placeholder="Enter your link..."
             onChange={(e) => setLink(e.target.value)}
+            onKeyDown={(e) => handleLoadEnter(e)}
           />
           <HiChevronRight className="ps-2" size={38} onClick={loadImage} />
         </Container>

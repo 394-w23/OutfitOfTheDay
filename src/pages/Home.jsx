@@ -123,6 +123,14 @@ const Home = () => {
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
   if (!closet) return <h5 className="text-muted">Loading user closet...</h5>;
 
+  var currentHour = new Date().getHours();
+  var timeOfDay = "Morning";
+  if (12 <= currentHour && currentHour < 17) {
+    timeOfDay = "Afternoon";
+  } else if (17 <= currentHour) {
+    timeOfDay = "Evening";
+  }
+
   return (
     <Container>
       {/*       {
@@ -140,7 +148,10 @@ const Home = () => {
         onClick={() => handleJacket()}
     /> */}
       <Container className="home-header-container">
-        <span>Good Morning {user.displayName.split(" ")[0]}!</span> <br />
+        <span>
+          Good {timeOfDay} {user.displayName.split(" ")[0]}!
+        </span>{" "}
+        <br />
         Let's choose your outfit. <br />
         Here's what we suggest!
       </Container>
