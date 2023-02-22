@@ -36,6 +36,7 @@ const Home = () => {
   const [dress, setDress] = useState(false);
   const [jacket, setJacket] = useState(false);
   const [isFavorite, setFavorite] = useState(false);
+  const [favIdx, setFavIdx] = useState(false)
 
   const [selectedTop, setSelectedTop] = useState(0);
   const [selectedBottoms, setSelectedBottoms] = useState(0);
@@ -66,6 +67,7 @@ const Home = () => {
           selectedOutfit.shoes.url === favorite.shoes.url &&
           selectedOutfit.tops.url === favorite.tops.url
         ) {
+          setFavIdx(idx)
           inFav = true;
         }
       });
@@ -94,14 +96,19 @@ const Home = () => {
   };
 
   const saveSelectedFavourites = () => {
-    if (isFavorite) return;
-    const uid = uuidv4();
-    const favorites = {
-      tops: Object.values(closet[user.uid].tops)[selectedTop],
-      bottoms: Object.values(closet[user.uid].bottoms)[selectedBottoms],
-      shoes: Object.values(closet[user.uid].shoes)[selectedShoes],
-    };
-    updateData({ ["/closet/" + user.uid + "/favorites/" + uid]: favorites });
+    if (isFavorite) {
+      updateData({ ["/closet/" + user.uid + "/favorites/" + favIdx]: null });
+      setFavorite(false)
+    }
+    else {
+      const uid = uuidv4();
+      const favorites = {
+        tops: Object.values(closet[user.uid].tops)[selectedTop],
+        bottoms: Object.values(closet[user.uid].bottoms)[selectedBottoms],
+        shoes: Object.values(closet[user.uid].shoes)[selectedShoes],
+      };
+      updateData({ ["/closet/" + user.uid + "/favorites/" + uid]: favorites });
+    }
   };
 
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
