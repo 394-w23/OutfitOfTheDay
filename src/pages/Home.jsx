@@ -152,7 +152,7 @@ const Home = () => {
         </Container>
       </Container>
       <Container className="home-button-container">
-        <Button className="home-btn">I'll wear this today!</Button>
+        {/* <Button className="home-btn">I'll wear this today!</Button> */}
         <Button
           className="home-btn-fav"
           onClick={() => {

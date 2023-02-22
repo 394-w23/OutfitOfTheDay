@@ -6,7 +6,11 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { weatherConditions, weatherIconUrl } from "../utils/weather";
 
-const LandingPage = ({ setStep }) => {
+const Landing = ({ setStep }) => {
+  //   Weather: Sunny, Rainy, Cold, Warm
+  //   Temperature: Value
+  // Feels like:
+
   const user = getMockUser();
   const [wind, setWind] = useState([]);
   const [temperature, setTemperature] = useState(30);
@@ -45,13 +49,15 @@ const LandingPage = ({ setStep }) => {
           className={"card-image"}
         />
         <Card.Text className="card-weather-text">
-          It's {temperature} and the weatherConditions are{" "}
-          {weatherConditions.get(weatherCode)}.
+          {temperature}F and conditions are {weatherConditions.get(weatherCode)}
+          .
         </Card.Text>
       </Card>
-      <Card.Text>Next, Let's choose your outfit!</Card.Text>
+      <Card.Text className="card-outfit-text">
+        Next, Let's choose your outfit!
+      </Card.Text>
       <Container className="home-button-container">
-        <Button className="home-btn" onClick={() => setStep(1)}>
+        <Button className="home-btn" onClick={() => navigate("/home")}>
           See my suggested outfits
         </Button>
       </Container>
@@ -59,4 +65,4 @@ const LandingPage = ({ setStep }) => {
   );
 };
 
-export default LandingPage;
+export default Landing;

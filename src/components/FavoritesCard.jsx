@@ -3,8 +3,22 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { AiFillHeart } from "react-icons/ai";
+import { useDbData, useDbUpdate } from "../utils/firebase";
+import getMockUser from "../utils/mockUser";
 
 const FavoritesCard = ({ data }) => {
+
+  const [updateData] = useDbUpdate("/");
+
+  const [closet] = useDbData("/closet");
+
+  const user = getMockUser();
+
+  const removeFavorite = (idx) => {
+    // console.log(closet[user.uid].favorites[idx])
+    updateData({ ["/closet/" + user.uid + "/favorites/" + idx]: null });
+  }
+
   return (
     <Container>
       <Row xs={2} md={4} className="g-1">
@@ -37,7 +51,7 @@ const FavoritesCard = ({ data }) => {
                 </Container>
               </Container>
               <Container className="favorites-card-heart">
-                <AiFillHeart size={15} />
+                <AiFillHeart onClick={() => removeFavorite(idx)} size={15} />
               </Container>
             </Card>
           </Col>
