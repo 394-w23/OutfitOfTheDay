@@ -8,7 +8,7 @@ const WebCam = ({ setImgBytes }) => {
     width: 400,
     height: 600,
     aspectRatio: 0.5,
-    facingMode: "user",
+    facingMode: "environment",
   };
 
   const webcamRef = React.useRef(null);
