@@ -82,7 +82,7 @@ export const useStorageUpdate = (path) => {
         }
       );
     },
-    [path, result]
+    [path]
   );
 
   return [useStorage, result];

@@ -18,7 +18,7 @@ const CameraUpload = ({ step }) => {
       {imgBytes && (
         <Container>
           <Image className="add-image-camera" src={imgBytes} alt="camera" />
-          <AddClothesPanel input={imgBytes} />
+          <AddClothesPanel input={imgBytes} step={step} />
         </Container>
       )}
     </Container>

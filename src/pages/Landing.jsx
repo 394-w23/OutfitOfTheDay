@@ -7,14 +7,10 @@ import Button from "react-bootstrap/Button";
 import { BrowserRouter, useNavigate } from "react-router-dom";
 
 const LandingPage = ({ setStep }) => {
-  //   Weather: Sunny, Rainy, Cold, Warm
-  //   Temperature: Value
-
   const user = getMockUser();
   const [wind, setWind] = useState([]);
   const [temperature, setTemperature] = useState(30);
   const [weatherCode, setWeatherCode] = useState(1);
-  const navigate = useNavigate();
 
   const weatherConditions = new Map([
     [0, "Clear sky"],
@@ -51,7 +47,6 @@ const LandingPage = ({ setStep }) => {
     fetch(getWeatherAPIURL())
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setTemperature(data["current_weather"]["temperature"]);
         setWind(data["current_weather"]["windspeed"]);
         setWeatherCode(data["current_weather"]["weathercode"]);
@@ -59,19 +54,20 @@ const LandingPage = ({ setStep }) => {
       .catch((err) => console.error(err));
   }, []);
 
-  const checkWeather = () => {
-    console.log(temperature);
-    console.log(wind);
-    console.log(weatherCode);
-    console.log(weatherConditions.get(parseInt(weatherCode)));
-  };
+  if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
+
+  var currentHour = new Date().getHours();
+  var timeOfDay = "Morning";
+  if (12 <= currentHour && currentHour < 17) {
+    timeOfDay = "Afternoon";
+  } else if (17 <= currentHour) {
+    timeOfDay = "Evening";
+  }
 
   return (
     <Container className="weather-container">
-      {/*       {checkWeather()}
-       */}{" "}
       <Card.Text className="card-weather-greeting">
-        Good Morning {user.displayName.split(" ")[0]}! <br />
+        Good {timeOfDay} {user.displayName.split(" ")[0]}! <br />
       </Card.Text>
       <Card className="card-container">
         <Card.Img

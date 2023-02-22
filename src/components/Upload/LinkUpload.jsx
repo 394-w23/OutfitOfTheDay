@@ -52,7 +52,7 @@ const LinkUpload = ({ step }) => {
       {finishedURL && !isValid && (
         <h4 className="text-center text-muted">Invalid Image</h4>
       )}
-      {finishedURL && isValid && <AddClothesPanel input={link} />}
+      {finishedURL && isValid && <AddClothesPanel input={link} step={step} />}
     </Container>
   );
 };

@@ -16,7 +16,6 @@ const Home = () => {
   const [weather, setWeather] = useState([]);
   const [wind, setWind] = useState([]);
   const [weatherCode, setWeatherCode] = useState(0);
-  // https://open-meteo.com/en/docs#latitude=42.04&longitude=-87.69&hourly=temperature_2m
 
   useEffect(() => {
     fetch(getWeatherAPIURL())
@@ -51,22 +50,6 @@ const Home = () => {
   useEffect(() => {
     handleFavorite();
   }, [selectedTop, selectedBottoms, selectedShoes]);
-
-  const handleDress = () => {
-    if (dress == false) {
-      setDress(true);
-    } else {
-      setDress(false);
-    }
-  };
-
-  const handleJacket = () => {
-    if (jacket == false) {
-      setJacket(true);
-    } else {
-      setJacket(false);
-    }
-  };
 
   const handleFavorite = () => {
     if (closet) {
@@ -134,20 +117,6 @@ const Home = () => {
 
   return (
     <Container>
-      {/*       {
-        <Form.Check
-          inline="true"
-          label="Dress?"
-          type="switch"
-          onClick={() => handleDress()}
-        />
-      } */}
-      {/* <Form.Check
-        inline="true"
-        label="Jacket?"
-        type="switch"
-        onClick={() => handleJacket()}
-    /> */}
       <Container className="home-header-container">
         <span>
           Good {timeOfDay} {user.displayName.split(" ")[0]}!

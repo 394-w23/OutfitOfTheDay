@@ -7,21 +7,8 @@ import Image from "react-bootstrap/Image";
 import AddClothesPanel from "./AddClothesPanel";
 
 const FileUpload = ({ step }) => {
-  const [link, setLink] = useState();
-  const [finishedURL, setFinishedURL] = useState(false);
+  const [file, setFile] = useState(null);
   const [isValid, setIsValid] = useState(true);
-
-  const loadImage = () => {
-    setFinishedURL(true);
-    setIsValid(true);
-  };
-
-  const handleLoadEnter = (e) => {
-    if (e.keyCode === 13) {
-      loadImage;
-      setIsValid(true);
-    }
-  };
 
   return (
     <Container className="mt-3">
@@ -32,27 +19,26 @@ const FileUpload = ({ step }) => {
         <h4 className="add-title">Add via file upload</h4>
         <Container className="link-upload-form">
           <Form.Control
-            type="text"
-            placeholder="Enter your link..."
-            onChange={(e) => setLink(e.target.value)}
-            onKeyDown={(e) => handleLoadEnter(e)}
+            type="file"
+            size="sm"
+            accept="image/*"
+            onChange={(e) => setFile(URL.createObjectURL(e.target.files[0]))}
           />
-          <HiChevronRight className="ps-2" size={38} onClick={loadImage} />
         </Container>
       </Container>
-      {finishedURL && isValid && (
+      {file && isValid && (
         <Container className="add-image-container">
           <Image
             className="add-image"
-            src={link}
+            src={file}
             onError={() => setIsValid(false)}
           />
         </Container>
       )}
-      {finishedURL && !isValid && (
+      {file && !isValid && (
         <h4 className="text-center text-muted">Invalid Image</h4>
       )}
-      {finishedURL && isValid && <AddClothesPanel input={link} />}
+      {file && isValid && <AddClothesPanel input={file} step={step} />}
     </Container>
   );
 };
