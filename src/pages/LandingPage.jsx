@@ -10,6 +10,7 @@ import { BrowserRouter, useNavigate } from "react-router-dom";
 const LandingPage = () => {
 //   Weather: Sunny, Rainy, Cold, Warm
 //   Temperature: Value
+// Feels like: 
 
     const user = getMockUser();
     const [wind, setWind] = useState([]);
@@ -29,11 +30,11 @@ const LandingPage = () => {
         [55, 'Drizzle: Dense intensity'],
         [56, 'Freezing Drizzle: Light intensity'],
         [57, 'Freezing Drizzle: Dense intensity'],
-        [61, 'Rain: Slight intensity'],
-        [63, 'Rain: Moderate intensity'],
-        [65, 'Rain: Heavy intensity'],
-        [66, 'Freezing Rain: Light intensity'],
-        [67, 'Freezing Rain: Heavy intensity'],
+        [61, 'Rainy'],
+        [63, 'Rainy'],
+        [65, 'Rainy'],
+        [66, 'Rainy'],
+        [67, 'Rainy'],
         [71, 'Snow fall: Slight intensity'],
         [73, 'Snow fall: Moderate intensity'],
         [75, 'Snow fall: Heavy intensity'],
@@ -111,10 +112,10 @@ const LandingPage = () => {
             className={"card-image"}
             />
             <Card.Text className="card-weather-text">
-                It's {temperature} and the weatherConditions are {weatherConditions.get(weatherCode)}.
+                {temperature}F and conditions are {weatherConditions.get(weatherCode)}.
             </Card.Text>
         </Card>
-        <Card.Text>
+        <Card.Text className="card-outfit-text">
                 Next, Let's choose your outfit!
         </Card.Text>
         <Container className="home-button-container">
