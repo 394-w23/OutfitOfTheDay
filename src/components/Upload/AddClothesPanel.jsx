@@ -32,9 +32,9 @@ const AddClothesPanel = ({ input }) => {
     const userCloset = closet[user.uid];
     const userClosetType = userCloset[type];
     if (!imgFile) return;
-    useStorage(imgFile);
+    await useStorage(imgFile);
 
-    if (!result) return;
+    //if (!result) return;
 
     const uid = uuidv4();
     const newPiece = {

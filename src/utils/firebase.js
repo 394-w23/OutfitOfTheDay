@@ -61,7 +61,7 @@ export const useStorageUpdate = (path) => {
   const [result, setResult] = useState();
 
   const useStorage = useCallback(
-    (value) => {
+    async (value) => {
       const storageRef = sRef(storage, path);
       const uploadTask = uploadBytesResumable(storageRef, value);
       uploadTask.on(
