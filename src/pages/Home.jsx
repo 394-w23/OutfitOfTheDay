@@ -193,7 +193,7 @@ const Home = () => {
           {isFavorite ? (
             <>
               <AiFillHeart size={20} />
-              {"This look is already saved"}
+              {"Saved"}
             </>
           ) : (
             <>
