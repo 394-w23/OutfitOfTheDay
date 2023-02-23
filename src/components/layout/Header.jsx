@@ -22,9 +22,7 @@ const Header = () => {
     <Navbar className="navbar">
       <Container className="navbar-container">
         <Container>
-          <Navbar.Brand className="navbar-brand" onClick={() => navigate("/")}>
-            Outfit Of The Day
-          </Navbar.Brand>
+        <img src="src/components/layout/ootd-transparent.png" className="icon-image" />
         </Container>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav" className="header-dropdown">
