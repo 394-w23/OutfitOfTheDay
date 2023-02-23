@@ -36,20 +36,22 @@ const Landing = ({ setStep }) => {
   return (
     <Container className="weather-container">
       <Card.Text className="card-weather-greeting">
-        Good {timeOfDay} {user.displayName.split(" ")[0]}! <br />
+        Good {timeOfDay} {user.displayName.split(" ")[0]}!
       </Card.Text>
-      <Card className="card-container">
+      <Card className="landing-card-container">
         <Card.Img
           variant="top"
           src={weatherIconUrl.get(weatherCode)}
           className={"card-image"}
         />
         <Card.Text className="card-weather-text">
-          {temperature}F and it's {weatherConditions.get(weatherCode)} outside.
+          It's {temperature}°F and {weatherConditions.get(weatherCode)}
+          <br />
+          right now.
         </Card.Text>
       </Card>
       <Card.Text className="card-outfit-text">
-        Next, Let's choose your outfit!
+        Next, Let's choose your <br /> outfit!
       </Card.Text>
       <Container className="home-button-container">
         <Button className="home-btn" onClick={() => setStep(1)}>
