@@ -13,26 +13,48 @@ const Closet = () => {
   const [closet] = useDbData("/closet");
   const [option, setOption] = useState("Tops");
   const [filter, setFilter] = useState(null);
+  const [weatherFilter, setWeatherFilter] = useState(null);
   const weatherOptions = ["Cold", "Warm", "Rainy", "Sunny"];
 
   const handleFilter = (e) => {
     if (e === "Tops") {
       setOption("Tops");
       setFilter(closet[user.uid].tops);
+      setWeatherFilter(closet[user.uid].tops);
     } else if (e === "Jackets") {
       setOption("Jackets");
       setFilter(closet[user.uid].jackets);
+      setWeatherFilter(closet[user.uid].jackets);
     } else if (e === "Dresses") {
       setOption("Dresses");
       setFilter(closet[user.uid].dresses);
+      setWeatherFilter(closet[user.uid].dresses);
     } else if (e === "Bottoms") {
       setOption("Bottoms");
       setFilter(closet[user.uid].bottoms);
+      setWeatherFilter(closet[user.uid].bottoms);
     } else if (e === "Shoes") {
       setOption("Shoes");
       setFilter(closet[user.uid].shoes);
+      setWeatherFilter(closet[user.uid].shoes)
     }
   };
+
+  const handleWeather = (weather) => {
+    if (filter == null){
+      setFilter(closet[user.uid].tops);
+    }
+    let weatherType = weather.toLowerCase()
+    let filteredClothes = new Object();
+    for (const key in filter) {
+      filter[key].weather.forEach(function (item, index) {
+        if (item.includes(weatherType)) {
+          filteredClothes[key] = filter[key];
+        }
+      });
+    }
+    setWeatherFilter(filteredClothes)
+  }
 
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
   if (!closet) return <h5 className="text-muted">Loading user closet...</h5>;
@@ -50,7 +72,7 @@ const Closet = () => {
 
       <Container className="card-text-container-header">
         {weatherOptions.map((weather, idx) => (
-          <Button key={idx} className="filter-weather-button">
+          <Button key={idx} className="filter-weather-button" onClick={(e) => handleWeather(weather)}>
             {weather}
           </Button>
         ))}
@@ -60,7 +82,7 @@ const Closet = () => {
       {
         <Container>
           <Row xs={2} md={4} className="g-4">
-            {Object.entries(filter ? filter : closet[user.uid].tops).map(
+            {Object.entries(weatherFilter ? weatherFilter : closet[user.uid].tops).map(
               ([idx, clothes]) => (
                 <Col key={idx}>
                   <ClothesCard
