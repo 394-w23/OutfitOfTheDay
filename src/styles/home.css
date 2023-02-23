@@ -6,6 +6,10 @@ body {
   margin-bottom: 13vh;
 }
 
+.home-container {
+  margin: 0;
+}
+
 .home-header-container {
   padding: 15px;
   margin: 0;
@@ -40,9 +44,8 @@ body {
   position: absolute;
   font-size: 10px;
   font-weight: bold;
-  width: 15vh;
-  margin-top: 30px;
-  margin-right: 0px;
+  width: 16vh;
+  margin-top: 32px;
   color: #555555;
 }
 
@@ -51,15 +54,23 @@ body {
   width: 8vh;
 }
 
-/* .weather-1 {
+.weather-1 {
+  justify-content: center;
+  text-align: center;
   border-top-left-radius: 10px;
-  border: 1px solid #555555;
+  border-top-right-radius: 10px;
+  border-bottom: white !important;
+  border: 2px solid #555555;
 }
 
 .weather-2 {
+  justify-content: center;
+  text-align: center;
   border-bottom-left-radius: 10px;
-  border: 1px solid #555555;
-} */
+  border-bottom-right-radius: 10px;
+  border-top: white !important;
+  border: 2px solid #555555;
+}
 
 /* @media screen and (max-width: 896px) {
   .weather-header-container {

@@ -111,7 +111,7 @@ const Home = () => {
   if (!closet) return <h5 className="text-muted">Loading user closet...</h5>;
 
   return (
-    <Container>
+    <Container className="home-container">
       <Container className="home-header-container">
         <span>
           Good {timeOfDay} {user.displayName.split(" ")[0]}!
