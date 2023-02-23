@@ -8,6 +8,7 @@ import { useDbData, useDbUpdate } from "../utils/firebase";
 import getMockUser from "../utils/mockUser";
 import getWeatherAPIURL from "../utils/userLocation";
 import WeatherHeader from "../components/WeatherHeader";
+import { weatherConditions, weatherIconUrl } from "../utils/weather";
 import { useProfile } from "../utils/userProfile";
 
 const Home = () => {
@@ -99,6 +100,20 @@ const Home = () => {
     }
   };
 
+  const filterClothesBasedOnWeather = (clothes) => {
+    let weatherType = "warm";
+    // weatherConditions.get(weatherCode);
+    let filteredClothes = new Object();
+    for (const key in clothes) {
+        clothes[key].weather.forEach(function (item, index) {
+          if (item === weatherType) {
+            filteredClothes[key] = clothes[key];
+          }
+        });
+    }
+    return filteredClothes;
+  }
+
   const currentHour = new Date().getHours();
   let timeOfDay = "Morning";
   if (12 <= currentHour && currentHour < 17) {
@@ -129,21 +144,21 @@ const Home = () => {
       <Container className="home-clothes-container">
         <Container className="home-clothes-top">
           <ClothesCarousel
-            data={closet[user.uid].tops}
+            data={filterClothesBasedOnWeather(closet[user.uid].tops)}
             handleSelect={handleSelectedTop}
             index={selectedTop}
           ></ClothesCarousel>
         </Container>
         <Container className="home-clothes-bottoms">
           <ClothesCarousel
-            data={closet[user.uid].bottoms}
+            data={filterClothesBasedOnWeather(closet[user.uid].bottoms)}
             handleSelect={handleSelectedBottoms}
             index={selectedBottoms}
           ></ClothesCarousel>
         </Container>
         <Container className="home-clothes-shoes">
           <ClothesCarousel
-            data={closet[user.uid].shoes}
+            data={filterClothesBasedOnWeather(closet[user.uid].shoes)}
             handleSelect={handleSelectedShoes}
             index={selectedShoes}
           ></ClothesCarousel>

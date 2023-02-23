@@ -1,39 +1,39 @@
 export const weatherConditions = new Map([  
-    [0, 'Sunny'],
-    [1, 'Warm'],
+    [0, 'sunny'],
+    [1, 'warm'],
 
-    [2, 'Cloudy'],
-    [3, 'Cloudy'],
+    [2, 'rainy'],
+    [3, 'rainy'],
 
-    [45, 'Foggy'],
-    [48, 'Foggy'],
+    [45, 'rainy'],
+    [48, 'rainy'],
 
-    [51, 'Rainy'],
-    [53, 'Rainy'],
-    [55, 'Rainy'],
-    [56, 'Rainy'],
-    [57, 'Rainy'],
-    [61, 'Rainy'],
-    [63, 'Rainy'],
-    [65, 'Rainy'],
-    [66, 'Rainy'],
-    [67, 'Rainy'],
+    [51, 'rainy'],
+    [53, 'rainy'],
+    [55, 'rainy'],
+    [56, 'rainy'],
+    [57, 'rainy'],
+    [61, 'rainy'],
+    [63, 'rainy'],
+    [65, 'rainy'],
+    [66, 'rainy'],
+    [67, 'rainy'],
 
-    [71, 'Cold'],
-    [73, 'Cold'],
-    [75, 'Cold'],
-    [77, 'Cold'],
+    [71, 'cold'],
+    [73, 'cold'],
+    [75, 'cold'],
+    [77, 'cold'],
 
-    [80, 'Rainy'],
-    [81, 'Rainy'],
-    [82, 'Rainy'],
+    [80, 'rainy'],
+    [81, 'rainy'],
+    [82, 'rainy'],
 
-    [85, 'Cold'],
-    [86, 'Cold'],
+    [85, 'cold'],
+    [86, 'cold'],
 
-    [95, 'Rainy'],
-    [96, 'Rainy'],
-    [99, 'Rainy']
+    [95, 'rainy'],
+    [96, 'rainy'],
+    [99, 'rainy']
   ]);
 
 export const weatherIconUrl = new Map([
