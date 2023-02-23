@@ -41,9 +41,6 @@ const Closet = () => {
   };
 
   const handleWeather = (weather) => {
-    if (filter == null){
-      setFilter(closet[user.uid].tops);
-    }
     let weatherType = weather.toLowerCase()
     let filteredClothes = new Object();
     for (const key in filter) {
@@ -52,6 +49,16 @@ const Closet = () => {
           filteredClothes[key] = filter[key];
         }
       });
+    }
+    if (filter == null){
+      let top = closet[user.uid].tops
+      for (const key in top) {
+        top[key].weather.forEach(function (item, index) {
+          if (item.includes(weatherType)) {
+            filteredClothes[key] = top[key];
+          }
+        });
+      }
     }
     setWeatherFilter(filteredClothes)
   }
