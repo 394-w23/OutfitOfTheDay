@@ -1,6 +1,6 @@
 export const weatherConditions = new Map([  
     [0, 'Sunny'],
-    [1, 'Clear'],
+    [1, 'Warm'],
 
     [2, 'Cloudy'],
     [3, 'Cloudy'],
@@ -19,17 +19,17 @@ export const weatherConditions = new Map([
     [66, 'Rainy'],
     [67, 'Rainy'],
 
-    [71, 'Snowy'],
-    [73, 'Snowy'],
-    [75, 'Snowy'],
-    [77, 'Snowy'],
+    [71, 'Cold'],
+    [73, 'Cold'],
+    [75, 'Cold'],
+    [77, 'Cold'],
 
     [80, 'Rainy'],
     [81, 'Rainy'],
     [82, 'Rainy'],
 
-    [85, 'Snowy'],
-    [86, 'Snowy'],
+    [85, 'Cold'],
+    [86, 'Cold'],
 
     [95, 'Rainy'],
     [96, 'Rainy'],
