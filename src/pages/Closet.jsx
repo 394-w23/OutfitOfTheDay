@@ -7,6 +7,7 @@ import Container from "react-bootstrap/Container";
 import { useDbData } from "../utils/firebase";
 import getMockUser from "../utils/mockUser";
 import { Button } from "react-bootstrap";
+import WeatherHeader from "../components/WeatherHeader";
 
 const Closet = () => {
   const user = getMockUser();
@@ -63,6 +64,12 @@ const Closet = () => {
     setWeatherFilter(filteredClothes)
   }
 
+  const emptyFiltered = () => {
+    if (JSON.stringify(weatherFilter) == "{}"){
+      return <h6 className="text-muted">No clothing for filter selected</h6>;
+    }
+  }
+
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
   if (!closet) return <h5 className="text-muted">Loading user closet...</h5>;
 
@@ -99,6 +106,7 @@ const Closet = () => {
                 </Col>
               )
             )}
+            {emptyFiltered()}
           </Row>
         </Container>
       }
