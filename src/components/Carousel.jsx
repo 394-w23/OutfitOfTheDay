@@ -1,8 +1,8 @@
+import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import Container from "react-bootstrap/Container";
-import React, { useState } from "react";
 
-const MyCarousel = ({ data, handleSelect, index }) => {
+const ClothesCarousel = ({ data, handleSelect, index }) => {
   return (
     <Container className="carousel-container">
       <Carousel
@@ -21,4 +21,4 @@ const MyCarousel = ({ data, handleSelect, index }) => {
   );
 };
 
-export default MyCarousel;
+export default ClothesCarousel;

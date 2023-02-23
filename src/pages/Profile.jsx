@@ -1,9 +1,18 @@
-import React from 'react';
-import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardTitle, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn } from 'mdb-react-ui-kit';
+import React from "react";
+import {
+  MDBCol,
+  MDBContainer,
+  MDBRow,
+  MDBCard,
+  MDBCardTitle,
+  MDBCardText,
+  MDBCardBody,
+  MDBCardImage,
+  MDBBtn,
+} from "mdb-react-ui-kit";
 import { useProfile } from "../utils/userProfile";
 
 const Profile = () => {
-
   const [user] = useProfile();
 
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
@@ -13,22 +22,32 @@ const Profile = () => {
       <MDBContainer>
         <MDBRow className="justify-content-center">
           <MDBCol md="9" lg="7" xl="5" className="mt-5">
-            <MDBCard style={{ width: '595px', borderRadius: '15px', alignContent: 'center', padding: '5px'}}>
+            <MDBCard
+              style={{
+                width: "595px",
+                borderRadius: "15px",
+                alignContent: "center",
+                padding: "5px",
+              }}
+            >
               <MDBCardBody className="p-4">
                 <div className="d-flex text-black">
                   <div className="flex-shrink-0">
                     <MDBCardImage
-                      style={{ width: '180px', borderRadius: '10px' }}
-                    src={user.photoURL}
-                      alt='Generic placeholder image'
-                      fluid />
+                      style={{ width: "180px", borderRadius: "10px" }}
+                      src={user.photoURL}
+                      alt="Generic placeholder image"
+                      fluid
+                    />
                   </div>
                   <div className="flex-grow-1 ms-3">
                     <MDBCardTitle>{user.displayName}</MDBCardTitle>
                     <MDBCardText>{user.email}</MDBCardText>
 
-                    <div className="d-flex justify-content-start rounded-3 p-2 mb-2"
-                      style={{ backgroundColor: '#efefef' }}>
+                    <div
+                      className="d-flex justify-content-start rounded-3 p-2 mb-2"
+                      style={{ backgroundColor: "#efefef" }}
+                    >
                       <div>
                         <p className="small text-muted mb-1">Favorites</p>
                         <p className="mb-0">4</p>
@@ -55,6 +74,6 @@ const Profile = () => {
       </MDBContainer>
     </div>
   );
-}
+};
 
 export default Profile;

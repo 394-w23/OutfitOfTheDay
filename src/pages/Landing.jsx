@@ -7,10 +7,6 @@ import Button from "react-bootstrap/Button";
 import { weatherConditions, weatherIconUrl } from "../utils/weather";
 
 const Landing = ({ setStep }) => {
-  //   Weather: Sunny, Rainy, Cold, Warm
-  //   Temperature: Value
-  // Feels like:
-
   const user = getMockUser();
   const [wind, setWind] = useState([]);
   const [temperature, setTemperature] = useState(30);
@@ -49,7 +45,7 @@ const Landing = ({ setStep }) => {
           className={"card-image"}
         />
         <Card.Text className="card-weather-text">
-        {temperature}F and it's {weatherConditions.get(weatherCode)} outside.
+          {temperature}F and it's {weatherConditions.get(weatherCode)} outside.
         </Card.Text>
       </Card>
       <Card.Text className="card-outfit-text">
