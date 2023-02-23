@@ -1,12 +1,12 @@
 export const weatherConditions = new Map([  
     [0, 'sunny'],
-    [1, 'warm'],
+    [1, 'cloudy'],
 
-    [2, 'rainy'],
-    [3, 'rainy'],
+    [2, 'cloudy'],
+    [3, 'cloudy'],
 
-    [45, 'rainy'],
-    [48, 'rainy'],
+    [45, 'cloudy'],
+    [48, 'cloudy'],
 
     [51, 'rainy'],
     [53, 'rainy'],
@@ -19,17 +19,17 @@ export const weatherConditions = new Map([
     [66, 'rainy'],
     [67, 'rainy'],
 
-    [71, 'cold'],
-    [73, 'cold'],
-    [75, 'cold'],
-    [77, 'cold'],
+    [71, 'snowy'],
+    [73, 'snowy'],
+    [75, 'snowy'],
+    [77, 'snowy'],
 
     [80, 'rainy'],
     [81, 'rainy'],
     [82, 'rainy'],
 
-    [85, 'cold'],
-    [86, 'cold'],
+    [85, 'snowy'],
+    [86, 'snowy'],
 
     [95, 'rainy'],
     [96, 'rainy'],
@@ -43,7 +43,7 @@ export const weatherIconUrl = new Map([
   ],
   [
     1,
-    "https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-01-512.png",
+    "https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-22-128.png",
   ],
   [
     2,
@@ -103,19 +103,19 @@ export const weatherIconUrl = new Map([
   ],
   [
     71,
-    "https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-30-512.png",
+    "https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-24-128.png",
   ],
   [
     73,
-    "https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-30-512.png",
+    "https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-24-128.png",
   ],
   [
     75,
-    "https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-24-512.png",
+    "https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-24-128.png",
   ],
   [
     77,
-    "https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-24-512.png",
+    "https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-24-128.png",
   ],
   [
     80,
@@ -131,22 +131,22 @@ export const weatherIconUrl = new Map([
   ],
   [
     85,
-    "https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-24-512.png",
+    "https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-24-128.png",
   ],
   [
     86,
-    "https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-24-512.png",
+    "https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-24-128.png",
   ],
   [
     95,
-    "https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-24-512.png",
+    "https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-30-512.png",
   ],
   [
     96,
-    "https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-24-512.png",
+    "https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-30-512.png",
   ],
   [
     99,
-    "https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-24-512.png",
+    "https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-30-512.png",
   ],
 ]);
