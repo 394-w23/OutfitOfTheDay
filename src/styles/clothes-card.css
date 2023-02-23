@@ -5,6 +5,8 @@
 
 .closet-title {
   color: #555555;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 
 .card-image {
@@ -26,7 +28,6 @@
 }
 
 .card-text-container-header {
-  border-top: 1.5px solid lightgray;
   display: flex;
   column-gap: 2vw;
   padding-top: 2vh;
@@ -35,7 +36,6 @@
 }
 
 .card-text-container {
-  border-top: 1.5px solid lightgray;
   padding-left: 5px;
   padding-top: 10px;
   padding-bottom: 10px;

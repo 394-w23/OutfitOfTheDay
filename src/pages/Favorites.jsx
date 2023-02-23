@@ -15,8 +15,7 @@ const Favorites = () => {
 
   return (
     <Container className="p-10 mt-3">
-      <h3 className="closet-title">My Favorites</h3>
-      <hr />
+      <h4 className="closet-title">My Favorites</h4>
       {
         <Container>
           <Row xs={2} md={4} className="g-1">

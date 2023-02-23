@@ -39,9 +39,7 @@ const Closet = () => {
 
   return (
     <Container className="p-10 mt-3">
-      <h3 className="closet-title">My Closet</h3>
-      <hr />
-
+      <h4 className="closet-title">My Closet</h4>
       <Form.Select onChange={(e) => handleFilter(e.target.value)}>
         <option value="Tops">Tops</option>
         <option value="Jackets">Jackets</option>

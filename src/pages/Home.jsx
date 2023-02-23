@@ -105,14 +105,14 @@ const Home = () => {
     // weatherConditions.get(weatherCode);
     let filteredClothes = new Object();
     for (const key in clothes) {
-        clothes[key].weather.forEach(function (item, index) {
-          if (item === weatherType) {
-            filteredClothes[key] = clothes[key];
-          }
-        });
+      clothes[key].weather.forEach(function (item, index) {
+        if (item === weatherType) {
+          filteredClothes[key] = clothes[key];
+        }
+      });
     }
     return filteredClothes;
-  }
+  };
 
   const currentHour = new Date().getHours();
   let timeOfDay = "Morning";
@@ -168,6 +168,7 @@ const Home = () => {
         {/* <Button className="home-btn">I'll wear this today!</Button> */}
         <Button
           className="home-btn-fav"
+          variant="light"
           onClick={() => {
             saveSelectedFavourites();
           }}

@@ -42,34 +42,30 @@ body {
   text-align: center;
   align-items: center;
   position: absolute;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: bold;
-  width: 16vh;
+  width: 11vh;
   margin-top: 32px;
   color: #555555;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 .weather-header-container img {
-  height: 8vh;
-  width: 8vh;
+  height: 7vh;
+  width: 7vh;
 }
 
-.weather-1 {
+.weather-icon {
   justify-content: center;
   text-align: center;
-  border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  border-bottom: white !important;
-  border: 2px solid #555555;
 }
 
-.weather-2 {
+.weather-temperature {
   justify-content: center;
   text-align: center;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border-top: white !important;
-  border: 2px solid #555555;
+  margin-left: 11px;
 }
 
 /* @media screen and (max-width: 896px) {
