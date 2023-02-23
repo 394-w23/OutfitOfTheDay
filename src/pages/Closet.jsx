@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
-import MyCard from "../components/Card";
+import React, { useState } from "react";
+import ClothesCard from "../components/ClothesCard";
 import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import { useDbData } from "../utils/firebase";
 import getMockUser from "../utils/mockUser";
@@ -11,6 +13,7 @@ const Closet = () => {
   const [closet] = useDbData("/closet");
   const [option, setOption] = useState("Tops");
   const [filter, setFilter] = useState(null);
+  const weatherOptions = ["Cold", "Warm", "Rainy", "Sunny"];
 
   const handleFilter = (e) => {
     if (e === "Tops") {
@@ -31,8 +34,6 @@ const Closet = () => {
     }
   };
 
-  const weatherOptions = ["Cold", "Warm", "Rainy", "Sunny"];
-
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
   if (!closet) return <h5 className="text-muted">Loading user closet...</h5>;
 
@@ -49,20 +50,30 @@ const Closet = () => {
         <option value="Shoes">Shoes</option>
       </Form.Select>
 
-      <div className="card-text-container-header">
+      <Container className="card-text-container-header">
         {weatherOptions.map((weather, idx) => (
           <Button key={idx} className="filter-weather-button">
             {weather}
           </Button>
         ))}
-      </div>
+      </Container>
 
       <h5 className="text-muted mt-3">{option}</h5>
       {
-        <MyCard
-          data={filter ? filter : closet[user.uid].tops}
-          bottoms={option === "Bottoms" ? true : false}
-        />
+        <Container>
+          <Row xs={2} md={4} className="g-4">
+            {Object.entries(filter ? filter : closet[user.uid].tops).map(
+              ([idx, clothes]) => (
+                <Col key={idx}>
+                  <ClothesCard
+                    clothes={clothes}
+                    bottoms={option === "Bottoms" ? true : false}
+                  />
+                </Col>
+              )
+            )}
+          </Row>
+        </Container>
       }
     </Container>
   );

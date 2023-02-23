@@ -14,7 +14,7 @@ body {
   font-size: 16px;
 }
 
-.weather-header-container {
+/* .weather-header-container {
   text-align: center;
   font-size: 8px;
   display: flex;
@@ -28,7 +28,38 @@ body {
   margin-top: 50px;
   margin-right: 15px;
   flex-direction: column;
+  border: 1px solid #555555;
+} */
+
+.weather-header-container {
+  top: 0;
+  right: 0;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  position: absolute;
+  font-size: 10px;
+  font-weight: bold;
+  width: 15vh;
+  margin-top: 30px;
+  margin-right: 0px;
+  color: #555555;
 }
+
+.weather-header-container img {
+  height: 8vh;
+  width: 8vh;
+}
+
+/* .weather-1 {
+  border-top-left-radius: 10px;
+  border: 1px solid #555555;
+}
+
+.weather-2 {
+  border-bottom-left-radius: 10px;
+  border: 1px solid #555555;
+} */
 
 /* @media screen and (max-width: 896px) {
   .weather-header-container {

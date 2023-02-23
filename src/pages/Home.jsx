@@ -1,46 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import MyCarousel from "../components/Carousel";
+import ClothesCarousel from "../components/Carousel";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { useDbData, useDbUpdate } from "../utils/firebase";
-import { useProfile } from "../utils/userProfile";
 import getMockUser from "../utils/mockUser";
 import getWeatherAPIURL from "../utils/userLocation";
-import WeatherHeader from "../components/weatherheader";
-
-import { WiDaySunnyOvercast } from "weather-icons-react";
+import WeatherHeader from "../components/WeatherHeader";
+import { useProfile } from "../utils/userProfile";
 
 const Home = () => {
   const [weather, setWeather] = useState([]);
   const [wind, setWind] = useState([]);
-  const [weatherCode, setWeatherCode] = useState(0);
-
-  useEffect(() => {
-    fetch(getWeatherAPIURL())
-      .then((res) => res.json())
-      .then((data) => {
-        setWeather(data["current_weather"]["temperature"]);
-        setWind(data["current_weather"]["windspeed"]);
-        setWeatherCode(data["current_weather"]["weatherCode"]);
-      })
-      .catch((err) => console.error(err));
-  }, []);
+  const [weatherCode, setWeatherCode] = useState();
 
   const user = getMockUser();
   const [closet] = useDbData("/closet");
 
   const [updateData] = useDbUpdate("/");
 
-  const [dress, setDress] = useState(false);
-  const [jacket, setJacket] = useState(false);
   const [isFavorite, setFavorite] = useState(false);
-  const [favIdx, setFavIdx] = useState(false)
+  const [favIdx, setFavIdx] = useState(false);
 
   const [selectedTop, setSelectedTop] = useState(0);
   const [selectedBottoms, setSelectedBottoms] = useState(0);
   const [selectedShoes, setSelectedShoes] = useState(0);
+
+  useEffect(() => {
+    fetch(getWeatherAPIURL())
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setWeather(data["current_weather"]["temperature"]);
+        setWind(data["current_weather"]["windspeed"]);
+        setWeatherCode(data["current_weather"]["weathercode"]);
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   useEffect(() => {
     if (closet) {
@@ -67,19 +64,11 @@ const Home = () => {
           selectedOutfit.shoes.url === favorite.shoes.url &&
           selectedOutfit.tops.url === favorite.tops.url
         ) {
-          setFavIdx(idx)
+          setFavIdx(idx);
           inFav = true;
         }
       });
       setFavorite(inFav);
-    }
-  };
-
-  const toggleFavorite = () => {
-    if (isFavorite == false) {
-      setFavorite(true);
-    } else {
-      setFavorite(false);
     }
   };
 
@@ -98,9 +87,8 @@ const Home = () => {
   const saveSelectedFavourites = () => {
     if (isFavorite) {
       updateData({ ["/closet/" + user.uid + "/favorites/" + favIdx]: null });
-      setFavorite(false)
-    }
-    else {
+      setFavorite(false);
+    } else {
       const uid = uuidv4();
       const favorites = {
         tops: Object.values(closet[user.uid].tops)[selectedTop],
@@ -111,16 +99,16 @@ const Home = () => {
     }
   };
 
-  if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
-  if (!closet) return <h5 className="text-muted">Loading user closet...</h5>;
-
-  var currentHour = new Date().getHours();
-  var timeOfDay = "Morning";
+  const currentHour = new Date().getHours();
+  let timeOfDay = "Morning";
   if (12 <= currentHour && currentHour < 17) {
     timeOfDay = "Afternoon";
   } else if (17 <= currentHour) {
     timeOfDay = "Evening";
   }
+
+  if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
+  if (!closet) return <h5 className="text-muted">Loading user closet...</h5>;
 
   return (
     <Container>
@@ -133,29 +121,32 @@ const Home = () => {
         Here's what we suggest!
       </Container>
       <div className="weather-header-container">
-        <WeatherHeader weather={weather} />
+        <WeatherHeader
+          weather={weather}
+          weatherCode={weatherCode ? weatherCode : 0}
+        />
       </div>
       <Container className="home-clothes-container">
         <Container className="home-clothes-top">
-          <MyCarousel
+          <ClothesCarousel
             data={closet[user.uid].tops}
             handleSelect={handleSelectedTop}
             index={selectedTop}
-          ></MyCarousel>
+          ></ClothesCarousel>
         </Container>
         <Container className="home-clothes-bottoms">
-          <MyCarousel
+          <ClothesCarousel
             data={closet[user.uid].bottoms}
             handleSelect={handleSelectedBottoms}
             index={selectedBottoms}
-          ></MyCarousel>
+          ></ClothesCarousel>
         </Container>
         <Container className="home-clothes-shoes">
-          <MyCarousel
+          <ClothesCarousel
             data={closet[user.uid].shoes}
             handleSelect={handleSelectedShoes}
             index={selectedShoes}
-          ></MyCarousel>
+          ></ClothesCarousel>
         </Container>
       </Container>
       <Container className="home-button-container">

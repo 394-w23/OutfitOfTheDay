@@ -1,29 +1,41 @@
-.card-weather-greeting{
-    display: flex;
-    justify-content: center;
-    padding: 15px;
-    margin-top: 1rem;
+.landing-card-container {
+  padding: 0px;
+}
+
+.card-weather-greeting {
+  display: flex;
+  font-size: 17px;
+  color: #555555;
+  justify-content: center;
+  font-weight: bold;
+  padding: 5px;
+  margin-top: 1rem;
 }
 
 .card-weather-text {
-    display: flex;
-    justify-content: center;
-    padding: 15px;
-    margin-top: 0rem;
+  color: #555555;
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  margin-top: 0rem;
 }
 
 .card-image {
-    width: 150px;
-    height: 150px;
-    padding-bottom: 0px;
+  width: 150px;
+  height: 150px;
+  padding-bottom: 0px;
 }
 
 .card-outfit-text {
-    margin-top: 1rem;
-	margin-bottom: 1.3rem;
-    display: flex;
-    justify-content: center;
-    padding: 15px;
+  color: #555555;
+  font-size: 16px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 /* p {
 	margin-top: 1rem;

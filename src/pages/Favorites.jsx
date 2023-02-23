@@ -1,6 +1,8 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import FavoritesCard from "../components/FavoritesCard";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import OutfitCard from "../components/OutfitCard";
 import { useDbData } from "../utils/firebase";
 import getMockUser from "../utils/mockUser";
 
@@ -15,7 +17,19 @@ const Favorites = () => {
     <Container className="p-10 mt-3">
       <h3 className="closet-title">My Favorites</h3>
       <hr />
-      {<FavoritesCard data={closet[user.uid].favorites} />}
+      {
+        <Container>
+          <Row xs={2} md={4} className="g-1">
+            {Object.entries(closet[user.uid].favorites).map(
+              ([idx, clothes]) => (
+                <Col key={idx}>
+                  <OutfitCard clothes={clothes} idx={idx} />
+                </Col>
+              )
+            )}
+          </Row>
+        </Container>
+      }
     </Container>
   );
 };

@@ -7,6 +7,12 @@
   align-content: center;
 }
 
+.navbar-logo img {
+  height: 6vh;
+  width: auto;
+  cursor: pointer;
+}
+
 .navbar-brand {
   color: #5d5fef;
   font-weight: bold;
