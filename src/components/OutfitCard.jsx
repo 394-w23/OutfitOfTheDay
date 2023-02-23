@@ -40,7 +40,7 @@ const OutfitCard = ({ clothes, idx }) => {
         </Container>
       </Container>
       <Container className="favorites-card-heart">
-        <AiFillHeart onClick={() => removeFavorite(idx)} size={15} />
+        <AiFillHeart onClick={() => removeFavorite(idx)} size={23} />
       </Container>
     </Card>
   );

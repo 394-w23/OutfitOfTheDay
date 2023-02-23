@@ -55,6 +55,7 @@
 }
 
 .favorites-card-heart {
+  cursor: pointer;
   margin: 0;
   padding-right: 5px;
   text-align: end;

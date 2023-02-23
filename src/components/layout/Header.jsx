@@ -21,12 +21,16 @@ const Header = () => {
   return (
     <Navbar className="navbar">
       <Container className="navbar-container">
-        <Container>
-        <img src="src/components/layout/ootd-transparent.png" className="icon-image" />
+        <Container className="navbar-logo">
+          <img
+            src="src/components/layout/ootd-transparent.png"
+            className="icon-image"
+            onClick={() => navigate("/")}
+          />
         </Container>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav" className="header-dropdown">
-        <IoMdAddCircle size={24} />
+          <IoMdAddCircle size={24} />
           {/* <Nav className="header-profile">
             <img
               className="header-img"
@@ -34,18 +38,18 @@ const Header = () => {
               src={user.profilePic}
               referrerPolicy="no-referrer"
             /> */}
-            <NavDropdown id="collasible-nav-dropdown" align="end">
-              {/* <NavDropdown.Item onClick={() => navigate("/")}>
+          <NavDropdown id="collasible-nav-dropdown" align="end">
+            {/* <NavDropdown.Item onClick={() => navigate("/")}>
                 <CgProfile size={24} /> View Profile
               </NavDropdown.Item> */}
-              <NavDropdown.Item onClick={() => navigate("/add")}>
-                <IoMdAddCircle size={24} /> Add Item
-              </NavDropdown.Item>
-              {/* <NavDropdown.Divider /> */}
-              {/* <NavDropdown.Item onClick={() => navigate("/")}>
+            <NavDropdown.Item onClick={() => navigate("/add")}>
+              <IoMdAddCircle size={24} /> Add Item
+            </NavDropdown.Item>
+            {/* <NavDropdown.Divider /> */}
+            {/* <NavDropdown.Item onClick={() => navigate("/")}>
                 <AiOutlineLogout size={24} /> Logout
               </NavDropdown.Item> */}
-            </NavDropdown>
+          </NavDropdown>
           {/* </Nav> */}
         </Navbar.Collapse>
       </Container>

@@ -5,26 +5,15 @@ import ClothesCarousel from "../components/Carousel";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { useDbData, useDbUpdate } from "../utils/firebase";
-import { useProfile } from "../utils/userProfile";
 import getMockUser from "../utils/mockUser";
 import getWeatherAPIURL from "../utils/userLocation";
-import WeatherHeader from "../components/weatherheader";
+import WeatherHeader from "../components/WeatherHeader";
+import { useProfile } from "../utils/userProfile";
 
 const Home = () => {
   const [weather, setWeather] = useState([]);
   const [wind, setWind] = useState([]);
-  const [weatherCode, setWeatherCode] = useState(0);
-
-  useEffect(() => {
-    fetch(getWeatherAPIURL())
-      .then((res) => res.json())
-      .then((data) => {
-        setWeather(data["current_weather"]["temperature"]);
-        setWind(data["current_weather"]["windspeed"]);
-        setWeatherCode(data["current_weather"]["weatherCode"]);
-      })
-      .catch((err) => console.error(err));
-  }, []);
+  const [weatherCode, setWeatherCode] = useState();
 
   const user = getMockUser();
   const [closet] = useDbData("/closet");
@@ -37,6 +26,18 @@ const Home = () => {
   const [selectedTop, setSelectedTop] = useState(0);
   const [selectedBottoms, setSelectedBottoms] = useState(0);
   const [selectedShoes, setSelectedShoes] = useState(0);
+
+  useEffect(() => {
+    fetch(getWeatherAPIURL())
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setWeather(data["current_weather"]["temperature"]);
+        setWind(data["current_weather"]["windspeed"]);
+        setWeatherCode(data["current_weather"]["weathercode"]);
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   useEffect(() => {
     if (closet) {
@@ -120,7 +121,10 @@ const Home = () => {
         Here's what we suggest!
       </Container>
       <div className="weather-header-container">
-        <WeatherHeader weather={weather} />
+        <WeatherHeader
+          weather={weather}
+          weatherCode={weatherCode ? weatherCode : 0}
+        />
       </div>
       <Container className="home-clothes-container">
         <Container className="home-clothes-top">
