@@ -62,7 +62,26 @@
   font-size: 12px;
 }
 
-.filter-weather-button:hover {
+.filter-weather-button:focus {
+  color: #555555;
+  background-color: white;
+  border-color: #555555;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.weather-filter-active {
   color: white;
   background-color: #555555;
+  border-color: #555555;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.weather-filter-active:focus {
+  color: white;
+  background-color: #555555;
+  border-color: #555555;
+  font-weight: bold;
+  font-size: 12px;
 }

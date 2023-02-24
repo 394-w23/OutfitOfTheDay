@@ -7,7 +7,6 @@ import Container from "react-bootstrap/Container";
 import { useDbData } from "../utils/firebase";
 import getMockUser from "../utils/mockUser";
 import { Button } from "react-bootstrap";
-import WeatherHeader from "../components/WeatherHeader";
 
 const Closet = () => {
   const user = getMockUser();
@@ -15,6 +14,7 @@ const Closet = () => {
   const [option, setOption] = useState("Tops");
   const [filter, setFilter] = useState(null);
   const [weatherFilter, setWeatherFilter] = useState(null);
+  const [typeFilter, setTypeFilter] = useState(null);
   const weatherOptions = ["Cold", "Warm", "Rainy", "Sunny"];
 
   const handleFilter = (e) => {
@@ -37,12 +37,18 @@ const Closet = () => {
     } else if (e === "Shoes") {
       setOption("Shoes");
       setFilter(closet[user.uid].shoes);
-      setWeatherFilter(closet[user.uid].shoes)
+      setWeatherFilter(closet[user.uid].shoes);
     }
   };
 
   const handleWeather = (weather) => {
-    let weatherType = weather.toLowerCase()
+    if (typeFilter === weather) {
+      setWeatherFilter(filter);
+      setTypeFilter(null);
+      return;
+    }
+
+    let weatherType = weather.toLowerCase();
     let filteredClothes = new Object();
     for (const key in filter) {
       filter[key].weather.forEach(function (item, index) {
@@ -51,8 +57,8 @@ const Closet = () => {
         }
       });
     }
-    if (filter == null){
-      let top = closet[user.uid].tops
+    if (filter === null) {
+      let top = closet[user.uid].tops;
       for (const key in top) {
         top[key].weather.forEach(function (item, index) {
           if (item.includes(weatherType)) {
@@ -61,14 +67,19 @@ const Closet = () => {
         });
       }
     }
-    setWeatherFilter(filteredClothes)
-  }
+    setTypeFilter(weather);
+    setWeatherFilter(filteredClothes);
+  };
 
   const emptyFiltered = () => {
-    if (JSON.stringify(weatherFilter) == "{}"){
-      return <h6 className="text-muted">No clothing for filter selected</h6>;
+    if (JSON.stringify(weatherFilter) === "{}") {
+      return (
+        <h6 className="text-muted text-center">
+          No clothing for filter selected
+        </h6>
+      );
     }
-  }
+  };
 
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
   if (!closet) return <h5 className="text-muted">Loading user closet...</h5>;
@@ -86,30 +97,39 @@ const Closet = () => {
 
       <Container className="card-text-container-header">
         {weatherOptions.map((weather, idx) => (
-          <Button key={idx} className="filter-weather-button" onClick={(e) => handleWeather(weather)}>
+          <Button
+            key={idx}
+            variant="light"
+            className={
+              typeFilter === weather
+                ? "weather-filter-active"
+                : "filter-weather-button"
+            }
+            onClick={(e) => handleWeather(weather)}
+          >
             {weather}
           </Button>
         ))}
       </Container>
 
-      <h5 className="text-muted mt-3">{option}</h5>
+      <h5 className="text-muted mt-3 mb-4">{option}</h5>
       {
         <Container>
           <Row xs={2} md={4} className="g-4">
-            {Object.entries(weatherFilter ? weatherFilter : closet[user.uid].tops).map(
-              ([idx, clothes]) => (
-                <Col key={idx}>
-                  <ClothesCard
-                    clothes={clothes}
-                    bottoms={option === "Bottoms" ? true : false}
-                  />
-                </Col>
-              )
-            )}
-            {emptyFiltered()}
+            {Object.entries(
+              weatherFilter ? weatherFilter : closet[user.uid].tops
+            ).map(([idx, clothes]) => (
+              <Col key={idx}>
+                <ClothesCard
+                  clothes={clothes}
+                  bottoms={option === "Bottoms" ? true : false}
+                />
+              </Col>
+            ))}
           </Row>
         </Container>
       }
+      {emptyFiltered()}
     </Container>
   );
 };
