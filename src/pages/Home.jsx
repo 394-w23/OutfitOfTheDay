@@ -101,8 +101,8 @@ const Home = () => {
   };
 
   const filterClothesBasedOnWeather = (clothes) => {
-    let weatherType = "warm";
-    // weatherConditions.get(weatherCode);
+    const weatherType = weatherConditions.get(weatherCode);
+    console.log(weatherType);
     let filteredClothes = new Object();
     for (const key in clothes) {
       clothes[key].weather.forEach(function (item, index) {
@@ -145,6 +145,8 @@ const Home = () => {
         <Container className="home-clothes-top">
           <ClothesCarousel
             data={filterClothesBasedOnWeather(closet[user.uid].tops)}
+            allData={closet[user.uid].tops}
+            type="tops"
             handleSelect={handleSelectedTop}
             index={selectedTop}
           ></ClothesCarousel>
@@ -152,6 +154,8 @@ const Home = () => {
         <Container className="home-clothes-bottoms">
           <ClothesCarousel
             data={filterClothesBasedOnWeather(closet[user.uid].bottoms)}
+            allData={closet[user.uid].bottoms}
+            type="bottoms"
             handleSelect={handleSelectedBottoms}
             index={selectedBottoms}
           ></ClothesCarousel>
@@ -159,6 +163,8 @@ const Home = () => {
         <Container className="home-clothes-shoes">
           <ClothesCarousel
             data={filterClothesBasedOnWeather(closet[user.uid].shoes)}
+            allData={closet[user.uid].shoes}
+            type="shoes"
             handleSelect={handleSelectedShoes}
             index={selectedShoes}
           ></ClothesCarousel>
