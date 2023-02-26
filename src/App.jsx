@@ -11,6 +11,7 @@ import AddClothes from "./pages/AddClothes";
 import getMockUser from "./utils/mockUser";
 import Landing from "./pages/Landing";
 import { useProfile } from "./utils/userProfile";
+import Build from "./pages/Build";
 
 const App = () => {
   //const [user] = useProfile();
@@ -39,19 +40,25 @@ const App = () => {
           path="/"
           element={
             user ? (
-              step === 0 ? (
-                <>
-                  <Header />
-                  <Landing setStep={setStep} />
-                  <BottomNav />
-                </>
-              ) : (
-                <>
-                  <Header />
-                  <Home />
-                  <BottomNav />
-                </>
-              )
+              <>
+                <Header />
+                <Home />
+                <BottomNav />
+              </>
+            ) : (
+              <Navigate replace to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/build"
+          element={
+            user ? (
+              <>
+                <Header />
+                <Build />
+                <BottomNav />
+              </>
             ) : (
               <Navigate replace to="/login" />
             )
