@@ -12,6 +12,7 @@ import getMockUser from "./utils/mockUser";
 import Landing from "./pages/Landing";
 import { useProfile } from "./utils/userProfile";
 import Build from "./pages/Build";
+import Suggest from "./pages/Suggest";
 
 const App = () => {
   //const [user] = useProfile();
@@ -57,6 +58,20 @@ const App = () => {
               <>
                 <Header />
                 <Build />
+                <BottomNav />
+              </>
+            ) : (
+              <Navigate replace to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/suggest"
+          element={
+            user ? (
+              <>
+                <Header />
+                <Suggest />
                 <BottomNav />
               </>
             ) : (

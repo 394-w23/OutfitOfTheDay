@@ -6,11 +6,11 @@ body {
   margin-bottom: 13vh;
 }
 
-.home-container {
+.build-container {
   margin: 0;
 }
 
-.home-header-container {
+.build-header-container {
   padding: 15px;
   margin: 0;
   color: #555555;
@@ -18,54 +18,24 @@ body {
   font-size: 16px;
 }
 
-/* .weather-header-container {
-  text-align: center;
-  font-size: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 2vh;
-  width: 4vh;
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin-top: 50px;
-  margin-right: 15px;
-  flex-direction: column;
-  border: 1px solid #555555;
-} */
-
 .weather-header-container {
-  top: 0;
-  right: 0;
   justify-content: center;
-  text-align: center;
   align-items: center;
-  position: absolute;
-  font-size: 9px;
-  font-weight: bold;
-  width: 11vh;
-  margin-top: 32px;
-  color: #555555;
-  border-bottom-left-radius: 10px;
-  border-top-left-radius: 10px;
-}
-
-.weather-header-container img {
-  height: 7vh;
-  width: 7vh;
-}
-
-.weather-icon {
-  justify-content: center;
   text-align: center;
-  border-top-right-radius: 10px;
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
+  display: block;
 }
 
 .weather-temperature {
-  justify-content: center;
-  text-align: center;
-  margin-left: 11px;
+  color: #555555;
+  font-weight: bold;
+}
+
+.weather-icon img {
+  height: 50px;
+  width: 50px;
 }
 
 /* @media screen and (max-width: 896px) {
@@ -75,21 +45,21 @@ body {
   }
 } */
 
-.home-header-container span {
+.build-header-container span {
   font-weight: bold;
   line-height: 22px;
 }
 
-.home-clothes-container {
+.build-clothes-container {
   margin: 0;
   display: block;
 }
 
-.home-clothes-top {
+.build-clothes-top {
   margin: 0;
 }
 
-.home-clothes-top img {
+.build-clothes-top img {
   aspect-ratio: 1 / 1 !important;
   width: 17vh !important;
   height: auto !important;
@@ -97,11 +67,11 @@ body {
   display: block !important;
 }
 
-.home-clothes-bottoms {
+.build-clothes-bottoms {
   margin: 0;
 }
 
-.home-clothes-bottoms img {
+.build-clothes-bottoms img {
   aspect-ratio: 1 / 1.5 !important;
   width: 17vh !important;
   height: auto !important;
@@ -109,11 +79,11 @@ body {
   display: block !important;
 }
 
-.home-clothes-shoes {
+.build-clothes-shoes {
   margin: 0;
 }
 
-.home-clothes-shoes img {
+.build-clothes-shoes img {
   aspect-ratio: 1 / 1 !important;
   width: 11vh !important;
   height: auto !important;
@@ -121,7 +91,7 @@ body {
   display: block !important;
 }
 
-.home-btn {
+.build-btn {
   width: 100%;
   font-size: 16px;
   padding-top: 8px;
@@ -131,7 +101,7 @@ body {
   border: none;
 }
 
-.home-btn-fav {
+.build-btn-fav {
   width: 100%;
   margin: 0;
   color: #555555;
@@ -139,12 +109,12 @@ body {
   border: none;
 }
 
-.home-btn:hover {
+.build-btn:hover {
   background-color: #5d5fef;
   border: none;
 }
 
-.home-btn-fav:hover {
+.build-btn-fav:hover {
   color: #555555;
   background-color: white;
   border: none;

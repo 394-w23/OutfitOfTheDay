@@ -127,8 +127,8 @@ const Build = () => {
   if (!closet) return <h5 className="text-muted">Loading user closet...</h5>;
 
   return (
-    <Container className="home-container">
-      <Container className="home-header-container">
+    <Container className="build-container">
+      <Container className="build-header-container">
         <span>
           Good {timeOfDay} {user.displayName.split(" ")[0]}!
         </span>{" "}
@@ -142,8 +142,8 @@ const Build = () => {
           weatherCode={weatherCode ? weatherCode : 0}
         />
       </div>
-      <Container className="home-clothes-container">
-        <Container className="home-clothes-top">
+      <Container className="build-clothes-container">
+        <Container className="build-clothes-top">
           <ClothesCarousel
             data={filterClothesBasedOnWeather(closet[user.uid].tops)}
             allData={closet[user.uid].tops}
@@ -152,7 +152,7 @@ const Build = () => {
             index={selectedTop}
           ></ClothesCarousel>
         </Container>
-        <Container className="home-clothes-bottoms">
+        <Container className="build-clothes-bottoms">
           <ClothesCarousel
             data={filterClothesBasedOnWeather(closet[user.uid].bottoms)}
             allData={closet[user.uid].bottoms}
@@ -161,7 +161,7 @@ const Build = () => {
             index={selectedBottoms}
           ></ClothesCarousel>
         </Container>
-        <Container className="home-clothes-shoes">
+        <Container className="build-clothes-shoes">
           <ClothesCarousel
             data={filterClothesBasedOnWeather(closet[user.uid].shoes)}
             allData={closet[user.uid].shoes}
@@ -171,10 +171,10 @@ const Build = () => {
           ></ClothesCarousel>
         </Container>
       </Container>
-      <Container className="home-button-container">
-        <Button className="home-btn">I'll wear this today!</Button>
+      <Container className="build-button-container">
+        <Button className="build-btn">I'll wear this today!</Button>
         <Button
-          className="home-btn-fav"
+          className="build-btn-fav"
           variant="light"
           onClick={() => {
             saveSelectedFavourites();
