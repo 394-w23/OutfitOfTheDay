@@ -1,6 +1,7 @@
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import { AiFillHeart } from "react-icons/ai";
+import { TbHanger } from "react-icons/tb";
 import { useDbUpdate } from "../utils/firebase";
 import getMockUser from "../utils/mockUser";
 
@@ -13,7 +14,7 @@ const OutfitCard = ({ clothes, idx }) => {
   };
 
   return (
-    <Card className="favorites-card-container">
+    <Card className="mb-3 favorites-card-container">
       <Container className="favorites-card-clothes">
         <Container className="favorites-top-shoes-container">
           <Container className="favorites-top-container">
@@ -39,8 +40,14 @@ const OutfitCard = ({ clothes, idx }) => {
           />
         </Container>
       </Container>
-      <Container className="favorites-card-heart">
-        <AiFillHeart onClick={() => removeFavorite(idx)} size={23} />
+      <Container className="favorites-card-footer">
+        <Container className="favorites-card-frequency">
+          <TbHanger className="me-1" size={23} />
+          {clothes.times}
+        </Container>
+        <Container className="favorites-card-heart">
+          <AiFillHeart onClick={() => removeFavorite(idx)} size={23} />
+        </Container>
       </Container>
     </Card>
   );
