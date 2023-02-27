@@ -1,151 +1,126 @@
-body {
-  margin: 0;
-  font: 19px / 23px Roboto, "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  margin-bottom: 13vh;
-}
-
-.home-container {
-  margin: 0;
-}
-
 .home-header-container {
-  padding: 15px;
-  margin: 0;
-  color: #555555;
-  text-align: center;
-  font-size: 16px;
-}
-
-/* .weather-header-container {
-  text-align: center;
-  font-size: 8px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 2vh;
-  width: 4vh;
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin-top: 50px;
-  margin-right: 15px;
-  flex-direction: column;
-  border: 1px solid #555555;
-} */
-
-.weather-header-container {
-  top: 0;
-  right: 0;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-  position: absolute;
-  font-size: 9px;
-  font-weight: bold;
-  width: 11vh;
-  margin-top: 32px;
-  color: #555555;
-  border-bottom-left-radius: 10px;
-  border-top-left-radius: 10px;
-}
-
-.weather-header-container img {
-  height: 7vh;
-  width: 7vh;
-}
-
-.weather-icon {
-  justify-content: center;
-  text-align: center;
-  border-top-right-radius: 10px;
-}
-
-.weather-temperature {
-  justify-content: center;
-  text-align: center;
-  margin-left: 11px;
-}
-
-/* @media screen and (max-width: 896px) {
-  .weather-header-container {
-    margin-top: 6vh;
-    margin-right: 3.4vh;
-  }
-} */
-
-.home-header-container span {
-  font-weight: bold;
-  line-height: 22px;
-}
-
-.home-clothes-container {
   margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.home-header-title {
+  line-height: 30px;
+  font-size: 25px;
+  font-weight: bold;
+  color: #555555;
+}
+
+.home-header-weather {
+  width: 30%;
+  margin: 0;
+  padding: 0;
+  text-align: end;
+}
+
+.home-button-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.home-build-button,
+.home-suggest-button {
+  cursor: pointer;
+  padding-top: 14px;
+  margin: 3px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 13px;
+  background-color: #f1ecff;
+  border-radius: 20px;
+}
+
+.home-favorites-title h6,
+.home-closet-title h6 {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.home-favorites-panel {
+  margin: 0;
+  padding: 0;
+}
+
+.home-favorites-footer {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.home-favorites-footer h6 {
+  font-size: 12px;
+  font-weight: bold;
+  color: #5b67b1;
+  text-decoration: underline;
+}
+
+.home-closet-title {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.home-closet-title h6 {
+  margin: 0;
+  align-self: center;
+  align-content: center;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.home-closet-information {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 100%;
+}
+
+.home-closet-image img {
+  height: 100px;
+  width: 100px;
+  border: 3px solid #5d5fef;
+}
+
+.home-closet-image {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.home-closet-buttons {
+  margin: 0;
+  padding: 0;
+  width: 100%;
   display: block;
+  text-align: center;
+  justify-content: center;
+  align-self: center;
 }
 
-.home-clothes-top {
-  margin: 0;
+.home-closet-buttons h6 {
+  font-size: 11px;
+  color: #555555;
+  font-weight: bold;
+  font-style: italic;
 }
 
-.home-clothes-top img {
-  aspect-ratio: 1 / 1 !important;
-  width: 17vh !important;
-  height: auto !important;
-  margin: auto !important;
-  display: block !important;
-}
-
-.home-clothes-bottoms {
-  margin: 0;
-}
-
-.home-clothes-bottoms img {
-  aspect-ratio: 1 / 1.5 !important;
-  width: 17vh !important;
-  height: auto !important;
-  margin: auto !important;
-  display: block !important;
-}
-
-.home-clothes-shoes {
-  margin: 0;
-}
-
-.home-clothes-shoes img {
-  aspect-ratio: 1 / 1 !important;
-  width: 11vh !important;
-  height: auto !important;
-  margin: auto !important;
-  display: block !important;
-}
-
-.home-btn {
+.home-closet-buttons button {
   width: 100%;
-  font-size: 16px;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  font-size: 13px;
   font-weight: bold;
   background-color: #5d5fef;
-  border: none;
+  border-color: #5d5fef;
 }
 
-.home-btn-fav {
-  width: 100%;
-  margin: 0;
-  color: #555555;
+.home-closet-buttons button:hover {
+  color: #5d5fef;
   background-color: white;
-  border: none;
-}
-
-.home-btn:hover {
-  background-color: #5d5fef;
-  border: none;
-}
-
-.home-btn-fav:hover {
-  color: #555555;
-  background-color: white;
-  border: none;
+  border-color: #5d5fef;
 }

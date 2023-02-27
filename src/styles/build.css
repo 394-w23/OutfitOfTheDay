@@ -1,0 +1,132 @@
+body {
+  margin: 0;
+  font: 19px / 23px Roboto, "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin-bottom: 13vh;
+}
+
+.build-container {
+  margin: 0;
+}
+
+.build-header-container {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.build-header-toggle {
+  font-size: 2px;
+  font-weight: bold;
+}
+
+.build-header-weather {
+  width: 30%;
+  margin: 0;
+  padding: 0;
+  text-align: end;
+}
+
+.weather-header-container {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
+  display: block;
+}
+
+.weather-temperature {
+  color: #555555;
+  font-weight: bold;
+}
+
+.weather-icon img {
+  height: 50px;
+  width: 50px;
+}
+
+/* @media screen and (max-width: 896px) {
+  .weather-header-container {
+    margin-top: 6vh;
+    margin-right: 3.4vh;
+  }
+} */
+
+.build-header-container span {
+  font-weight: bold;
+  line-height: 22px;
+}
+
+.build-clothes-container {
+  margin: 0;
+  display: block;
+}
+
+.build-clothes-top {
+  margin: 0;
+}
+
+.build-clothes-top img {
+  aspect-ratio: 1 / 1 !important;
+  width: 17vh !important;
+  height: auto !important;
+  margin: auto !important;
+  display: block !important;
+}
+
+.build-clothes-bottoms {
+  margin: 0;
+}
+
+.build-clothes-bottoms img {
+  aspect-ratio: 1 / 1.5 !important;
+  width: 17vh !important;
+  height: auto !important;
+  margin: auto !important;
+  display: block !important;
+}
+
+.build-clothes-shoes {
+  margin: 0;
+}
+
+.build-clothes-shoes img {
+  aspect-ratio: 1 / 1 !important;
+  width: 11vh !important;
+  height: auto !important;
+  margin: auto !important;
+  display: block !important;
+}
+
+.build-btn {
+  width: 100%;
+  font-size: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-weight: bold;
+  background-color: #5d5fef;
+  border: none;
+}
+
+.build-btn-fav {
+  width: 100%;
+  margin: 0;
+  color: #555555;
+  background-color: white;
+  border: none;
+}
+
+.build-btn:hover {
+  background-color: #5d5fef;
+  border: none;
+}
+
+.build-btn-fav:hover {
+  color: #555555;
+  background-color: white;
+  border: none;
+}

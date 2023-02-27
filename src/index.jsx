@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./styles/login.css";
 import "./styles/header.css";
+import "./styles/build.css";
 import "./styles/home.css";
 import "./styles/bottom-nav.css";
 import "./styles/carousel.css";
