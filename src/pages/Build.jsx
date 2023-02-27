@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { IoMdArrowBack } from "react-icons/io";
 import ClothesCarousel from "../components/Carousel";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import ToggleButton from "react-bootstrap/ToggleButton";
 import { useDbData, useDbUpdate } from "../utils/firebase";
 import getMockUser from "../utils/mockUser";
 import getWeatherAPIURL from "../utils/userLocation";
@@ -12,8 +16,8 @@ import { weatherConditions, weatherIconUrl } from "../utils/weather";
 import { useProfile } from "../utils/userProfile";
 
 const Build = () => {
+  const navigate = useNavigate();
   const [weather, setWeather] = useState([]);
-  const [wind, setWind] = useState([]);
   const [weatherCode, setWeatherCode] = useState();
 
   const user = getMockUser();
@@ -24,6 +28,8 @@ const Build = () => {
   const [isFavorite, setFavorite] = useState(false);
   const [favIdx, setFavIdx] = useState(false);
 
+  const [formality, setFormality] = useState("formal");
+
   const [selectedTop, setSelectedTop] = useState(0);
   const [selectedBottoms, setSelectedBottoms] = useState(0);
   const [selectedShoes, setSelectedShoes] = useState(0);
@@ -32,9 +38,8 @@ const Build = () => {
     fetch(getWeatherAPIURL())
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        //console.log(data);
         setWeather(data["current_weather"]["temperature"]);
-        setWind(data["current_weather"]["windspeed"]);
         setWeatherCode(data["current_weather"]["weathercode"]);
       })
       .catch((err) => console.error(err));
@@ -73,6 +78,11 @@ const Build = () => {
     }
   };
 
+  const handleFormality = (e) => {
+    setFormality(e);
+    console.log(e);
+  };
+
   const handleSelectedTop = (selectedIndex) => {
     setSelectedTop(selectedIndex);
   };
@@ -103,7 +113,6 @@ const Build = () => {
 
   const filterClothesBasedOnWeather = (clothes) => {
     const weatherType = weatherConditions.get(weatherCode);
-    console.log(weatherType);
     let filteredClothes = new Object();
     for (const key in clothes) {
       clothes[key].weather.forEach(function (item, index) {
@@ -115,33 +124,50 @@ const Build = () => {
     return filteredClothes;
   };
 
-  const currentHour = new Date().getHours();
-  let timeOfDay = "Morning";
-  if (12 <= currentHour && currentHour < 17) {
-    timeOfDay = "Afternoon";
-  } else if (17 <= currentHour) {
-    timeOfDay = "Evening";
-  }
-
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
   if (!closet) return <h5 className="text-muted">Loading user closet...</h5>;
 
   return (
     <Container className="build-container">
-      <Container className="build-header-container">
-        <span>
-          Good {timeOfDay} {user.displayName.split(" ")[0]}!
-        </span>{" "}
-        <br />
-        Let's choose your outfit. <br />
-        Here's what we suggest!
+      <Container className="mt-1">
+        <IoMdArrowBack size={20} onClick={() => navigate("/")} />
       </Container>
-      <div className="weather-header-container">
-        <WeatherHeader
-          weather={weather}
-          weatherCode={weatherCode ? weatherCode : 0}
-        />
-      </div>
+      <Container className="build-header-container">
+        <Container className="build-header-toggle">
+          <ButtonGroup>
+            <ToggleButton
+              id="radio-formal"
+              size="sm"
+              type="radio"
+              name="radio"
+              value="formal"
+              variant={formality === "formal" ? "dark" : "light"}
+              checked={formality === "formal"}
+              onChange={(e) => handleFormality(e.currentTarget.value)}
+            >
+              Formal
+            </ToggleButton>
+            <ToggleButton
+              id="radio-casual"
+              size="sm"
+              type="radio"
+              name="radio"
+              value="casual"
+              variant={formality === "casual" ? "dark" : "light"}
+              checked={formality === "casual"}
+              onChange={(e) => handleFormality(e.currentTarget.value)}
+            >
+              Casual
+            </ToggleButton>
+          </ButtonGroup>
+        </Container>
+        <Container className="build-header-weather">
+          <WeatherHeader
+            weather={weather}
+            weatherCode={weatherCode ? weatherCode : 0}
+          />
+        </Container>
+      </Container>
       <Container className="build-clothes-container">
         <Container className="build-clothes-top">
           <ClothesCarousel
