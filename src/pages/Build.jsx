@@ -95,6 +95,7 @@ const Build = () => {
         tops: Object.values(closet[user.uid].tops)[selectedTop],
         bottoms: Object.values(closet[user.uid].bottoms)[selectedBottoms],
         shoes: Object.values(closet[user.uid].shoes)[selectedShoes],
+        times: 0,
       };
       updateData({ ["/closet/" + user.uid + "/favorites/" + uid]: favorites });
     }

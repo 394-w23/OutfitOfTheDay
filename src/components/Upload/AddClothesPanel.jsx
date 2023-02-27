@@ -17,6 +17,7 @@ const AddClothesPanel = ({ input, step }) => {
   const [isLoadingRed, setLoadingRed] = useState(false);
   const [isLoadingDon, setLoadingDon] = useState(false);
   const [type, setType] = useState(null);
+  const [formality, setFormality] = useState(null);
   const [weather, setWeather] = useState([]);
   const [useStorage, result] = useStorageUpdate(
     "/files/" + user.uid + "/" + uuidv4()
@@ -47,6 +48,7 @@ const AddClothesPanel = ({ input, step }) => {
       id: uid,
       available: true,
       weather: weather,
+      formality: formality,
       url: result,
     };
 
@@ -79,7 +81,7 @@ const AddClothesPanel = ({ input, step }) => {
   };
 
   const handleUpload = async (redirect) => {
-    if (weather.length === 0 || !type) return;
+    if (weather.length === 0 || !type || !formality) return;
     redirect ? setLoadingRed(true) : setLoadingDon(true);
     const imgFile = await handleInputToFile();
     if (!imgFile) return;
@@ -184,6 +186,27 @@ const AddClothesPanel = ({ input, step }) => {
             }}
           >
             Sunny
+          </Button>
+        </Container>
+      </Container>
+      <Container className="mt-2">
+        <h5 className="link-upload-tag">I think this item is:</h5>
+        <Container className="link-upload-weather-container">
+          <Button
+            className={
+              formality === "casual" ? "link-upload-button-active" : ""
+            }
+            onClick={() => setFormality("casual")}
+          >
+            Casual
+          </Button>
+          <Button
+            className={
+              formality === "formal" ? "link-upload-button-active" : ""
+            }
+            onClick={() => setFormality("formal")}
+          >
+            Formal
           </Button>
         </Container>
       </Container>
