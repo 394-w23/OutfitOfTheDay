@@ -2,9 +2,30 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Badge from "react-bootstrap/Badge";
 import { BsFillTrashFill } from "react-icons/bs";
+import { useDbData, useDbUpdate } from "../utils/firebase";
+import getMockUser from "../utils/mockUser";
+import { useReducer } from "react";
 
-const ClothesCard = ({ clothes, idx, bottoms }) => {
-  const removePiece = (idx) => {};
+const ClothesCard = ({ clothes, idx, bottoms, option }) => {
+
+  const [closet] = useDbData("/closet");
+  const [updateData] = useDbUpdate("/");
+  const user = getMockUser();
+
+  const favOptions = ["tops", "bottoms", "shoes"]
+
+  const removePiece = (idx) => {
+    updateData({ ["/closet/" + user.uid + "/" + option.toLowerCase() + "/" + idx]: null });
+    if (closet && favOptions.includes(option.toLowerCase())) {
+      Object.entries(closet[user.uid].favorites).map(([ind, favorite]) => {
+        if (
+          clothes.url === favorite[option.toLowerCase()].url
+        ) {
+          updateData({ ["/closet/" + user.uid + "/favorites/" + ind]: null });
+        }
+      });
+    }
+  };
 
   return (
     <Card className="card-container">

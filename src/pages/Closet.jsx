@@ -124,6 +124,7 @@ const Closet = () => {
                   clothes={clothes}
                   idx={idx}
                   bottoms={option === "Bottoms" ? true : false}
+                  option={option}
                 />
               </Col>
             ))}
