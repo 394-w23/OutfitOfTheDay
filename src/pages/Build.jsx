@@ -111,12 +111,12 @@ const Build = () => {
     }
   };
 
-  const filterClothesBasedOnWeather = (clothes) => {
+  const filterClothesBasedOnWeather = (clothes, formality) => {
     const weatherType = weatherConditions.get(weatherCode);
     let filteredClothes = new Object();
     for (const key in clothes) {
       clothes[key].weather.forEach(function (item, index) {
-        if (item === weatherType) {
+        if (item === weatherType && clothes[key].formality == formality) {
           filteredClothes[key] = clothes[key];
         }
       });
@@ -171,7 +171,7 @@ const Build = () => {
       <Container className="build-clothes-container">
         <Container className="build-clothes-top">
           <ClothesCarousel
-            data={filterClothesBasedOnWeather(closet[user.uid].tops)}
+            data={filterClothesBasedOnWeather(closet[user.uid].tops, formality)}
             allData={closet[user.uid].tops}
             type="tops"
             handleSelect={handleSelectedTop}
@@ -180,7 +180,7 @@ const Build = () => {
         </Container>
         <Container className="build-clothes-bottoms">
           <ClothesCarousel
-            data={filterClothesBasedOnWeather(closet[user.uid].bottoms)}
+            data={filterClothesBasedOnWeather(closet[user.uid].bottoms, formality)}
             allData={closet[user.uid].bottoms}
             type="bottoms"
             handleSelect={handleSelectedBottoms}
@@ -189,7 +189,7 @@ const Build = () => {
         </Container>
         <Container className="build-clothes-shoes">
           <ClothesCarousel
-            data={filterClothesBasedOnWeather(closet[user.uid].shoes)}
+            data={filterClothesBasedOnWeather(closet[user.uid].shoes, formality)}
             allData={closet[user.uid].shoes}
             type="shoes"
             handleSelect={handleSelectedShoes}
