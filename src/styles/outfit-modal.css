@@ -1,0 +1,26 @@
+.modal-footer {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.modal-footer h6 {
+  cursor: pointer;
+  color: #555555;
+  font-size: 13px;
+  text-decoration: underline;
+}
+
+.modal-footer button {
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #5d5fef;
+  border-color: #5d5fef;
+}
+
+.modal-footer button:hover {
+  color: #5d5fef;
+  background-color: white;
+  border-color: #5d5fef;
+}

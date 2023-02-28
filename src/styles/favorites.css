@@ -55,6 +55,33 @@
   display: block;
 }
 
+.big-favorites-card-image {
+  padding: 5px;
+  aspect-ratio: 1 / 1;
+  width: 22vh;
+  height: auto;
+  margin: auto;
+  display: block;
+}
+
+.big-favorites-card-image-bottom {
+  padding: 5px;
+  aspect-ratio: 1 / 2;
+  width: 18vh;
+  height: auto;
+  margin: auto;
+  display: block;
+}
+
+.big-favorites-card-image-shoes {
+  padding: 5px;
+  aspect-ratio: 1 / 1;
+  width: 15vh;
+  height: auto;
+  margin: auto;
+  display: block;
+}
+
 .favorites-card-footer {
   margin: 0;
   padding: 3px 0;

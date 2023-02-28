@@ -79,7 +79,7 @@ const Home = () => {
               .slice(0, 2)
               .map(([idx, clothes]) => (
                 <Col key={idx}>
-                  <OutfitCard clothes={clothes} idx={idx} />
+                  <OutfitCard clothes={clothes} idx={null} />
                 </Col>
               ))}
           </Row>

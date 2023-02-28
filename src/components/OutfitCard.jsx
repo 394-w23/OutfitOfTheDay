@@ -5,11 +5,12 @@ import { TbHanger } from "react-icons/tb";
 import { useDbUpdate } from "../utils/firebase";
 import getMockUser from "../utils/mockUser";
 
-const OutfitCard = ({ clothes, idx }) => {
+const OutfitCard = ({ clothes, idx, big }) => {
   const user = getMockUser();
   const [updateData] = useDbUpdate("/");
 
   const removeFavorite = (idx) => {
+    if (!idx) return;
     updateData({ ["/closet/" + user.uid + "/favorites/" + idx]: null });
   };
 
@@ -17,26 +18,36 @@ const OutfitCard = ({ clothes, idx }) => {
     <Card className="mb-3 favorites-card-container">
       <Container className="favorites-card-clothes">
         <Container className="favorites-top-shoes-container">
-          <Container className="favorites-top-container">
+          <Container className={"favorites-top-container"}>
             <Card.Img
               variant="top"
               src={clothes.tops.url}
-              className={"favorites-card-image"}
+              className={
+                big ? "big-favorites-card-image" : "favorites-card-image"
+              }
             />
           </Container>
-          <Container className="favorites-shoes-container">
+          <Container className={"favorites-shoes-container"}>
             <Card.Img
               variant="top"
               src={clothes.shoes.url}
-              className={"favorites-card-image-shoes"}
+              className={
+                big
+                  ? "big-favorites-card-image-shoes"
+                  : "favorites-card-image-shoes"
+              }
             />
           </Container>
         </Container>
-        <Container className="favorites-bottom-container">
+        <Container className={"favorites-bottom-container"}>
           <Card.Img
             variant="top"
             src={clothes.bottoms.url}
-            className={"favorites-card-image-bottom"}
+            className={
+              big
+                ? "big-favorites-card-image-bottom"
+                : "favorites-card-image-bottom"
+            }
           />
         </Container>
       </Container>
