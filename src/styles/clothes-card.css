@@ -85,3 +85,11 @@
   font-weight: bold;
   font-size: 12px;
 }
+
+.card-trash-container {
+  margin: 0;
+  /*   background-color: rgb(205, 203, 203);
+  border-radius: 0 0 8px 8px; */
+  padding: 5px;
+  text-align: end;
+}

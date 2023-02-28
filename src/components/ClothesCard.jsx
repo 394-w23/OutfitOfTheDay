@@ -1,8 +1,11 @@
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Badge from "react-bootstrap/Badge";
+import { BsFillTrashFill } from "react-icons/bs";
 
-const ClothesCard = ({ clothes, bottoms }) => {
+const ClothesCard = ({ clothes, idx, bottoms }) => {
+  const removePiece = (idx) => {};
+
   return (
     <Card className="card-container">
       <Card.Img
@@ -21,6 +24,9 @@ const ClothesCard = ({ clothes, bottoms }) => {
             {weather_attributes}
           </Badge>
         ))}
+      </Container>
+      <Container className="card-trash-container">
+        <BsFillTrashFill onClick={() => removePiece(idx)} size={23} />
       </Container>
     </Card>
   );

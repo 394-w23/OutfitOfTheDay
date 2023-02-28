@@ -122,6 +122,7 @@ const Closet = () => {
               <Col key={idx}>
                 <ClothesCard
                   clothes={clothes}
+                  idx={idx}
                   bottoms={option === "Bottoms" ? true : false}
                 />
               </Col>
