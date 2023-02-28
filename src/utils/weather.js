@@ -1,12 +1,12 @@
 export const weatherConditions = new Map([  
     [0, 'sunny'],
-    [1, 'cloudy'],
+    [1, 'sunny'],
 
-    [2, 'cloudy'],
-    [3, 'cloudy'],
+    [2, 'sunny'],
+    [3, 'sunny'],
 
-    [45, 'cloudy'],
-    [48, 'cloudy'],
+    [45, 'sunny'],
+    [48, 'sunny'],
 
     [51, 'rainy'],
     [53, 'rainy'],
@@ -19,21 +19,58 @@ export const weatherConditions = new Map([
     [66, 'rainy'],
     [67, 'rainy'],
 
-    [71, 'snowy'],
-    [73, 'snowy'],
-    [75, 'snowy'],
-    [77, 'snowy'],
+    [71, 'rainy'],
+    [73, 'rainy'],
+    [75, 'rainy'],
+    [77, 'rainy'],
 
     [80, 'rainy'],
     [81, 'rainy'],
     [82, 'rainy'],
 
-    [85, 'snowy'],
-    [86, 'snowy'],
+    [85, 'rainy'],
+    [86, 'rainy'],
 
     [95, 'rainy'],
     [96, 'rainy'],
     [99, 'rainy']
+
+    // correct weather conditions, but don't match filter
+    // [0, 'sunny'],
+    // [1, 'cloudy'],
+
+    // [2, 'cloudy'],
+    // [3, 'cloudy'],
+
+    // [45, 'cloudy'],
+    // [48, 'cloudy'],
+
+    // [51, 'rainy'],
+    // [53, 'rainy'],
+    // [55, 'rainy'],
+    // [56, 'rainy'],
+    // [57, 'rainy'],
+    // [61, 'rainy'],
+    // [63, 'rainy'],
+    // [65, 'rainy'],
+    // [66, 'rainy'],
+    // [67, 'rainy'],
+
+    // [71, 'snowy'],
+    // [73, 'snowy'],
+    // [75, 'snowy'],
+    // [77, 'snowy'],
+
+    // [80, 'rainy'],
+    // [81, 'rainy'],
+    // [82, 'rainy'],
+
+    // [85, 'snowy'],
+    // [86, 'snowy'],
+
+    // [95, 'rainy'],
+    // [96, 'rainy'],
+    // [99, 'rainy']
   ]);
 
 export const weatherIconUrl = new Map([
