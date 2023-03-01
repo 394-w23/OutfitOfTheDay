@@ -23,7 +23,7 @@ const Header = () => {
       <Container className="navbar-container">
         <Container className="navbar-logo">
           <img
-            src="src/components/layout/ootd-transparent.png"
+            src="ootd-transparent.png"
             className="icon-image"
             onClick={() => navigate("/")}
           />
