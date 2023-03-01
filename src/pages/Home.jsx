@@ -61,7 +61,7 @@ const Home = () => {
         </Container>
         <Container
           className="home-suggest-button"
-          onClick={() => navigate("/suggest")}
+          //onClick={() => navigate("/suggest")}
         >
           <BsShuffle size={24} />
           <p>
@@ -88,7 +88,7 @@ const Home = () => {
           <h6>View All Favorites for Today</h6>
         </Container>
       </Container>
-      <Container className="mt-3 home-closet-container">
+      {/*       <Container className="mt-3 home-closet-container">
         <Container className="home-closet-title">
           <h6>Back of the Closet Pick</h6>
           <BsInfoCircleFill size={16} />
@@ -106,7 +106,7 @@ const Home = () => {
             </Container>
           </Container>
         </Container>
-      </Container>
+      </Container> */}
     </Container>
   );
 };

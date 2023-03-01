@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ClothesCard from "../components/ClothesCard";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
