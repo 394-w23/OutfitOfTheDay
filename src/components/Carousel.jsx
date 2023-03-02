@@ -9,14 +9,14 @@ const ClothesCarousel = ({ data, allData, type, handleSelect, index }) => {
     return (
       <Container className="carousel-not-found-container">
         <h6 className="carousel-not-found-title">
-          No {type} available for this type of weather
+          No {type} available for this type of weather/formality
         </h6>
-        <Button
+        <p
           onClick={() => setIsClicked(true)}
-          className="carousel-not-found-button"
+          className="carousel-not-found-link"
         >
           Click to see all {type}!
-        </Button>
+        </p>
       </Container>
     );
   }

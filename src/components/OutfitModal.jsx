@@ -22,12 +22,12 @@ const OutfitModal = ({ show, handleClose, clothes }) => {
     <>
       {clothes && (
         <Modal centered show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
+          <Modal.Header closeButton className="modal-header">
             <Modal.Title>
               You've worn this look {clothes.times} times!
             </Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body className="modal-body">
             <OutfitCard clothes={clothes} idx={null} big />
           </Modal.Body>
           <Modal.Footer className="modal-footer">

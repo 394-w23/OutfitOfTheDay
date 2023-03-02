@@ -94,7 +94,6 @@ const Closet = () => {
         <option value="Bottoms">Bottoms</option>
         <option value="Shoes">Shoes</option>
       </Form.Select>
-
       <Container className="card-text-container-header">
         {weatherOptions.map((weather, idx) => (
           <Button
@@ -111,11 +110,11 @@ const Closet = () => {
           </Button>
         ))}
       </Container>
-
-      <h5 className="text-muted mt-3 mb-4">{option}</h5>
+      {/*       <h5 className="text-muted mt-3 mb-4">{option}</h5>
+       */}{" "}
       {
-        <Container>
-          <Row xs={2} md={4} className="g-4">
+        <Container className="closet-cards-container">
+          <Row xs={2} md={4} className="g-3">
             {Object.entries(
               weatherFilter ? weatherFilter : closet[user.uid].tops
             ).map(([idx, clothes]) => (

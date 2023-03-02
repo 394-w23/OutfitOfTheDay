@@ -7,13 +7,14 @@
 
 .home-header-title {
   line-height: 30px;
-  font-size: 25px;
+  font-size: 21px;
   font-weight: bold;
   color: #555555;
+  text-align: left;
 }
 
 .home-header-weather {
-  width: 30%;
+  width: 20%;
   margin: 0;
   padding: 0;
   text-align: end;
@@ -28,18 +29,35 @@
 .home-suggest-button {
   cursor: pointer;
   padding-top: 14px;
-  margin: 3px;
   text-align: center;
   font-weight: bold;
   font-size: 13px;
   background-color: #f1ecff;
-  border-radius: 20px;
+  border-radius: 8px;
+}
+
+.home-build-button {
+  margin-right: 10px;
+}
+
+.home-suggest-button {
+  margin-left: 10px;
+}
+
+.home-favorites-title,
+.home-closet-title {
+  margin: 0;
+  padding: 0;
 }
 
 .home-favorites-title h6,
 .home-closet-title h6 {
   font-size: 15px;
   font-weight: bold;
+}
+
+.home-favorites-container {
+  margin-top: 30px;
 }
 
 .home-favorites-panel {

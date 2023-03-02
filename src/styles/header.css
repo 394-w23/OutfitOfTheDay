@@ -7,8 +7,13 @@
   align-content: center;
 }
 
+.navbar-logo {
+  margin: 0;
+  padding: 0;
+}
+
 .navbar-logo img {
-  height: 6vh;
+  height: 5vh;
   width: auto;
   cursor: pointer;
 }
