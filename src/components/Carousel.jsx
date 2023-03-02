@@ -1,20 +1,15 @@
-import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
+import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import Container from "react-bootstrap/Container";
 
-const ClothesCarousel = ({ data, allData, type, handleSelect, index }) => {
-  const [isClicked, setIsClicked] = useState(false);
-  if (JSON.stringify(data) === "{}" && !isClicked) {
+const ClothesCarousel = ({ data, type, handleSelect, index, setShowAll }) => {
+  if (JSON.stringify(data) === "{}") {
     return (
       <Container className="carousel-not-found-container">
         <h6 className="carousel-not-found-title">
           No {type} available for this type of weather/formality
         </h6>
-        <p
-          onClick={() => setIsClicked(true)}
-          className="carousel-not-found-link"
-        >
+        <p onClick={() => setShowAll(type)} className="carousel-not-found-link">
           Click to see all {type}!
         </p>
       </Container>
@@ -23,33 +18,18 @@ const ClothesCarousel = ({ data, allData, type, handleSelect, index }) => {
 
   return (
     <Container className="carousel-container">
-      {JSON.stringify(data) === "{}" && isClicked ? (
-        <Carousel
-          interval={null}
-          indicators={false}
-          activeIndex={index}
-          onSelect={handleSelect}
-        >
-          {Object.entries(allData).map(([idx, clothes]) => (
-            <Carousel.Item key={idx}>
-              <img src={clothes.url} alt="Slide" />
-            </Carousel.Item>
-          ))}
-        </Carousel>
-      ) : (
-        <Carousel
-          interval={null}
-          indicators={false}
-          activeIndex={index}
-          onSelect={handleSelect}
-        >
-          {Object.entries(data).map(([idx, clothes]) => (
-            <Carousel.Item key={idx}>
-              <img src={clothes.url} alt="Slide" />
-            </Carousel.Item>
-          ))}
-        </Carousel>
-      )}
+      <Carousel
+        interval={null}
+        indicators={false}
+        activeIndex={index}
+        onSelect={handleSelect}
+      >
+        {Object.entries(data).map(([idx, clothes]) => (
+          <Carousel.Item key={idx}>
+            <img src={clothes.url} alt="Slide" />
+          </Carousel.Item>
+        ))}
+      </Carousel>
     </Container>
   );
 };

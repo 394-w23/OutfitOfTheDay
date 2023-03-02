@@ -12,55 +12,69 @@ import { useDbData, useDbUpdate } from "../utils/firebase";
 import getMockUser from "../utils/mockUser";
 import getWeatherAPIURL from "../utils/userLocation";
 import WeatherHeader from "../components/WeatherHeader";
-import { weatherConditions, weatherIconUrl } from "../utils/weather";
+import { weatherConditions } from "../utils/weather";
 import { useProfile } from "../utils/userProfile";
 
 const Build = () => {
   const navigate = useNavigate();
-  const [weather, setWeather] = useState([]);
-  const [weatherCode, setWeatherCode] = useState();
-
   const user = getMockUser();
   const [closet] = useDbData("/closet");
-
   const [updateData] = useDbUpdate("/");
 
+  const [weather, setWeather] = useState([]);
+  const [weatherCode, setWeatherCode] = useState();
+  const [formality, setFormality] = useState(null);
   const [isFavorite, setFavorite] = useState(false);
   const [favIdx, setFavIdx] = useState(false);
-
-  const [formality, setFormality] = useState("formal");
 
   const [selectedTop, setSelectedTop] = useState(0);
   const [selectedBottoms, setSelectedBottoms] = useState(0);
   const [selectedShoes, setSelectedShoes] = useState(0);
 
+  const [filteredTops, setFilteredTops] = useState(null);
+  const [filteredBottoms, setFilteredBottoms] = useState(null);
+  const [filteredShoes, setFilteredShoes] = useState(null);
+
   useEffect(() => {
     fetch(getWeatherAPIURL())
       .then((res) => res.json())
       .then((data) => {
-        //console.log(data);
         setWeather(data["current_weather"]["temperature"]);
         setWeatherCode(data["current_weather"]["weathercode"]);
+        handleInitialData();
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [formality]);
 
   useEffect(() => {
     if (closet) {
       handleFavorite();
     }
-  }, [closet]);
+  }, [closet, formality]);
 
   useEffect(() => {
     handleFavorite();
   }, [selectedTop, selectedBottoms, selectedShoes]);
 
+  const handleInitialData = () => {
+    if (!formality) setFormality("formal");
+    if (closet) {
+      const tops = closet[user.uid].tops;
+      const bottoms = closet[user.uid].bottoms;
+      const shoes = closet[user.uid].shoes;
+      setFilteredTops(filterClothesBasedOnWeather(tops, formality));
+      setFilteredBottoms(filterClothesBasedOnWeather(bottoms, formality));
+      setFilteredShoes(filterClothesBasedOnWeather(shoes, formality));
+    }
+  };
+
   const handleFavorite = () => {
+    if (!verifyAllFilters()) return;
     if (closet) {
       const selectedOutfit = {
-        tops: Object.values(closet[user.uid].tops)[selectedTop],
-        bottoms: Object.values(closet[user.uid].bottoms)[selectedBottoms],
-        shoes: Object.values(closet[user.uid].shoes)[selectedShoes],
+        tops: Object.values(filteredTops)[selectedTop],
+        bottoms: Object.values(filteredBottoms)[selectedBottoms],
+        shoes: Object.values(filteredShoes)[selectedShoes],
       };
 
       let inFav = false;
@@ -76,11 +90,6 @@ const Build = () => {
       });
       setFavorite(inFav);
     }
-  };
-
-  const handleFormality = (e) => {
-    setFormality(e);
-    console.log(e);
   };
 
   const handleSelectedTop = (selectedIndex) => {
@@ -102,9 +111,9 @@ const Build = () => {
     } else {
       const uid = uuidv4();
       const favorites = {
-        tops: Object.values(closet[user.uid].tops)[selectedTop],
-        bottoms: Object.values(closet[user.uid].bottoms)[selectedBottoms],
-        shoes: Object.values(closet[user.uid].shoes)[selectedShoes],
+        tops: Object.values(filteredTops)[selectedTop],
+        bottoms: Object.values(filteredBottoms)[selectedBottoms],
+        shoes: Object.values(filteredShoes)[selectedShoes],
         times: 0,
       };
       updateData({ ["/closet/" + user.uid + "/favorites/" + uid]: favorites });
@@ -116,7 +125,7 @@ const Build = () => {
     let filteredClothes = new Object();
     for (const key in clothes) {
       clothes[key].weather.forEach(function (item, index) {
-        if (item === weatherType && clothes[key].formality == formality) {
+        if (item === weatherType && clothes[key].formality === formality) {
           filteredClothes[key] = clothes[key];
         }
       });
@@ -124,8 +133,28 @@ const Build = () => {
     return filteredClothes;
   };
 
+  const setShowAll = (type) => {
+    if (type === "tops") setFilteredTops(closet[user.uid].tops);
+    if (type === "bottoms") setFilteredBottoms(closet[user.uid].bottoms);
+    if (type === "shoes") setFilteredShoes(closet[user.uid].shoes);
+  };
+
+  const verifyAllFilters = () => {
+    if (!filteredTops || JSON.stringify(filteredTops) === "{}") return false;
+    if (!filteredBottoms || JSON.stringify(filteredBottoms) === "{}")
+      return false;
+    if (!filteredShoes || JSON.stringify(filteredShoes) === "{}") return false;
+    return true;
+  };
+
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
   if (!closet) return <h5 className="text-muted">Loading user closet...</h5>;
+  if (!filteredTops)
+    return <h5 className="text-muted">Loading user closet...</h5>;
+  if (!filteredBottoms)
+    return <h5 className="text-muted">Loading user closet...</h5>;
+  if (!filteredShoes)
+    return <h5 className="text-muted">Loading user closet...</h5>;
 
   return (
     <Container className="build-container">
@@ -143,7 +172,7 @@ const Build = () => {
               value="formal"
               variant={formality === "formal" ? "dark" : "light"}
               checked={formality === "formal"}
-              onChange={(e) => handleFormality(e.currentTarget.value)}
+              onChange={(e) => setFormality(e.currentTarget.value)}
             >
               Formal
             </ToggleButton>
@@ -155,7 +184,7 @@ const Build = () => {
               value="casual"
               variant={formality === "casual" ? "dark" : "light"}
               checked={formality === "casual"}
-              onChange={(e) => handleFormality(e.currentTarget.value)}
+              onChange={(e) => setFormality(e.currentTarget.value)}
             >
               Casual
             </ToggleButton>
@@ -171,60 +200,56 @@ const Build = () => {
       <Container className="build-clothes-container">
         <Container className="build-clothes-top">
           <ClothesCarousel
-            data={filterClothesBasedOnWeather(closet[user.uid].tops, formality)}
-            allData={closet[user.uid].tops}
+            data={filteredTops}
             type="tops"
             handleSelect={handleSelectedTop}
+            setShowAll={setShowAll}
             index={selectedTop}
           ></ClothesCarousel>
         </Container>
         <Container className="build-clothes-bottoms">
           <ClothesCarousel
-            data={filterClothesBasedOnWeather(
-              closet[user.uid].bottoms,
-              formality
-            )}
-            allData={closet[user.uid].bottoms}
+            data={filteredBottoms}
             type="bottoms"
             handleSelect={handleSelectedBottoms}
+            setShowAll={setShowAll}
             index={selectedBottoms}
           ></ClothesCarousel>
         </Container>
         <Container className="build-clothes-shoes">
           <ClothesCarousel
-            data={filterClothesBasedOnWeather(
-              closet[user.uid].shoes,
-              formality
-            )}
-            allData={closet[user.uid].shoes}
+            data={filteredShoes}
             type="shoes"
             handleSelect={handleSelectedShoes}
+            setShowAll={setShowAll}
             index={selectedShoes}
           ></ClothesCarousel>
         </Container>
       </Container>
-      <Container className="build-button-container">
-        <Button className="build-btn">I'll wear this today!</Button>
-        <Button
-          className="build-btn-fav"
-          variant="light"
-          onClick={() => {
-            saveSelectedFavourites();
-          }}
-        >
-          {isFavorite ? (
-            <>
-              <AiFillHeart size={20} />
-              {"  Favorited"}
-            </>
-          ) : (
-            <>
-              <AiOutlineHeart size={20} />
-              {"  Favorite this look"}
-            </>
-          )}{" "}
-        </Button>
-      </Container>
+      {verifyAllFilters() === true && (
+        <Container className="build-button-container">
+          <Button className="build-btn">I'll wear this today!</Button>
+          <Button
+            className="build-btn-fav"
+            variant="light"
+            onClick={() => {
+              saveSelectedFavourites();
+            }}
+          >
+            {isFavorite ? (
+              <>
+                <AiFillHeart size={20} />
+                {"  Favorited"}
+              </>
+            ) : (
+              <>
+                <AiOutlineHeart size={20} />
+                {"  Favorite this look"}
+              </>
+            )}{" "}
+          </Button>
+        </Container>
+      )}
     </Container>
   );
 };
