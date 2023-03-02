@@ -6,7 +6,7 @@ import OutfitCard from "../components/OutfitCard";
 import { useDbData } from "../utils/firebase";
 import getMockUser from "../utils/mockUser";
 
-const Favorites = () => {
+const Outfits = () => {
   const user = getMockUser();
   const [closet] = useDbData("/closet");
 
@@ -29,4 +29,4 @@ const Favorites = () => {
   );
 };
 
-export default Favorites;
+export default Outfits;

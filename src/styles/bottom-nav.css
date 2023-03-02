@@ -9,7 +9,7 @@
   z-index: 999999;
 }
 
-.favorites-btn-container,
+.outfits-btn-container,
 .home-btn-container,
 .closet-btn-container {
   padding-bottom: 5px;
@@ -29,14 +29,14 @@
   border-left: 1px solid #f1ecff;
 }
 
-.favorites-btn-container,
+.outfits-btn-container,
 .home-btn-container,
 .closet-btn-container {
   font-size: 10px;
   font-weight: bold;
 }
 
-.favorites-btn-container:hover,
+.outfits-btn-container:hover,
 .home-btn-container:hover,
 .closet-btn-container:hover {
   background-color: #f1ecff;

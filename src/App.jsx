@@ -4,15 +4,14 @@ import Header from "./components/layout/Header";
 import BottomNav from "./components/navigation/BottomNav";
 import Login from "./pages/auth/Login";
 import Closet from "./pages/Closet";
-import Favorites from "./pages/Favorites";
+import Outfits from "./pages/Outfits";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import AddClothes from "./pages/AddClothes";
 import getMockUser from "./utils/mockUser";
-import Landing from "./pages/Landing";
-import { useProfile } from "./utils/userProfile";
 import Build from "./pages/Build";
 import Suggest from "./pages/Suggest";
+import { useProfile } from "./utils/userProfile";
 
 const App = () => {
   //const [user] = useProfile();
@@ -80,12 +79,12 @@ const App = () => {
           }
         />
         <Route
-          path="/favorites"
+          path="/outfits"
           element={
             user ? (
               <>
                 <Header />
-                <Favorites />
+                <Outfits />
                 <BottomNav />
               </>
             ) : (
