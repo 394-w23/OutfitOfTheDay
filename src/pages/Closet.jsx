@@ -14,8 +14,8 @@ const Closet = () => {
   const [option, setOption] = useState("Tops");
   const [filter, setFilter] = useState(null);
   const [weatherFilter, setWeatherFilter] = useState(null);
-  const [typeFilter, setTypeFilter] = useState(null);
-  const weatherOptions = ["Cold", "Warm", "Rainy", "Sunny"];
+  const [typeFilter, setTypeFilter] = useState([]);
+  const weatherOptions = ["cold", "warm", "rainy", "sunny"];
 
   const handleFilter = (e) => {
     if (e === "Tops") {
@@ -42,32 +42,41 @@ const Closet = () => {
   };
 
   const handleWeather = (weather) => {
-    if (typeFilter === weather) {
+    let types = [...typeFilter];
+
+    if (types.includes(weather)) {
+      types = types.filter((type) => type !== weather);
+    } else {
+      types = [...typeFilter, weather];
+    }
+
+    if (types.length === 0) {
       setWeatherFilter(filter);
-      setTypeFilter(null);
+      setTypeFilter([]);
       return;
     }
 
-    let weatherType = weather.toLowerCase();
     let filteredClothes = new Object();
     for (const key in filter) {
       filter[key].weather.forEach(function (item, index) {
-        if (item.includes(weatherType)) {
+        if (types.includes(item)) {
           filteredClothes[key] = filter[key];
         }
       });
     }
+
     if (filter === null) {
       let top = closet[user.uid].tops;
       for (const key in top) {
         top[key].weather.forEach(function (item, index) {
-          if (item.includes(weatherType)) {
+          if (types.includes(item)) {
             filteredClothes[key] = top[key];
           }
         });
       }
     }
-    setTypeFilter(weather);
+
+    setTypeFilter(types);
     setWeatherFilter(filteredClothes);
   };
 
@@ -113,13 +122,14 @@ const Closet = () => {
             key={idx}
             variant="light"
             className={
-              typeFilter === weather
+              typeFilter.includes(weather)
                 ? "weather-filter-active"
                 : "filter-weather-button"
             }
-            onClick={(e) => handleWeather(weather)}
+            onClick={() => handleWeather(weather)}
           >
-            {weather}
+            {weather.charAt(0).toUpperCase()}
+            {weather.slice(1)}
           </Button>
         ))}
       </Container>
