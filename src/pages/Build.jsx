@@ -129,12 +129,12 @@ const Build = () => {
 
   return (
     <Container className="build-container">
-      <Container className="mt-1">
+      <Container className="build-back-arrow">
         <IoMdArrowBack size={20} onClick={() => navigate("/")} />
       </Container>
       <Container className="build-header-container">
         <Container className="build-header-toggle">
-          <ButtonGroup>
+          <ButtonGroup className="formality-toggle">
             <ToggleButton
               id="radio-formal"
               size="sm"
@@ -180,7 +180,10 @@ const Build = () => {
         </Container>
         <Container className="build-clothes-bottoms">
           <ClothesCarousel
-            data={filterClothesBasedOnWeather(closet[user.uid].bottoms, formality)}
+            data={filterClothesBasedOnWeather(
+              closet[user.uid].bottoms,
+              formality
+            )}
             allData={closet[user.uid].bottoms}
             type="bottoms"
             handleSelect={handleSelectedBottoms}
@@ -189,7 +192,10 @@ const Build = () => {
         </Container>
         <Container className="build-clothes-shoes">
           <ClothesCarousel
-            data={filterClothesBasedOnWeather(closet[user.uid].shoes, formality)}
+            data={filterClothesBasedOnWeather(
+              closet[user.uid].shoes,
+              formality
+            )}
             allData={closet[user.uid].shoes}
             type="shoes"
             handleSelect={handleSelectedShoes}

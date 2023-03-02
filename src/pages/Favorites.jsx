@@ -27,7 +27,7 @@ const Favorites = () => {
       <h4 className="closet-title">My Favorites</h4>
       {
         <Container>
-          <Row xs={2} md={4} className="g-1">
+          <Row xs={2} md={4}>
             {Object.entries(closet[user.uid].favorites).map(
               ([idx, clothes]) => (
                 <Col key={idx} onClick={() => handleShow(clothes)}>

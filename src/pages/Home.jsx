@@ -40,7 +40,7 @@ const Home = () => {
     <Container>
       <Container className="home-header-container">
         <Container className="home-header-title">
-          Happy {getDayOfWeek()} <br /> {user.displayName.split(" ")[0]}!
+          Happy {getDayOfWeek()} {user.displayName.split(" ")[0]}!
         </Container>
         <Container className="home-header-weather">
           <WeatherHeader
@@ -69,12 +69,12 @@ const Home = () => {
           </p>
         </Container>
       </Container>
-      <Container className="mt-3 home-favorites-container">
+      <Container className="home-favorites-container">
         <Container className="home-favorites-title">
           <h6>Quick Select: Favorites</h6>
         </Container>
         <Container className="home-favorites-panel">
-          <Row xs={2} md={2} className="g-1">
+          <Row xs={2} md={2}>
             {Object.entries(closet[user.uid].favorites)
               .slice(0, 2)
               .map(([idx, clothes]) => (
