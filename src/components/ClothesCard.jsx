@@ -5,7 +5,7 @@ import { BsFillTrashFill } from "react-icons/bs";
 import { useDbData, useDbUpdate } from "../utils/firebase";
 import getMockUser from "../utils/mockUser";
 
-const ClothesCard = ({ clothes, idx, bottoms, option }) => {
+const ClothesCard = ({ clothes, idx, bottoms, option, deletePiece }) => {
   const user = getMockUser();
   const [closet] = useDbData("/closet");
   const [updateData] = useDbUpdate("/");
@@ -13,6 +13,7 @@ const ClothesCard = ({ clothes, idx, bottoms, option }) => {
   const favOptions = ["tops", "bottoms", "shoes"];
 
   const removePiece = (idx) => {
+    deletePiece(idx);
     updateData({
       ["/closet/" + user.uid + "/" + option.toLowerCase() + "/" + idx]: null,
     });

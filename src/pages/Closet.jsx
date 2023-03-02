@@ -81,6 +81,19 @@ const Closet = () => {
     }
   };
 
+  const deletePiece = (idx) => {
+    if (weatherFilter) {
+      let filteredClothes = new Object();
+      for (const key in weatherFilter) {
+        if (key !== idx) {
+          filteredClothes[key] = weatherFilter[key];
+        }
+      }
+      setFilter(filteredClothes);
+      setWeatherFilter(filteredClothes);
+    }
+  };
+
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
   if (!closet) return <h5 className="text-muted">Loading user closet...</h5>;
 
@@ -124,6 +137,7 @@ const Closet = () => {
                   idx={idx}
                   bottoms={option === "Bottoms" ? true : false}
                   option={option}
+                  deletePiece={deletePiece}
                 />
               </Col>
             ))}
