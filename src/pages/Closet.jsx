@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ClothesCard from "../components/ClothesCard";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import { useDbData } from "../utils/firebase";
 import getMockUser from "../utils/mockUser";
-import { Button } from "react-bootstrap";
 
 const Closet = () => {
   const user = getMockUser();

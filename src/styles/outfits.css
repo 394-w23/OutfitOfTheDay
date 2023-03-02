@@ -1,4 +1,10 @@
-.favorites-card-container {
+.outfits-checkbox-container {
+  margin-top: 5px;
+  color: #555555;
+  font-size: 14px;
+}
+
+.outfits-card-container {
   cursor: pointer;
   justify-content: center;
   text-align: center;
@@ -8,27 +14,19 @@
   padding: 0;
 }
 
-.favorites-card-clothes {
+.outfits-card-clothes {
   display: flex;
 }
 
-.favorites-top-shoes-container,
-.favorites-bottom-container,
-.favorites-top-container,
-.favorites-shoes-container {
+.outfits-top-shoes-container,
+.outfits-bottom-container,
+.outfits-top-container,
+.outfits-shoes-container {
   margin: 0;
   padding: 0;
 }
 
-/* .favorites-top-shoes-container {
-  background-color: aqua;
-}
-
-.favorites-bottom-container {
-  background-color: red;
-} */
-
-.favorites-card-image {
+.outfits-card-image {
   padding: 3px;
   aspect-ratio: 1 / 1;
   width: 10vh;
@@ -37,7 +35,7 @@
   display: block;
 }
 
-.favorites-card-image-bottom {
+.outfits-card-image-bottom {
   padding: 3px;
   aspect-ratio: 1 / 1.7;
   width: 9vh;
@@ -46,7 +44,7 @@
   display: block;
 }
 
-.favorites-card-image-shoes {
+.outfits-card-image-shoes {
   padding: 3px;
   aspect-ratio: 1 / 1;
   width: 5vh;
@@ -55,7 +53,7 @@
   display: block;
 }
 
-.big-favorites-card-image {
+.big-outfits-card-image {
   padding: 5px;
   aspect-ratio: 1 / 1;
   width: 22vh;
@@ -64,7 +62,7 @@
   display: block;
 }
 
-.big-favorites-card-image-bottom {
+.big-outfits-card-image-bottom {
   padding: 5px;
   aspect-ratio: 1 / 2;
   width: 18vh;
@@ -73,7 +71,7 @@
   display: block;
 }
 
-.big-favorites-card-image-shoes {
+.big-outfits-card-image-shoes {
   padding: 5px;
   aspect-ratio: 1 / 1;
   width: 15vh;
@@ -82,14 +80,14 @@
   display: block;
 }
 
-.favorites-card-footer {
+.outfits-card-footer {
   margin: 0;
   padding: 3px 0;
   justify-content: center;
   display: flex;
 }
 
-.favorites-card-frequency {
+.outfits-card-frequency {
   align-items: center;
   text-align: left;
   display: flex;
@@ -97,7 +95,7 @@
   font-size: 13px;
 }
 
-.favorites-card-heart {
+.outfits-card-heart {
   align-self: center;
   cursor: pointer;
   text-align: end;
