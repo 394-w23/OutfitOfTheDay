@@ -68,30 +68,6 @@ const Build = () => {
     }
   };
 
-  const handleFavorite = () => {
-    if (!verifyAllFilters()) return;
-    if (closet) {
-      const selectedOutfit = {
-        tops: Object.values(filteredTops)[selectedTop],
-        bottoms: Object.values(filteredBottoms)[selectedBottoms],
-        shoes: Object.values(filteredShoes)[selectedShoes],
-      };
-
-      let inFav = false;
-      Object.entries(closet[user.uid].favorites).map(([idx, favorite]) => {
-        if (
-          selectedOutfit.bottoms.url === favorite.bottoms.url &&
-          selectedOutfit.shoes.url === favorite.shoes.url &&
-          selectedOutfit.tops.url === favorite.tops.url
-        ) {
-          setFavIdx(idx);
-          inFav = true;
-        }
-      });
-      setFavorite(inFav);
-    }
-  };
-
   const handleSelectedTop = (selectedIndex) => {
     setSelectedTop(selectedIndex);
   };
@@ -104,23 +80,48 @@ const Build = () => {
     setSelectedShoes(selectedIndex);
   };
 
-  const saveSelectedFavourites = () => {
-    if (isFavorite) {
-      updateData({ ["/closet/" + user.uid + "/favorites/" + favIdx]: null });
-      setFavorite(false);
-    } else {
-      const uid = uuidv4();
-      const favorites = {
+  const handleFavorite = () => {
+    if (!verifyAllFilters()) return;
+    if (closet) {
+      const selectedOutfit = {
         tops: Object.values(filteredTops)[selectedTop],
         bottoms: Object.values(filteredBottoms)[selectedBottoms],
         shoes: Object.values(filteredShoes)[selectedShoes],
-        times: 0,
       };
-      updateData({ ["/closet/" + user.uid + "/favorites/" + uid]: favorites });
+
+      let inFav = false;
+      Object.entries(closet[user.uid].outfits).map(([idx, outfit]) => {
+        if (
+          selectedOutfit.bottoms.url === outfit.bottoms.url &&
+          selectedOutfit.shoes.url === outfit.shoes.url &&
+          selectedOutfit.tops.url === outfit.tops.url
+        ) {
+          if (outfit.isFavorite) {
+            inFav = true;
+            setFavIdx(idx);
+          }
+        }
+      });
+      setFavorite(inFav);
     }
   };
 
-  const saveSelectedOutfit = () => {
+  const saveSelectedFavourites = () => {
+    if (isFavorite) {
+      const outfit = closet[user.uid].outfits[favIdx];
+      updateData({
+        ["/closet/" + user.uid + "/outfits/" + favIdx]: {
+          ...outfit,
+          isFavorite: false,
+        },
+      });
+      setFavorite(false);
+    } else {
+      saveSelectedOutfit(true, false);
+    }
+  };
+
+  const saveSelectedOutfit = (isFavorite = false, redirect = true) => {
     if (closet) {
       let isFound = false;
       const selectedOutfit = {
@@ -139,7 +140,8 @@ const Build = () => {
             updateData({
               ["/closet/" + user.uid + "/outfits/" + idx]: {
                 ...outfit,
-                times: outfit.times + 1,
+                times: redirect ? outfit.times + 1 : outfit.times,
+                isFavorite: isFavorite,
               },
             });
           }
@@ -149,12 +151,14 @@ const Build = () => {
       if (!isFound) {
         const uid = uuidv4();
         selectedOutfit.times = 1;
-        selectedOutfit.isFavorite = false;
+        selectedOutfit.isFavorite = isFavorite;
         selectedOutfit.weather = weatherConditions.get(weatherCode);
         updateData({
           ["/closet/" + user.uid + "/outfits/" + uid]: selectedOutfit,
         });
       }
+
+      if (redirect) navigate("/outfits");
     }
   };
 
