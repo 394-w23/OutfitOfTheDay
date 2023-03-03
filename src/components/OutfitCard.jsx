@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import { AiFillHeart } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { TbHanger } from "react-icons/tb";
 import { useDbUpdate } from "../utils/firebase";
 import getMockUser from "../utils/mockUser";
@@ -19,59 +19,69 @@ const OutfitCard = ({ clothes, idx, big }) => {
     setShow(true);
   };
 
-  const removeFavorite = (idx) => {
+  const handleFavorite = () => {
     if (!idx) return;
-    updateData({ ["/closet/" + user.uid + "/favorites/" + idx]: null });
+    const isFavorite = clothes.isFavorite;
+    updateData({
+      ["/closet/" + user.uid + "/outfits/" + idx]: {
+        ...clothes,
+        isFavorite: !isFavorite,
+      },
+    });
   };
 
   return (
     <>
-      <Card className="mb-3 favorites-card-container">
+      <Card className="mb-3 outfits-card-container">
         <Container
-          className="favorites-card-clothes"
+          className="outfits-card-clothes"
           onClick={() => handleShow(clothes)}
         >
-          <Container className="favorites-top-shoes-container">
-            <Container className={"favorites-top-container"}>
+          <Container className="outfits-top-shoes-container">
+            <Container className={"outfits-top-container"}>
               <Card.Img
                 variant="top"
                 src={clothes.tops.url}
                 className={
-                  big ? "big-favorites-card-image" : "favorites-card-image"
+                  big ? "big-outfits-card-image" : "outfits-card-image"
                 }
               />
             </Container>
-            <Container className={"favorites-shoes-container"}>
+            <Container className={"outfits-shoes-container"}>
               <Card.Img
                 variant="top"
                 src={clothes.shoes.url}
                 className={
                   big
-                    ? "big-favorites-card-image-shoes"
-                    : "favorites-card-image-shoes"
+                    ? "big-outfits-card-image-shoes"
+                    : "outfits-card-image-shoes"
                 }
               />
             </Container>
           </Container>
-          <Container className={"favorites-bottom-container"}>
+          <Container className={"outfits-bottom-container"}>
             <Card.Img
               variant="top"
               src={clothes.bottoms.url}
               className={
                 big
-                  ? "big-favorites-card-image-bottom"
-                  : "favorites-card-image-bottom"
+                  ? "big-outfits-card-image-bottom"
+                  : "outfits-card-image-bottom"
               }
             />
           </Container>
         </Container>
-        <Container className="favorites-card-footer">
-          <Container className="favorites-card-frequency">
+        <Container className="outfits-card-footer">
+          <Container className="outfits-card-frequency">
             <TbHanger className="me-1" size={23} />
             {clothes.times}
           </Container>
-          <Container className="favorites-card-heart">
-            <AiFillHeart onClick={() => removeFavorite(idx)} size={23} />
+          <Container className="outfits-card-heart">
+            {clothes.isFavorite ? (
+              <AiFillHeart onClick={() => handleFavorite()} size={23} />
+            ) : (
+              <AiOutlineHeart onClick={() => handleFavorite()} size={23} />
+            )}
           </Container>
         </Container>
       </Card>

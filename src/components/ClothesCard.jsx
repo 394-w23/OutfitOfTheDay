@@ -10,19 +10,21 @@ const ClothesCard = ({ clothes, idx, bottoms, option, deletePiece }) => {
   const [closet] = useDbData("/closet");
   const [updateData] = useDbUpdate("/");
 
-  const favOptions = ["tops", "bottoms", "shoes"];
+  const clothesOptions = ["tops", "bottoms", "shoes"];
 
   const removePiece = (idx) => {
     deletePiece(idx);
     updateData({
       ["/closet/" + user.uid + "/" + option.toLowerCase() + "/" + idx]: null,
     });
-    if (closet && favOptions.includes(option.toLowerCase())) {
-      Object.entries(closet[user.uid].favorites).map(([ind, favorite]) => {
-        if (clothes.url === favorite[option.toLowerCase()].url) {
-          updateData({ ["/closet/" + user.uid + "/favorites/" + ind]: null });
-        }
-      });
+    if (closet && clothesOptions.includes(option.toLowerCase())) {
+      if (closet[user.uid].outfits) {
+        Object.entries(closet[user.uid].outfits).map(([ind, outfit]) => {
+          if (clothes.url === outfit[option.toLowerCase()].url) {
+            updateData({ ["/closet/" + user.uid + "/outfits/" + ind]: null });
+          }
+        });
+      }
     }
   };
 

@@ -68,30 +68,6 @@ const Build = () => {
     }
   };
 
-  const handleFavorite = () => {
-    if (!verifyAllFilters()) return;
-    if (closet) {
-      const selectedOutfit = {
-        tops: Object.values(filteredTops)[selectedTop],
-        bottoms: Object.values(filteredBottoms)[selectedBottoms],
-        shoes: Object.values(filteredShoes)[selectedShoes],
-      };
-
-      let inFav = false;
-      Object.entries(closet[user.uid].favorites).map(([idx, favorite]) => {
-        if (
-          selectedOutfit.bottoms.url === favorite.bottoms.url &&
-          selectedOutfit.shoes.url === favorite.shoes.url &&
-          selectedOutfit.tops.url === favorite.tops.url
-        ) {
-          setFavIdx(idx);
-          inFav = true;
-        }
-      });
-      setFavorite(inFav);
-    }
-  };
-
   const handleSelectedTop = (selectedIndex) => {
     setSelectedTop(selectedIndex);
   };
@@ -104,19 +80,84 @@ const Build = () => {
     setSelectedShoes(selectedIndex);
   };
 
-  const saveSelectedFavourites = () => {
-    if (isFavorite) {
-      updateData({ ["/closet/" + user.uid + "/favorites/" + favIdx]: null });
-      setFavorite(false);
-    } else {
-      const uid = uuidv4();
-      const favorites = {
+  const handleFavorite = () => {
+    if (verifyAllFilters()) {
+      const selectedOutfit = {
         tops: Object.values(filteredTops)[selectedTop],
         bottoms: Object.values(filteredBottoms)[selectedBottoms],
         shoes: Object.values(filteredShoes)[selectedShoes],
-        times: 0,
       };
-      updateData({ ["/closet/" + user.uid + "/favorites/" + uid]: favorites });
+
+      let inFav = false;
+      Object.entries(closet[user.uid].outfits).map(([idx, outfit]) => {
+        if (
+          selectedOutfit.bottoms.url === outfit.bottoms.url &&
+          selectedOutfit.shoes.url === outfit.shoes.url &&
+          selectedOutfit.tops.url === outfit.tops.url
+        ) {
+          if (outfit.isFavorite) {
+            inFav = true;
+            setFavIdx(idx);
+          }
+        }
+      });
+      setFavorite(inFav);
+    }
+  };
+
+  const saveSelectedFavourites = () => {
+    if (isFavorite) {
+      const outfit = closet[user.uid].outfits[favIdx];
+      updateData({
+        ["/closet/" + user.uid + "/outfits/" + favIdx]: {
+          ...outfit,
+          isFavorite: false,
+        },
+      });
+      setFavorite(false);
+    } else {
+      saveSelectedOutfit(true, false);
+    }
+  };
+
+  const saveSelectedOutfit = (isFavorite = false, redirect = true) => {
+    if (closet) {
+      let isFound = false;
+      const selectedOutfit = {
+        tops: Object.values(filteredTops)[selectedTop],
+        bottoms: Object.values(filteredBottoms)[selectedBottoms],
+        shoes: Object.values(filteredShoes)[selectedShoes],
+      };
+      if (closet[user.uid].outfits) {
+        Object.entries(closet[user.uid].outfits).map(([idx, outfit]) => {
+          if (
+            selectedOutfit.bottoms.url === outfit.bottoms.url &&
+            selectedOutfit.shoes.url === outfit.shoes.url &&
+            selectedOutfit.tops.url === outfit.tops.url
+          ) {
+            isFound = true;
+            updateData({
+              ["/closet/" + user.uid + "/outfits/" + idx]: {
+                ...outfit,
+                times: redirect ? outfit.times + 1 : outfit.times,
+                isFavorite: isFavorite,
+              },
+            });
+          }
+        });
+      }
+
+      if (!isFound) {
+        const uid = uuidv4();
+        selectedOutfit.times = 1;
+        selectedOutfit.isFavorite = isFavorite;
+        selectedOutfit.weather = weatherConditions.get(weatherCode);
+        updateData({
+          ["/closet/" + user.uid + "/outfits/" + uid]: selectedOutfit,
+        });
+      }
+
+      if (redirect) navigate("/outfits");
     }
   };
 
@@ -228,7 +269,9 @@ const Build = () => {
       </Container>
       {verifyAllFilters() === true && (
         <Container className="build-button-container">
-          <Button className="build-btn">I'll wear this today!</Button>
+          <Button className="build-btn" onClick={() => saveSelectedOutfit()}>
+            I'll wear this today!
+          </Button>
           <Button
             className="build-btn-fav"
             variant="light"

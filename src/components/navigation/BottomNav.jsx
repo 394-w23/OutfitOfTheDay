@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { HiOutlineHome, HiHome } from "react-icons/hi";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { RiLayout4Fill, RiLayout4Line } from "react-icons/ri";
 import { BiCloset } from "react-icons/bi";
 
 const BottomNav = () => {
@@ -11,8 +11,8 @@ const BottomNav = () => {
   const [active, setActive] = useState("home");
 
   useEffect(() => {
-    if (location.pathname === "/favorites") {
-      setActive("favorites");
+    if (location.pathname === "/outfits") {
+      setActive("outfits");
     } else if (location.pathname === "/closet") {
       setActive("closet");
     } else if (location.pathname === "/") {
@@ -24,20 +24,20 @@ const BottomNav = () => {
     <div className="bottom-container">
       <div
         className={
-          active === "favorites"
-            ? "favorites-btn-container active-container"
-            : "favorites-btn-container"
+          active === "outfits"
+            ? "outfits-btn-container active-container"
+            : "outfits-btn-container"
         }
-        onClick={() => navigate("/favorites")}
+        onClick={() => navigate("/outfits")}
       >
         <div className="info-container">
-          {active === "favorites" ? (
-            <AiFillHeart size={iconsSize} />
+          {active === "outfits" ? (
+            <RiLayout4Fill size={iconsSize} />
           ) : (
-            <AiOutlineHeart size={iconsSize} />
+            <RiLayout4Line size={iconsSize} />
           )}
           <br />
-          Favorites
+          Outfits
         </div>
       </div>
       <div
