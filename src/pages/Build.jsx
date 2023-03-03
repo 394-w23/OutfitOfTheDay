@@ -81,8 +81,7 @@ const Build = () => {
   };
 
   const handleFavorite = () => {
-    if (!verifyAllFilters()) return;
-    if (closet) {
+    if (verifyAllFilters()) {
       const selectedOutfit = {
         tops: Object.values(filteredTops)[selectedTop],
         bottoms: Object.values(filteredBottoms)[selectedBottoms],
