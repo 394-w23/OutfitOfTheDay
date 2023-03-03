@@ -144,6 +144,13 @@ const Outfits = () => {
             </h5>
           </Container>
         )}
+        {filter && Object.entries(filter).length === 0 && (
+          <Container className="mt-3">
+            <h5 className="text-center text-muted">
+              There are no outfits for the selected filter!
+            </h5>
+          </Container>
+        )}
         {isChecked && countFavorites() === 0 && (
           <Container className="mt-3">
             <h5 className="text-center text-muted">
