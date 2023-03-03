@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import { AiFillHeart } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { TbHanger } from "react-icons/tb";
 import { useDbUpdate } from "../utils/firebase";
 import getMockUser from "../utils/mockUser";
@@ -19,9 +19,15 @@ const OutfitCard = ({ clothes, idx, big }) => {
     setShow(true);
   };
 
-  const removeFavorite = (idx) => {
+  const handleFavorite = () => {
     if (!idx) return;
-    updateData({ ["/closet/" + user.uid + "/favorites/" + idx]: null });
+    const isFavorite = clothes.isFavorite;
+    updateData({
+      ["/closet/" + user.uid + "/outfits/" + idx]: {
+        ...clothes,
+        isFavorite: !isFavorite,
+      },
+    });
   };
 
   return (
@@ -71,7 +77,11 @@ const OutfitCard = ({ clothes, idx, big }) => {
             {clothes.times}
           </Container>
           <Container className="outfits-card-heart">
-            <AiFillHeart onClick={() => removeFavorite(idx)} size={23} />
+            {clothes.isFavorite ? (
+              <AiFillHeart onClick={() => handleFavorite()} size={23} />
+            ) : (
+              <AiOutlineHeart onClick={() => handleFavorite()} size={23} />
+            )}
           </Container>
         </Container>
       </Card>

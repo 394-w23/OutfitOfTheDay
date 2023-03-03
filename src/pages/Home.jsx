@@ -75,7 +75,7 @@ const Home = () => {
         </Container>
         <Container className="home-favorites-panel">
           <Row xs={2} md={2}>
-            {Object.entries(closet[user.uid].favorites)
+            {Object.entries(closet[user.uid].outfits)
               .slice(0, 2)
               .map(([idx, clothes]) => (
                 <Col key={idx}>

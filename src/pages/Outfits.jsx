@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -11,10 +11,14 @@ import getMockUser from "../utils/mockUser";
 const Outfits = () => {
   const user = getMockUser();
   const [closet] = useDbData("/closet");
-  const [weatherFilter, setWeatherFilter] = useState(null);
+  const [filter, setFilter] = useState(null);
   const [typeFilter, setTypeFilter] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
   const weatherOptions = ["cold", "warm", "rainy", "sunny"];
+
+  useEffect(() => {
+    handleFavoriteFilter();
+  }, [isChecked, closet]);
 
   const handleWeather = (weather) => {
     let types = [...typeFilter];
@@ -26,7 +30,7 @@ const Outfits = () => {
     }
 
     if (types.length === 0) {
-      setWeatherFilter(closet[user.uid].favorites);
+      setFilter(closet[user.uid].outfits);
       setTypeFilter([]);
       return;
     }
@@ -34,8 +38,34 @@ const Outfits = () => {
     setTypeFilter(types);
   };
 
-  const handleCheckFavorite = (e) => {
-    setIsChecked(e.target.checked);
+  const handleFavoriteFilter = () => {
+    if (closet) {
+      if (isChecked) {
+        let filteredOutfits = new Object();
+        const outfits = closet[user.uid].outfits;
+        for (const key in outfits) {
+          if (outfits[key].isFavorite) {
+            filteredOutfits[key] = outfits[key];
+          }
+        }
+        setFilter(filteredOutfits);
+      } else {
+        setFilter(closet[user.uid].outfits);
+      }
+    }
+  };
+
+  const countFavorites = () => {
+    if (closet) {
+      let count = 0;
+      const outfits = closet[user.uid].outfits;
+      for (const key in outfits) {
+        if (outfits[key].isFavorite) {
+          count += 1;
+        }
+      }
+      return count;
+    }
   };
 
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
@@ -67,18 +97,35 @@ const Outfits = () => {
             type="checkbox"
             inline
             label="Show favorites only"
-            onChange={(e) => handleCheckFavorite(e)}
+            onChange={(e) => setIsChecked(e.target.checked)}
           />
         </Form>
       </Container>
       <Container className="closet-cards-container">
-        <Row xs={2} md={4}>
-          {Object.entries(closet[user.uid].favorites).map(([idx, clothes]) => (
-            <Col key={idx}>
-              <OutfitCard clothes={clothes} idx={idx} />
-            </Col>
-          ))}
-        </Row>
+        {closet[user.uid].outfits ? (
+          <Row xs={2} md={4}>
+            {Object.entries(filter ? filter : closet[user.uid].outfits).map(
+              ([idx, clothes]) => (
+                <Col key={idx}>
+                  <OutfitCard clothes={clothes} idx={idx} />
+                </Col>
+              )
+            )}
+          </Row>
+        ) : (
+          <Container className="mt-3">
+            <h5 className="text-center text-muted">
+              There are no outfits in your closet!
+            </h5>
+          </Container>
+        )}
+        {isChecked && countFavorites() === 0 && (
+          <Container className="mt-3">
+            <h5 className="text-center text-muted">
+              There are no favorited outfits in your closet!
+            </h5>
+          </Container>
+        )}
       </Container>
     </Container>
   );

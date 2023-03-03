@@ -120,6 +120,44 @@ const Build = () => {
     }
   };
 
+  const saveSelectedOutfit = () => {
+    if (closet) {
+      let isFound = false;
+      const selectedOutfit = {
+        tops: Object.values(filteredTops)[selectedTop],
+        bottoms: Object.values(filteredBottoms)[selectedBottoms],
+        shoes: Object.values(filteredShoes)[selectedShoes],
+      };
+      if (closet[user.uid].outfits) {
+        Object.entries(closet[user.uid].outfits).map(([idx, outfit]) => {
+          if (
+            selectedOutfit.bottoms.url === outfit.bottoms.url &&
+            selectedOutfit.shoes.url === outfit.shoes.url &&
+            selectedOutfit.tops.url === outfit.tops.url
+          ) {
+            isFound = true;
+            updateData({
+              ["/closet/" + user.uid + "/outfits/" + idx]: {
+                ...outfit,
+                times: outfit.times + 1,
+              },
+            });
+          }
+        });
+      }
+
+      if (!isFound) {
+        const uid = uuidv4();
+        selectedOutfit.times = 1;
+        selectedOutfit.isFavorite = false;
+        selectedOutfit.weather = weatherConditions.get(weatherCode);
+        updateData({
+          ["/closet/" + user.uid + "/outfits/" + uid]: selectedOutfit,
+        });
+      }
+    }
+  };
+
   const filterClothesBasedOnWeather = (clothes, formality) => {
     const weatherType = weatherConditions.get(weatherCode);
     let filteredClothes = new Object();
@@ -228,7 +266,9 @@ const Build = () => {
       </Container>
       {verifyAllFilters() === true && (
         <Container className="build-button-container">
-          <Button className="build-btn">I'll wear this today!</Button>
+          <Button className="build-btn" onClick={() => saveSelectedOutfit()}>
+            I'll wear this today!
+          </Button>
           <Button
             className="build-btn-fav"
             variant="light"
