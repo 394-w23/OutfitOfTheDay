@@ -56,6 +56,10 @@ const Build = () => {
     handleFavorite();
   }, [selectedTop, selectedBottoms, selectedShoes]);
 
+  useEffect(() => {
+    handleFavorite();
+  }, [filteredTops, filteredBottoms, filteredShoes]);
+
   const handleInitialData = () => {
     if (!formality) setFormality("formal");
     if (closet) {
@@ -179,10 +183,6 @@ const Build = () => {
     if (type === "bottoms") setFilteredBottoms(closet[user.uid].bottoms);
     if (type === "shoes") setFilteredShoes(closet[user.uid].shoes);
   };
-
-  useEffect(() => {
-    handleFavorite();
-  }, [filteredTops, filteredBottoms, filteredShoes]);
 
   const verifyAllFilters = () => {
     if (!filteredTops || JSON.stringify(filteredTops) === "{}") return false;

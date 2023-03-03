@@ -76,6 +76,8 @@ const Home = () => {
         <Container className="home-favorites-panel">
           <Row xs={2} md={2}>
             {Object.entries(closet[user.uid].outfits)
+              .filter(([idx, outfit]) => outfit.isFavorite === true)
+              .sort((a, b) => b[1].times - a[1].times)
               .slice(0, 2)
               .map(([idx, clothes]) => (
                 <Col key={idx}>
