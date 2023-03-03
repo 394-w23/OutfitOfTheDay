@@ -28,7 +28,9 @@ const BottomNav = () => {
             ? "outfits-btn-container active-container"
             : "outfits-btn-container"
         }
-        onClick={() => navigate("/outfits")}
+        onClick={() =>
+          navigate("/outfits", { state: { showFavorites: false } })
+        }
       >
         <div className="info-container">
           {active === "outfits" ? (

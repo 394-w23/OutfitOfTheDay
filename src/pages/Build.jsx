@@ -157,7 +157,7 @@ const Build = () => {
         });
       }
 
-      if (redirect) navigate("/outfits");
+      if (redirect) navigate("/outfits", { state: { showFavorites: false } });
     }
   };
 

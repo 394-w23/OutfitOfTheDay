@@ -7,13 +7,19 @@ import Form from "react-bootstrap/Form";
 import OutfitCard from "../components/OutfitCard";
 import { useDbData } from "../utils/firebase";
 import getMockUser from "../utils/mockUser";
+import { useLocation } from "react-router-dom";
 
 const Outfits = () => {
   const user = getMockUser();
   const [closet] = useDbData("/closet");
   const [filter, setFilter] = useState(null);
   const [typeFilter, setTypeFilter] = useState([]);
-  const [isChecked, setIsChecked] = useState(false);
+  const { state } = useLocation();
+  const { showFavorites } = state;
+
+  const [isChecked, setIsChecked] = useState(
+    showFavorites !== undefined ? showFavorites : false
+  );
   const weatherOptions = ["cold", "warm", "rainy", "sunny"];
 
   useEffect(() => {
@@ -97,6 +103,7 @@ const Outfits = () => {
             type="checkbox"
             inline
             label="Show favorites only"
+            defaultChecked={showFavorites ? true : false}
             onChange={(e) => setIsChecked(e.target.checked)}
           />
         </Form>

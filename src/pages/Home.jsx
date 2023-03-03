@@ -84,7 +84,13 @@ const Home = () => {
           </Row>
         </Container>
         <Container className="home-favorites-footer">
-          <h6>View All Favorites for Today</h6>
+          <h6
+            onClick={() =>
+              navigate("/outfits", { state: { showFavorites: true } })
+            }
+          >
+            View All Favorites for Today
+          </h6>
         </Container>
       </Container>
       {/*       <Container className="mt-3 home-closet-container">
