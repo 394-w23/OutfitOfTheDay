@@ -180,6 +180,10 @@ const Build = () => {
     if (type === "shoes") setFilteredShoes(closet[user.uid].shoes);
   };
 
+  useEffect(() => {
+    handleFavorite();
+  }, [filteredTops, filteredBottoms, filteredShoes]);
+
   const verifyAllFilters = () => {
     if (!filteredTops || JSON.stringify(filteredTops) === "{}") return false;
     if (!filteredBottoms || JSON.stringify(filteredBottoms) === "{}")
