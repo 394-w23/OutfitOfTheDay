@@ -27,6 +27,8 @@ const Outfits = () => {
   }, [isChecked, closet]);
 
   const handleWeather = (weather) => {
+    if (!closet[user.uid].outfits) return;
+
     let types = [...typeFilter];
 
     if (types.includes(weather)) {
@@ -37,10 +39,26 @@ const Outfits = () => {
 
     if (types.length === 0) {
       setFilter(closet[user.uid].outfits);
+      setIsChecked(false);
       setTypeFilter([]);
       return;
     }
 
+    let filteredOutfits = new Object();
+    const outfits = closet[user.uid].outfits;
+    for (const key in outfits) {
+      if (isChecked) {
+        if (types.includes(outfits[key].weather) && outfits[key].isFavorite) {
+          filteredOutfits[key] = outfits[key];
+        }
+      } else {
+        if (types.includes(outfits[key].weather)) {
+          filteredOutfits[key] = outfits[key];
+        }
+      }
+    }
+
+    setFilter(filteredOutfits);
     setTypeFilter(types);
   };
 
@@ -103,7 +121,7 @@ const Outfits = () => {
             type="checkbox"
             inline
             label="Show favorites only"
-            defaultChecked={showFavorites ? true : false}
+            checked={isChecked}
             onChange={(e) => setIsChecked(e.target.checked)}
           />
         </Form>
