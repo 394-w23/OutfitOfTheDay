@@ -26,7 +26,6 @@ const Home = () => {
     fetch(getWeatherAPIURL())
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setWeather(data["current_weather"]["temperature"]);
         setWeatherCode(data["current_weather"]["weathercode"]);
       })
@@ -79,7 +78,7 @@ const Home = () => {
               .slice(0, 2)
               .map(([idx, clothes]) => (
                 <Col key={idx}>
-                  <OutfitCard clothes={clothes} idx={null} />
+                  <OutfitCard clothes={clothes} idx={null} modalShown={false} />
                 </Col>
               ))}
           </Row>

@@ -7,7 +7,7 @@ import { useDbUpdate } from "../utils/firebase";
 import getMockUser from "../utils/mockUser";
 import OutfitModal from "./OutfitModal";
 
-const OutfitCard = ({ clothes, idx, big }) => {
+const OutfitCard = ({ clothes, idx, big, modalShown }) => {
   const user = getMockUser();
   const [updateData] = useDbUpdate("/");
   const [show, setShow] = useState(false);
@@ -15,8 +15,10 @@ const OutfitCard = ({ clothes, idx, big }) => {
 
   const handleClose = () => setShow(false);
   const handleShow = (piece) => {
-    setSelectedPiece(piece);
-    setShow(true);
+    if (!modalShown) {
+      setSelectedPiece(piece);
+      setShow(true);
+    }
   };
 
   const handleFavorite = () => {

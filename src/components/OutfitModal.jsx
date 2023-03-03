@@ -24,11 +24,12 @@ const OutfitModal = ({ show, handleClose, clothes }) => {
         <Modal centered show={show} onHide={handleClose}>
           <Modal.Header closeButton className="modal-header">
             <Modal.Title>
-              You've worn this look {clothes.times} times!
+              You've worn this look {clothes.times}{" "}
+              {clothes.times === 1 ? "time" : "times"}!
             </Modal.Title>
           </Modal.Header>
           <Modal.Body className="modal-body">
-            <OutfitCard clothes={clothes} idx={null} big />
+            <OutfitCard clothes={clothes} idx={null} modalShown={true} big />
           </Modal.Body>
           <Modal.Footer className="modal-footer">
             <Button onClick={handleWearBtn}>I'll wear this today!</Button>

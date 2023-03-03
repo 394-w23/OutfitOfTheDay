@@ -107,7 +107,7 @@ const Outfits = () => {
             {Object.entries(filter ? filter : closet[user.uid].outfits).map(
               ([idx, clothes]) => (
                 <Col key={idx}>
-                  <OutfitCard clothes={clothes} idx={idx} />
+                  <OutfitCard clothes={clothes} idx={idx} modalShown={false} />
                 </Col>
               )
             )}
