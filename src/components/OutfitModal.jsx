@@ -4,11 +4,17 @@ import Container from "react-bootstrap/Container";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import OutfitCard from "./OutfitCard";
+import { useDbUpdate } from "../utils/firebase";
+import getTodaysDate from "../utils/todayDate";
+import getMockUser from "../utils/mockUser";
 
-const OutfitModal = ({ show, handleClose, clothes }) => {
+const OutfitModal = ({ show, handleClose, clothes, idx }) => {
+  const user = getMockUser();
+  const [updateData] = useDbUpdate("/");
   const navigate = useNavigate();
 
   const handleWearBtn = () => {
+    saveSelectedOutfit();
     navigate("/");
     handleClose();
   };
@@ -16,6 +22,24 @@ const OutfitModal = ({ show, handleClose, clothes }) => {
   const handleBuildBtn = () => {
     navigate("/build");
     handleClose();
+  };
+
+  const saveSelectedOutfit = () => {
+    updateData({
+      ["/closet/" + user.uid + "/outfits/" + idx]: {
+        ...clothes,
+        times: clothes.times + 1,
+      },
+    });
+    updateData({
+      ["/closet/" + user.uid + "/todays/" + idx]: {
+        ...clothes,
+        times: clothes.times + 1,
+      },
+    });
+    updateData({
+      ["/closet/" + user.uid + "/lastWorn"]: getTodaysDate(),
+    });
   };
 
   return (
