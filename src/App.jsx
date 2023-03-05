@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/layout/Header";
 import BottomNav from "./components/navigation/BottomNav";
@@ -11,12 +11,30 @@ import AddClothes from "./pages/AddClothes";
 import getMockUser from "./utils/mockUser";
 import Build from "./pages/Build";
 import Suggest from "./pages/Suggest";
+import { useDbData, useDbUpdate } from "./utils/firebase";
+import getTodaysDate from "./utils/todayDate";
 import { useProfile } from "./utils/userProfile";
 
 const App = () => {
   //const [user] = useProfile();
   const user = getMockUser();
-  const [step, setStep] = useState(0);
+  const [closet] = useDbData("/closet");
+  const [updateData] = useDbUpdate("/");
+
+  useEffect(() => {
+    if (closet) {
+      if (closet[user.uid].todays) {
+        if (closet[user.uid].lastWorn < getTodaysDate()) {
+          updateData({
+            ["/closet/" + user.uid + "/todays/"]: null,
+          });
+          updateData({
+            ["/closet/" + user.uid + "/lastWorn"]: null,
+          });
+        }
+      }
+    }
+  }, [closet]);
 
   return (
     <BrowserRouter>

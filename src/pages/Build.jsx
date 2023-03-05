@@ -13,6 +13,7 @@ import getMockUser from "../utils/mockUser";
 import getWeatherAPIURL from "../utils/userLocation";
 import WeatherHeader from "../components/WeatherHeader";
 import { weatherConditions } from "../utils/weather";
+import getTodaysDate from "../utils/todayDate.js";
 import { useProfile } from "../utils/userProfile";
 
 const Build = () => {
@@ -147,6 +148,16 @@ const Build = () => {
                 isFavorite: isFavorite,
               },
             });
+            updateData({
+              ["/closet/" + user.uid + "/todays/" + idx]: {
+                ...outfit,
+                times: redirect ? outfit.times + 1 : outfit.times,
+                isFavorite: isFavorite,
+              },
+            });
+            updateData({
+              ["/closet/" + user.uid + "/lastWorn"]: getTodaysDate(),
+            });
           }
         });
       }
@@ -159,9 +170,15 @@ const Build = () => {
         updateData({
           ["/closet/" + user.uid + "/outfits/" + uid]: selectedOutfit,
         });
+        updateData({
+          ["/closet/" + user.uid + "/todays/" + uid]: selectedOutfit,
+        });
+        updateData({
+          ["/closet/" + user.uid + "/lastWorn"]: getTodaysDate(),
+        });
       }
 
-      if (redirect) navigate("/outfits", { state: { showFavorites: false } });
+      if (redirect) navigate("/");
     }
   };
 

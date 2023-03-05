@@ -27,7 +27,7 @@
 }
 
 .outfits-card-image {
-  padding: 3px;
+  padding: 2px;
   aspect-ratio: 1 / 1;
   width: 10vh;
   height: auto;
@@ -36,7 +36,7 @@
 }
 
 .outfits-card-image-bottom {
-  padding: 3px;
+  padding: 2px;
   aspect-ratio: 1 / 1.7;
   width: 9vh;
   height: auto;
@@ -45,7 +45,7 @@
 }
 
 .outfits-card-image-shoes {
-  padding: 3px;
+  padding: 2px;
   aspect-ratio: 1 / 1;
   width: 5vh;
   height: auto;
@@ -99,4 +99,33 @@
   align-self: center;
   cursor: pointer;
   text-align: end;
+}
+
+@media (min-width: 390px) {
+  .outfits-card-image {
+    padding: 3px;
+    aspect-ratio: 1 / 1;
+    width: 7vh;
+    height: auto;
+    margin: auto;
+    display: block;
+  }
+
+  .outfits-card-image-bottom {
+    padding: 3px;
+    aspect-ratio: 1 / 1.7;
+    width: 6vh;
+    height: auto;
+    margin: auto;
+    display: block;
+  }
+
+  .outfits-card-image-shoes {
+    padding: 3px;
+    aspect-ratio: 1 / 1;
+    width: 3vh;
+    height: auto;
+    margin: auto;
+    display: block;
+  }
 }

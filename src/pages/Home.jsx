@@ -34,7 +34,7 @@ const Home = () => {
 
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
   if (!closet) return <h5 className="text-muted">Loading user closet...</h5>;
-  if (!weatherCode) return <h5 className="text-muted">Loading weather...</h5>;
+  //if (!weatherCode) return <h5 className="text-muted">Loading weather...</h5>;
 
   return (
     <Container>
@@ -92,29 +92,30 @@ const Home = () => {
               navigate("/outfits", { state: { showFavorites: true } })
             }
           >
-            View All Favorites for Today
+            View All Favorites
           </h6>
         </Container>
       </Container>
-      {/*       <Container className="mt-3 home-closet-container">
-        <Container className="home-closet-title">
-          <h6>Back of the Closet Pick</h6>
-          <BsInfoCircleFill size={16} />
-        </Container>
-        <Container className="mt-2 home-closet-information">
-          <Container className="home-closet-image">
-            <Image src="https://previews.123rf.com/images/oligliya/oligliya1712/oligliya171200005/90999328-ilustraci%C3%B3n-de-vector-de-dibujos-animados-de-muebles.jpg" />
+      {closet[user.uid].todays && (
+        <Container className="home-favorites-container">
+          <Container className="home-favorites-title">
+            {Object.entries(closet[user.uid].todays).length <= 1 ? (
+              <h6>Today's Outfit</h6>
+            ) : (
+              <h6>Today's Outfits</h6>
+            )}
           </Container>
-          <Container className="home-closet-buttons">
-            <Container>
-              <h6>Last worn 7 months ago</h6>
-            </Container>
-            <Container>
-              <Button>Complete Outfit</Button>
-            </Container>
+          <Container className="home-favorites-panel">
+            <Row xs={2} md={2}>
+              {Object.entries(closet[user.uid].todays).map(([idx, clothes]) => (
+                <Col key={idx}>
+                  <OutfitCard clothes={clothes} idx={null} modalShown={false} />
+                </Col>
+              ))}
+            </Row>
           </Container>
         </Container>
-      </Container> */}
+      )}
     </Container>
   );
 };
