@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiOutlinePlus } from "react-icons/ai";
-import { BsShuffle, BsInfoCircleFill } from "react-icons/bs";
+import { BsShuffle } from "react-icons/bs";
 import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
-import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useDbData } from "../utils/firebase";
@@ -61,7 +59,7 @@ const Home = () => {
         </Container>
         <Container
           className="home-suggest-button"
-          //onClick={() => navigate("/suggest")}
+          onClick={() => navigate("/suggest")}
         >
           <BsShuffle size={24} />
           <p>

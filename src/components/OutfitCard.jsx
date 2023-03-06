@@ -15,7 +15,7 @@ const OutfitCard = ({ clothes, idx, big, modalShown }) => {
 
   const handleClose = () => setShow(false);
   const handleShow = (piece) => {
-    if (!modalShown) {
+    if (modalShown) {
       setSelectedPiece(piece);
       setShow(true);
     }

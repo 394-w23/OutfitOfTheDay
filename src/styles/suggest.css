@@ -1,0 +1,17 @@
+.suggest-casual-container {
+  margin: 0;
+  padding: 0;
+}
+
+.suggest-formal-container {
+  margin: 0;
+  padding: 0;
+}
+
+.suggest-casual-container h6,
+.suggest-formal-container h6 {
+  color: #555555;
+  font-size: 18px;
+  font-weight: bold;
+  font-style: italic;
+}

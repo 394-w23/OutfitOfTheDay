@@ -7,16 +7,14 @@ import { IoMdArrowBack } from "react-icons/io";
 import ClothesCarousel from "../components/Carousel";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import ToggleButton from "react-bootstrap/ToggleButton";
 import { useDbData, useDbUpdate } from "../utils/firebase";
 import getMockUser from "../utils/mockUser";
 import getWeatherAPIURL from "../utils/userLocation";
 import WeatherHeader from "../components/WeatherHeader";
 import { weatherConditions } from "../utils/weather";
 import getTodaysDate from "../utils/todayDate.js";
-import { useProfile } from "../utils/userProfile";
 import FilterModal from "../components/FilterModal";
+import { useProfile } from "../utils/userProfile";
 
 const Build = () => {
   const navigate = useNavigate();

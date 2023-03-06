@@ -53,7 +53,7 @@ const OutfitModal = ({ show, handleClose, clothes, idx }) => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body className="modal-body">
-            <OutfitCard clothes={clothes} idx={null} modalShown={true} big />
+            <OutfitCard clothes={clothes} idx={null} modalShown={false} big />
           </Modal.Body>
           <Modal.Footer className="outfit-modal-footer">
             <Button onClick={handleWearBtn}>I'll wear this today!</Button>
