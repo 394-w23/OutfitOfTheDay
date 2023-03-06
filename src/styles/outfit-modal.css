@@ -7,21 +7,21 @@
   padding-bottom: 0px;
 }
 
-.modal-footer {
+.outfit-modal-footer {
   border: none;
   display: block;
   width: 100%;
   text-align: center;
 }
 
-.modal-footer h6 {
+.outfit-modal-footer h6 {
   cursor: pointer;
   color: #555555;
   font-size: 13px;
   text-decoration: underline;
 }
 
-.modal-footer button {
+.outfit-modal-footer button {
   width: 100%;
   margin-bottom: 15px;
   font-size: 16px;
@@ -30,7 +30,7 @@
   border-color: #5d5fef;
 }
 
-.modal-footer button:hover {
+.outfit-modal-footer button:hover {
   color: #5d5fef;
   background-color: white;
   border-color: #5d5fef;

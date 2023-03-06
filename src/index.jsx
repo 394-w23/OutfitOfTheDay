@@ -12,6 +12,7 @@ import "./styles/bottom-nav.css";
 import "./styles/carousel.css";
 import "./styles/clothes-card.css";
 import "./styles/outfit-modal.css";
+import "./styles/filter-modal.css";
 import "./styles/outfits.css";
 import "./styles/add-clothes.css";
 import "./styles/landing-page.css";

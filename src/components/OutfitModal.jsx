@@ -55,7 +55,7 @@ const OutfitModal = ({ show, handleClose, clothes, idx }) => {
           <Modal.Body className="modal-body">
             <OutfitCard clothes={clothes} idx={null} modalShown={true} big />
           </Modal.Body>
-          <Modal.Footer className="modal-footer">
+          <Modal.Footer className="outfit-modal-footer">
             <Button onClick={handleWearBtn}>I'll wear this today!</Button>
             <Container onClick={handleBuildBtn}>
               <h6>Build a look starting with this</h6>

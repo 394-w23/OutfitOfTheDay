@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { GoSettings } from "react-icons/go";
 import { IoMdArrowBack } from "react-icons/io";
 import ClothesCarousel from "../components/Carousel";
 import Container from "react-bootstrap/Container";
@@ -15,6 +16,7 @@ import WeatherHeader from "../components/WeatherHeader";
 import { weatherConditions } from "../utils/weather";
 import getTodaysDate from "../utils/todayDate.js";
 import { useProfile } from "../utils/userProfile";
+import FilterModal from "../components/FilterModal";
 
 const Build = () => {
   const navigate = useNavigate();
@@ -35,6 +37,8 @@ const Build = () => {
   const [filteredTops, setFilteredTops] = useState(null);
   const [filteredBottoms, setFilteredBottoms] = useState(null);
   const [filteredShoes, setFilteredShoes] = useState(null);
+
+  const [show, setShow] = useState(true);
 
   useEffect(() => {
     fetch(getWeatherAPIURL())
@@ -60,6 +64,9 @@ const Build = () => {
   useEffect(() => {
     handleFavorite();
   }, [filteredTops, filteredBottoms, filteredShoes]);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleInitialData = () => {
     if (!formality) setFormality("formal");
@@ -314,6 +321,11 @@ const Build = () => {
           </Button>
         </Container>
       )}
+      <FilterModal
+        show={show}
+        handleClose={handleClose}
+        formality={formality}
+      />
     </Container>
   );
 };

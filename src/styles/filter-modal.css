@@ -1,0 +1,52 @@
+.filter-modal-title {
+  color: #555555;
+  font-weight: bold;
+  align-items: center;
+}
+
+.filter-modal-body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.filter-modal-body h6,
+.filter-modal-footer h6 {
+  color: grey;
+}
+
+.filter-modal-body button {
+  width: 100%;
+  margin-bottom: 10px;
+  background-color: white;
+  border: 1px solid #555555;
+  color: #555555;
+}
+
+.filter-modal-body button:hover {
+  background-color: #555555;
+  border: 1px solid #555555;
+  color: white;
+}
+
+.filter-modal-body button:focus {
+  background-color: white;
+  border: 1px solid #555555;
+  color: #555555;
+}
+
+.filter-modal-button-active {
+  background-color: #555555 !important;
+  border: 1px solid #555555 !important;
+  color: white !important;
+  font-style: italic !important;
+  font-weight: bold !important;
+}
+
+.filter-modal-footer {
+  margin: 0;
+  padding: 0;
+  border: none;
+  width: 100%;
+  padding-bottom: 15px;
+}
