@@ -27,6 +27,7 @@ const Build = () => {
   const [weather, setWeather] = useState([]);
   const [weatherCode, setWeatherCode] = useState();
   const [formality, setFormality] = useState(null);
+  const [weatherFilter, setWeatherFilter] = useState(null);
   const [isFavorite, setFavorite] = useState(false);
   const [favIdx, setFavIdx] = useState(false);
 
@@ -38,7 +39,7 @@ const Build = () => {
   const [filteredBottoms, setFilteredBottoms] = useState(null);
   const [filteredShoes, setFilteredShoes] = useState(null);
 
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     fetch(getWeatherAPIURL())
@@ -46,6 +47,7 @@ const Build = () => {
       .then((data) => {
         setWeather(data["current_weather"]["temperature"]);
         setWeatherCode(data["current_weather"]["weathercode"]);
+        setWeatherFilter("today");
         handleInitialData();
       })
       .catch((err) => console.error(err));
@@ -69,7 +71,7 @@ const Build = () => {
   const handleShow = () => setShow(true);
 
   const handleInitialData = () => {
-    if (!formality) setFormality("formal");
+    if (!formality) setFormality("casual");
     if (closet) {
       const tops = closet[user.uid].tops;
       const bottoms = closet[user.uid].bottoms;
@@ -231,33 +233,8 @@ const Build = () => {
         <IoMdArrowBack size={20} onClick={() => navigate("/")} />
       </Container>
       <Container className="build-header-container">
-        <Container className="build-header-toggle">
-          <ButtonGroup className="formality-toggle">
-            <ToggleButton
-              id="radio-formal"
-              size="sm"
-              type="radio"
-              name="radio"
-              value="formal"
-              variant={formality === "formal" ? "dark" : "light"}
-              checked={formality === "formal"}
-              onChange={(e) => setFormality(e.currentTarget.value)}
-            >
-              Formal
-            </ToggleButton>
-            <ToggleButton
-              id="radio-casual"
-              size="sm"
-              type="radio"
-              name="radio"
-              value="casual"
-              variant={formality === "casual" ? "dark" : "light"}
-              checked={formality === "casual"}
-              onChange={(e) => setFormality(e.currentTarget.value)}
-            >
-              Casual
-            </ToggleButton>
-          </ButtonGroup>
+        <Container className="build-header-title" onClick={handleShow}>
+          <GoSettings size={28} /> Filter
         </Container>
         <Container className="build-header-weather">
           <WeatherHeader
@@ -325,6 +302,9 @@ const Build = () => {
         show={show}
         handleClose={handleClose}
         formality={formality}
+        setFormality={setFormality}
+        weatherFilter={weatherFilter}
+        setWeatherFilter={setWeatherFilter}
       />
     </Container>
   );

@@ -26,6 +26,13 @@ body {
   align-items: center;
 }
 
+.build-header-title {
+  color: #555555;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+
 .build-header-toggle {
   font-size: 2px;
   font-weight: bold;

@@ -6,7 +6,14 @@ import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ToggleButton from "react-bootstrap/ToggleButton";
 
-const FilterModal = ({ show, handleClose, formality }) => {
+const FilterModal = ({
+  show,
+  handleClose,
+  formality,
+  setFormality,
+  weatherFilter,
+  setWeatherFilter,
+}) => {
   return (
     <>
       <Modal centered show={show} onHide={handleClose}>
@@ -20,11 +27,30 @@ const FilterModal = ({ show, handleClose, formality }) => {
             <h6>Weather Filters:</h6>
           </Container>
           <Container>
-            <Button className="filter-modal-button-active">
+            <Button
+              className={
+                weatherFilter === "today" ? "filter-modal-button-active" : ""
+              }
+              onClick={() => setWeatherFilter("today")}
+            >
               Outfits for today's weather
             </Button>
-            <Button>Outfits for warm weather</Button>
-            <Button>Outfits for cold weather</Button>
+            <Button
+              className={
+                weatherFilter === "warm" ? "filter-modal-button-active" : ""
+              }
+              onClick={() => setWeatherFilter("warm")}
+            >
+              Outfits for warm weather
+            </Button>
+            <Button
+              className={
+                weatherFilter === "cold" ? "filter-modal-button-active" : ""
+              }
+              onClick={() => setWeatherFilter("cold")}
+            >
+              Outfits for cold weather
+            </Button>
           </Container>
         </Modal.Body>
         <Modal.Footer className="filter-modal-footer">
@@ -40,8 +66,8 @@ const FilterModal = ({ show, handleClose, formality }) => {
                 name="radio"
                 value="formal"
                 variant={formality === "formal" ? "dark" : "light"}
-                //checked={formality === "formal"}
-                //onChange={(e) => setFormality(e.currentTarget.value)}
+                checked={formality === "formal"}
+                onChange={(e) => setFormality(e.currentTarget.value)}
               >
                 Formal
               </ToggleButton>
@@ -52,8 +78,8 @@ const FilterModal = ({ show, handleClose, formality }) => {
                 name="radio"
                 value="casual"
                 variant={formality === "casual" ? "dark" : "light"}
-                //checked={formality === "casual"}
-                //onChange={(e) => setFormality(e.currentTarget.value)}
+                checked={formality === "casual"}
+                onChange={(e) => setFormality(e.currentTarget.value)}
               >
                 Casual
               </ToggleButton>
