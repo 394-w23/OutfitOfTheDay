@@ -45,19 +45,19 @@ const Build = () => {
     fetch(getWeatherAPIURL())
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setWeather(data["current_weather"]["temperature"]);
         setWeatherCode(data["current_weather"]["weathercode"]);
-        setWeatherFilter("today");
         handleInitialData();
       })
       .catch((err) => console.error(err));
-  }, [formality]);
+  }, [formality, weatherFilter]);
 
   useEffect(() => {
     if (closet) {
       handleFavorite();
     }
-  }, [closet, formality]);
+  }, [closet, formality, weatherFilter]);
 
   useEffect(() => {
     handleFavorite();
@@ -72,6 +72,7 @@ const Build = () => {
 
   const handleInitialData = () => {
     if (!formality) setFormality("casual");
+    if (!weatherFilter) setWeatherFilter("today");
     if (closet) {
       const tops = closet[user.uid].tops;
       const bottoms = closet[user.uid].bottoms;
@@ -192,11 +193,24 @@ const Build = () => {
   };
 
   const filterClothesBasedOnWeather = (clothes, formality) => {
-    const weatherType = weatherConditions.get(weatherCode);
+    let weatherType = [];
+    if (weatherFilter === "today") {
+      weatherType.push(weatherConditions.get(weatherCode));
+    } else if (weatherFilter === "warm") {
+      weatherType.push("warm");
+      weatherType.push("sunny");
+    } else if (weatherFilter === "cold") {
+      weatherType.push("cold");
+      weatherType.push("rainy");
+    }
+
     let filteredClothes = new Object();
     for (const key in clothes) {
       clothes[key].weather.forEach(function (item, index) {
-        if (item === weatherType && clothes[key].formality === formality) {
+        if (
+          weatherType.includes(item) &&
+          clothes[key].formality === formality
+        ) {
           filteredClothes[key] = clothes[key];
         }
       });
