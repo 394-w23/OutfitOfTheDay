@@ -257,6 +257,11 @@ const Build = () => {
           />
         </Container>
       </Container>
+      <Container className="build-header-filter-title">
+        <h6>
+          You're seeing {formality} clothes for {weatherFilter} weather
+        </h6>
+      </Container>
       <Container className="build-clothes-container">
         <Container className="build-clothes-top">
           <ClothesCarousel

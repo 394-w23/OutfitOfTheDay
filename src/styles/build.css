@@ -26,6 +26,12 @@ body {
   align-items: center;
 }
 
+.build-header-filter-title h6 {
+  color: #555555;
+  font-size: 12px;
+  font-style: italic;
+}
+
 .build-header-title {
   color: #555555;
   font-weight: bold;
@@ -121,7 +127,6 @@ body {
 .build-btn {
   width: 100%;
   font-size: 16px;
-  margin-bottom: 15px;
   font-weight: bold;
   background-color: #5d5fef;
   border: none;
