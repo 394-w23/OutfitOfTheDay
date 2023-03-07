@@ -59,7 +59,15 @@ const Home = () => {
         </Container>
         <Container
           className="home-suggest-button"
-          onClick={() => navigate("/suggest")}
+          onClick={() =>
+            navigate("/suggest", {
+              state: {
+                closet: closet,
+                weather: weather,
+                weatherCode: weatherCode,
+              },
+            })
+          }
         >
           <BsShuffle size={24} />
           <p>

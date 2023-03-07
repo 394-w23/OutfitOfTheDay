@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -15,10 +15,9 @@ import { weatherConditions } from "../utils/weather";
 const Suggest = () => {
   const navigate = useNavigate();
   const user = getMockUser();
-  const [closet] = useDbData("/closet");
 
-  const [weather, setWeather] = useState([]);
-  const [weatherCode, setWeatherCode] = useState();
+  const { state } = useLocation();
+  const { closet, weather, weatherCode } = state;
 
   const [filteredFormalTops, setFilteredFormalTops] = useState(null);
   const [filteredFormalBottoms, setFilteredFormalBottoms] = useState(null);
@@ -28,33 +27,19 @@ const Suggest = () => {
   const [filteredCasualShoes, setFilteredCasualShoes] = useState(null);
 
   useEffect(() => {
-    fetch(getWeatherAPIURL())
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setWeather(data["current_weather"]["temperature"]);
-        setWeatherCode(data["current_weather"]["weathercode"]);
-        handleInitialData();
-      })
-      .catch((err) => console.error(err));
+    handleInitialData();
   }, []);
 
-  useEffect(() => {
-    handleInitialData();
-  }, [closet]);
-
   const handleInitialData = () => {
-    if (closet) {
-      const tops = closet[user.uid].tops;
-      const bottoms = closet[user.uid].bottoms;
-      const shoes = closet[user.uid].shoes;
-      setFilteredCasualTops(filterClothesBasedOnWeather(tops, "casual"));
-      setFilteredCasualBottoms(filterClothesBasedOnWeather(bottoms, "casual"));
-      setFilteredCasualShoes(filterClothesBasedOnWeather(shoes, "casual"));
-      setFilteredFormalTops(filterClothesBasedOnWeather(tops, "formal"));
-      setFilteredFormalBottoms(filterClothesBasedOnWeather(bottoms, "formal"));
-      setFilteredFormalShoes(filterClothesBasedOnWeather(shoes, "formal"));
-    }
+    const tops = closet[user.uid].tops;
+    const bottoms = closet[user.uid].bottoms;
+    const shoes = closet[user.uid].shoes;
+    setFilteredCasualTops(filterClothesBasedOnWeather(tops, "casual"));
+    setFilteredCasualBottoms(filterClothesBasedOnWeather(bottoms, "casual"));
+    setFilteredCasualShoes(filterClothesBasedOnWeather(shoes, "casual"));
+    setFilteredFormalTops(filterClothesBasedOnWeather(tops, "formal"));
+    setFilteredFormalBottoms(filterClothesBasedOnWeather(bottoms, "formal"));
+    setFilteredFormalShoes(filterClothesBasedOnWeather(shoes, "formal"));
   };
 
   const filterClothesBasedOnWeather = (clothes, formality) => {
@@ -169,7 +154,7 @@ const Suggest = () => {
           <Row xs={2} md={2}>
             {Object.entries(generateCasualOutfit()).map(([idx, clothes]) => (
               <Col key={idx}>
-                <OutfitCard clothes={clothes} idx={null} modalShown={false} />
+                <OutfitCard clothes={clothes} idx={idx} modalShown={true} />
               </Col>
             ))}
           </Row>
@@ -183,7 +168,7 @@ const Suggest = () => {
           <Row xs={2} md={2}>
             {Object.entries(generateFormalOutfit()).map(([idx, clothes]) => (
               <Col key={idx}>
-                <OutfitCard clothes={clothes} idx={null} modalShown={false} />
+                <OutfitCard clothes={clothes} idx={idx} modalShown={true} />
               </Col>
             ))}
           </Row>
