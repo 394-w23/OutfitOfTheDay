@@ -22,14 +22,6 @@ npm start
 
 and open the URL displayed.
 
-Verify that the unit tests work with
-
-```
-npm test
-```
-
-Two tests should run and pass. 
-
 ## Scripts
 
 **package.json** defines the following scripts:
@@ -42,6 +34,25 @@ Two tests should run and pass.
 | npm run serve  | Serves the production build from the `dist` folder. |
 | npm test       | Starts a Jest-like test loop                        |
 
+## Firebase
+
+Create account: https://console.firebase.google.com/
+
+To deploy:
+| Script         | Description                                         |
+| -------------- | --------------------------------------------------- |
+| firebase deploy| Deploys app to https://outfitoftheday-c3adf.web.app/|
+
+## Weather API
+
+Weather API https://open-meteo.com/en/docs
+Can fetch directly without a key.
+
+## Known Bugs
+
+Unable to favorite outfits under "Today's Outfit" on home page
+Unable to favorite outfits from "Outfits" within outfit modal
+Deleting from closet does not delete from "Today's Outfit"
 
 ## Git
 
