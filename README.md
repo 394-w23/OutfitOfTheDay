@@ -46,13 +46,13 @@ To deploy:
 ## Weather API
 
 Weather API https://open-meteo.com/en/docs
-Can fetch directly without a key.
+* Can fetch directly without a key.
 
 ## Known Bugs
 
-Unable to favorite outfits under "Today's Outfit" on home page
-Unable to favorite outfits from "Outfits" within outfit modal
-Deleting from closet does not delete from "Today's Outfit"
+* Unable to favorite outfits under "Today's Outfit" on home page
+* Unable to favorite outfits from "Outfits" within outfit modal
+* Deleting from closet does not delete from "Today's Outfit"
 
 ## Git
 
