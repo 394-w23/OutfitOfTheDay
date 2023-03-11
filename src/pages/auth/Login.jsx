@@ -6,7 +6,6 @@ import { Container } from "react-bootstrap";
 import getMockUser from "../../utils/mockUser";
 
 const Login = () => {
-  //const [user] = useProfile();
   const user = getMockUser();
   const navigate = useNavigate();
 

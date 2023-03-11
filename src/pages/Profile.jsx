@@ -62,8 +62,6 @@ const Profile = () => {
                       </div>
                     </div>
                     <div className="d-flex pt-1">
-                      {/* <MDBBtn outline className="chat-button">Chat</MDBBtn>
-                      <MDBBtn className="follow-button">Follow</MDBBtn> */}
                     </div>
                   </div>
                 </div>

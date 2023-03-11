@@ -53,6 +53,7 @@ Weather API https://open-meteo.com/en/docs
 * Unable to favorite outfits under "Today's Outfit" on home page
 * Unable to favorite outfits from "Outfits" within outfit modal
 * Deleting from closet does not delete from "Today's Outfit"
+* Uploading without having all fields filled in
 
 ## Git
 

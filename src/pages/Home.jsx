@@ -32,7 +32,6 @@ const Home = () => {
 
   if (!user) return <h5 className="text-muted">Loading user profile...</h5>;
   if (!closet) return <h5 className="text-muted">Loading user closet...</h5>;
-  //if (!weatherCode) return <h5 className="text-muted">Loading weather...</h5>;
 
   return (
     <Container>

@@ -12,7 +12,6 @@ import { useProfile } from "../../utils/userProfile";
 import getMockUser from "../../utils/mockUser";
 
 const Header = () => {
-  //const [user] = useProfile();
   const user = getMockUser();
   const navigate = useNavigate();
 
@@ -31,26 +30,11 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav" className="header-dropdown">
           <IoMdAddCircle size={24} />
-          {/* <Nav className="header-profile">
-            <img
-              className="header-img"
-              alt="Profile"
-              src={user.profilePic}
-              referrerPolicy="no-referrer"
-            /> */}
           <NavDropdown id="collasible-nav-dropdown" align="end">
-            {/* <NavDropdown.Item onClick={() => navigate("/")}>
-                <CgProfile size={24} /> View Profile
-              </NavDropdown.Item> */}
             <NavDropdown.Item onClick={() => navigate("/add")}>
               <IoMdAddCircle size={24} /> Add Item
             </NavDropdown.Item>
-            {/* <NavDropdown.Divider /> */}
-            {/* <NavDropdown.Item onClick={() => navigate("/")}>
-                <AiOutlineLogout size={24} /> Logout
-              </NavDropdown.Item> */}
           </NavDropdown>
-          {/* </Nav> */}
         </Navbar.Collapse>
       </Container>
     </Navbar>

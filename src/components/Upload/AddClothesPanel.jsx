@@ -10,7 +10,6 @@ import getMockUser from "../../utils/mockUser";
 import { useProfile } from "../../utils/userProfile";
 
 const AddClothesPanel = ({ input, step }) => {
-  //const [user] = useProfile();
   const navigate = useNavigate();
   const user = getMockUser();
   const [updateData] = useDbUpdate("/");

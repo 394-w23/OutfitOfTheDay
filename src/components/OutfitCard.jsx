@@ -30,12 +30,6 @@ const OutfitCard = ({ clothes, idx, big, modalShown }) => {
         isFavorite: !isFavorite,
       },
     });
-    /*     updateData({
-      ["/closet/" + user.uid + "/todays/" + idx]: {
-        ...clothes,
-        isFavorite: !isFavorite,
-      },
-    }); */
   };
 
   return (
