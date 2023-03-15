@@ -33,7 +33,9 @@ npm start
 ## Firebase
 
 Create account: https://console.firebase.google.com/
-* When the firebase console is ready and the config object is generated, change the config data located in the following file: https://github.com/394-w23/OutfitOfTheDay/blob/main/src/utils/firebase.js
+* Create an instance to the firebase storage, the realtime database, authorization and hosting service.
+* Next, create a SDK web app configuration.
+* When the firebase console is ready and the configuration object is generated, change the configuration data located in the following file: https://github.com/394-w23/OutfitOfTheDay/blob/main/src/utils/firebase.js
 
 To deploy:
 | Script         | Description                                         |
