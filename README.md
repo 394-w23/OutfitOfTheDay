@@ -1,26 +1,22 @@
-# React Vitest Template
+# Outfit of the Day
 
-A starter template for building React apps with Vite. Includes Vitest for unit testing and
-a hefty .gitignore file.
+OutfitOfTheDay is an app that allows users to catalog their closet and decide on an outfit for the day each morning based on weather and formality. It will also keep track of your favorite outfits.
 
-## Usage
+![Home Page](https://i.imgur.com/KR7rVLM.jpg)
+
+![Build Page](https://i.imgur.com/3LiqqKC.jpg)
+
+* Tired of not knowing what to wear? Tired of looking through piles of clothes to select an outfit? Find an outfit using OOTD!
+* Have optimal usage of clothing articles.
+* Generate outfits to match the weather and events that day
+
+## Getting Started
 
 ```
-mkdir your-app-name
-cd your-app-name
-npx degit criesbeck/react-vitest
+git clone https://github.com/394-w23/OutfitOfTheDay.git
 npm install
-```
-
-## Test
-
-Verify that the initial app works. Run
-
-```
 npm start
 ```
-
-and open the URL displayed.
 
 ## Scripts
 
@@ -37,6 +33,7 @@ and open the URL displayed.
 ## Firebase
 
 Create account: https://console.firebase.google.com/
+* When the firebase console is ready and the config object is generated, change the config data located in the following file: https://github.com/394-w23/OutfitOfTheDay/blob/main/src/utils/firebase.js
 
 To deploy:
 | Script         | Description                                         |
@@ -45,40 +42,24 @@ To deploy:
 
 ## Weather API
 
-Weather API https://open-meteo.com/en/docs
-* Can fetch directly without a key.
+The weather API used for the app is from: https://open-meteo.com/en/docs
+* Can fetch directly without the need of a key or a secret id.
 
 ## Known Bugs
 
 * Unable to favorite outfits under "Today's Outfit" on home page
 * Unable to favorite outfits from "Outfits" within outfit modal
 * Deleting from closet does not delete from "Today's Outfit"
-* Uploading without having all fields filled in
+* Uploading without having all fields filled in (Add validation)
 
-## Git
+## Contact
 
-If everything is working, set up [your local and remote repositories](https://docs.github.com/en/get-started/importing-your-projects-to-github/importing-source-code-to-github/adding-locally-hosted-code-to-github#adding-a-local-repository-to-github-using-git).
-
-## Folder Structure
-
-```
-your-app-name
-├── node_modules
-├── public
-│   ├── favicon.svg
-│   └── robots.txt
-└── src
-    ├── App.css
-    ├── App.jsx
-    ├── index.css
-    ├── index.jsx
-    └── logo.svg
-├── .gitignore
-├── index.html
-├── package.json
-├── README.md
-├── vite.config.js
-```
+* Camilo Chafloque - juanchafloquemesia2023@u.northwestern.edu
+* Celina Zhao - celinazhao2024@u.northwestern.edu
+* Derex Wangmang - derexwangmang2023@u.northwestern.edu
+* Tanay Srivastava - tanaysrivastava2023@u.northwestern.edu
+* Sean Park - seanpark2024@u.northwestern.edu
+* Anshul Hajare - anshulhajare2024@u.northwestern.edu
 
 ## Credits
 
@@ -90,7 +71,6 @@ Expanded to include Vitest and some sample tests.
 Thanks to Rich Harris for [degit](https://www.npmjs.com/package/degit).
 
 Gitignore file created with [the Toptal tool](https://www.toptal.com/developers/gitignore/api/react,firebase,visualstudiocode,macos,windows).
-
 
 ## License
 
